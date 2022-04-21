@@ -1,0 +1,4 @@
+com.oppo.shuttle.rss.storage.fs.local.LocalFileSystemFactory
+com.oppo.shuttle.rss.storage.fs.dfs.DfsSystemFactory
+com.oppo.shuttle.rss.storage.fs.alluxio.AlluxioFileSystemFactory
+com.oppo.shuttle.rss.storage.fs.cfs.CfsFileSystemFactory
