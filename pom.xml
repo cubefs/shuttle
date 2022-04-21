@@ -41,10 +41,10 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <hadoop.version>2.7.1</hadoop.version>
-        <spark.version>3.1.2</spark.version>
+        <spark.version>2.4.8</spark.version>
         <protobuf.version>3.14.0</protobuf.version>
-        <scala.version>2.12.10</scala.version>
-        <scala.compat.version>2.12</scala.compat.version>
+        <scala.version>2.11.12</scala.version>
+        <scala.compat.version>2.11</scala.compat.version>
         <jacoco.version>0.8.2</jacoco.version>
         <guava.version>15.0</guava.version>
         <test.runner.version>2.22.1</test.runner.version>
@@ -54,8 +54,8 @@
         <alluxio.version>2.6.1</alluxio.version>
         <jna.version>4.2.2</jna.version>
         <cfs.version>0.11.3</cfs.version>
-        <jackson.version>2.10.0</jackson.version>
-        <jackson.scala.version>2.10.0</jackson.scala.version>
+        <jackson.version>2.9.10.8</jackson.version>
+        <jackson.scala.version>2.9.10</jackson.scala.version>
         <skipIT>true</skipIT>
         <dependency.scope>compile</dependency.scope>
         <useProjectArtifact>false</useProjectArtifact>
@@ -220,10 +220,9 @@
             <version>${jackson.version}</version>
         </dependency>
 
-
         <dependency>
             <groupId>com.fasterxml.jackson.module</groupId>
-            <artifactId>jackson-module-scala_${scala.compat.version}</artifactId>
+            <artifactId>jackson-module-scala_2.11</artifactId>
             <version>${jackson.scala.version}</version>
         </dependency>
 
@@ -263,18 +262,6 @@
                     <artifactId>slf4j-log4j12</artifactId>
                 </exclusion>
             </exclusions>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.curator</groupId>
-            <artifactId>curator-client</artifactId>
-            <version>2.13.0</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.carrotsearch</groupId>
-            <artifactId>hppc</artifactId>
-            <version>0.7.2</version>
         </dependency>
 
         <!-- start of test dependencies -->
@@ -363,7 +350,6 @@
                                     <include>com.google.protobuf</include>
                                     <include>net.java.dev.jna</include>
                                     <include>io.chubaofs</include>
-                                    <include>com.carrotsearch</include>
                                 </includes>
                             </artifactSet>
                             <relocations>

@@ -17,10 +17,10 @@
 package org.apache.spark.shuffle
 import com.oppo.shuttle.rss.exceptions.Ors2Exception
 import org.apache.spark.network.buffer.ManagedBuffer
-import org.apache.spark.storage.BlockId
+import org.apache.spark.storage.ShuffleBlockId
 
 class Ors2ShuffleBlockResolver extends ShuffleBlockResolver {
-  override def getBlockData(blockId: BlockId, dirs: Option[Array[String]]): ManagedBuffer = {
+  override def getBlockData(blockId: ShuffleBlockId): ManagedBuffer = {
     throw new Ors2Exception("Ors2 remote shuffle no need to implement ShuffleBlockResolver.")
   }
 
