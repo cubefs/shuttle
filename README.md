@@ -4,7 +4,7 @@ RSS provides remote shuffle capability to group and dump shuffle data into distr
 The goal of RSS is to transfer the small and random IO to sequence IO, result to improve the performance and  stablility of application.
 See more details on [docs link](docs/server-high-level-design.md).
 
-Our email ： rss@oppo.com
+Our email: bigdata-arch@oppo.com
 
 Please contact us if you has any question or suggestion.
 ## Spark Version matching

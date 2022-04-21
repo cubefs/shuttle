@@ -30,7 +30,7 @@ The ShuffleReader provide following functionalities:
 ## The basic design of RSS
 The following architecture diagram illustrates how it works:
 
-![rss-arch](docs/rss-arch.png)
+![rss-arch](rss-arch.png)
 
 The basic work flow like following desc：
 
