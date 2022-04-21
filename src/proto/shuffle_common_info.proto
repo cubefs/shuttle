@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package shuffle;
+
+option java_package = "com.andes.ors2.common";
+option java_outer_classname = "ShuffleInfo";
+
+message MapShuffleInfo {
+    int32 mapId = 1;
+    int64 attemptId = 2;
+    int32 shuffleWorkerGroupNum = 3;
+}

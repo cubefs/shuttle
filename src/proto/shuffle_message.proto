@@ -1,0 +1,143 @@
+syntax = "proto3";
+
+package shuffle;
+
+option java_package = "com.andes.ors2.messages";
+option java_outer_classname = "ShuffleMessage";
+
+/***********************  ShuffleWriter & ShuffleWorker msg *********************/
+enum FlowControlType {
+  UNKNOWN = 0;
+  NO_CONTROL = 101;
+  MEM_CONTROL = 102;
+  BUSY_CONTROL = 103;
+  BYPASS_PASS = 104;
+}
+
+message BuildConnectionRequest {
+  int32 version = 1;
+  int32 jobPriority = 2;
+  int32 retryIdx = 3;
+  int64 createTime = 4;
+  int64 sendTime = 5;
+  string messageId = 6;
+  int64 dataSize = 7;
+}
+
+message BuildConnectionResponse {
+  int32 id = 1;
+  int64 value = 2;
+  FlowControlType controlType = 3;
+  int64 responseTime = 4;
+  string messageId = 5;
+}
+
+message UploadPackageRequest {
+  message PartitionBlockData {
+    int32 partitionId = 1;
+    int32 dataLength = 2;
+    bytes data = 3;
+    int32 seqId = 4;
+  }
+  message CheckSums {
+    repeated int32 checksumPartitions = 1;
+    repeated int64 checksums = 2;
+  }
+  int32 buildId = 1;
+  int64 buildValue = 2;
+  string appId = 3;
+  string appAttempt = 4;
+  int32 shuffleId = 5;
+  int32 mapId = 6;
+  int64 attemptId = 7;
+  int32 numMaps = 8;
+  int32 numPartitions = 9;
+  int32 seqId = 10;
+  repeated PartitionBlockData partitionBlocks = 11;
+  CheckSums checkSums = 12;
+  int64 createTime = 13;
+  int64 sendTime = 14;
+  string messageId = 15;
+  int32 stageAttempt = 16;
+}
+
+message UploadPackageResponse {
+  string serverId = 1;
+  int64 responseTime = 2;
+  string messageId = 3;
+}
+
+message UploadChecksumRequest {
+  string appId = 1;
+  string appAttempt = 2;
+  int32 shuffleId = 3;
+  int32 mapId = 4;
+  int64 attemptId = 5;
+  int32 numPartition = 6;
+  repeated int64 checksums = 7;
+}
+
+message UploadChecksumResponse {
+  string serverId = 1;
+}
+
+/********************* ShuffleMaster & ShuffleWorker msg *********************/
+enum ShuffleWorkerStorageType {
+  NO_STORAGE = 0;
+  HDD_HDFS = 1;
+  HDD_CFS = 2;
+  SSD_HDFS = 3;
+  SSD_CFS = 4;
+  MEM_ALLUXIO = 5;
+}
+
+
+message ShuffleWorkerHealthInfo {
+  string hostIp = 1;
+  bool selfCheckOK = 2;
+  int64 lastRestartTime = 3;
+  int32 rejectConnNum = 4;
+  int64 holdDataSize = 5;
+  int64 throughputPerMin = 6;
+  int32 shufflePort = 7;
+  int32 buildConnPort = 8;
+  string dataCenter= 9;
+  string cluster = 10;
+  int64 updateTime = 11;
+  string startVersion = 12;
+  string rootDirectory = 13;
+  int32 workerLoadWeight = 14;
+  string fsConf = 15;
+}
+
+message ShuffleWorkerUnregisterRequest{
+  string serverId = 1;
+}
+
+/********************* ShuffleMaster & AppDriver msg ************************/
+
+message GetWorkersRequest{
+  int32 requestWorkerCount = 1;
+  string dataCenter = 2;
+  string cluster = 3;
+  int32 jobPriority = 4;
+  string appId = 5;
+  string dagId = 6;
+  string taskId = 7;
+  string appName = 8;
+}
+
+message ServerDetail{
+  string host = 1;
+  int32 dataPort = 2;
+  int32 buildConnPort = 3;
+}
+
+message GetWorkersResponse{
+  repeated ServerDetail severDetail = 1;
+  string fileSystemConf = 2;
+  string rootDir = 3;
+  string dataCenter = 4;
+  string cluster = 5;
+  bool isSuccess = 6;
+}
