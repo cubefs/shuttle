@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+
+<configuration>
+    <property>
+        <name>cfs.volume.name</name>
+        <value>shuffle</value>
+    </property>
+
+    <property>
+        <name>cfs.master.address</name>
+        <value>127.0.0.1:17010</value>
+    </property>
+
+    <property>
+        <name>cfs.log.dir</name>
+        <value>/tmp/cfs-access.log</value>
+    </property>
+
+    <property>
+        <name>cfs.log.level</name>
+        <value>WARN</value>
+    </property>
+</configuration>
