@@ -1,0 +1,11 @@
+OPPO Remote Shuffle Service
+Copyright 2021 OPPO. All rights reserved.
+
+This product includes software devoloped at
+The Apache Software Foundation (http://www.apache.org/).
+
+This software reused the code from Apache Spark project to implement
+the remote shuffle procedure.
+
+Apache Spark
+Copyright 2014 and onwards The Apache Software Foundation.
