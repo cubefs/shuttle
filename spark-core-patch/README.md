@@ -1,0 +1,1 @@
+If you need to use rss under dynamic resource allocation, you need to modify a small amount of spark-core source code. Use this patch in the spark source code, recompile spark-core, and then replace it.
