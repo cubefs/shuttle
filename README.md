@@ -15,6 +15,12 @@ Please contact us if you has any question or suggestion.
 | sp31 | >=spark3.0 |
 | master | >=spark3.0 |
 
+RSS supports AQE of spark 2.x.  
+RSS supports AQE of spark3.x except local read. Therefore, in spark3.x, you need to add the following configuration to close AQE local reading:
+```
+spark.sql.adaptive.localShuffleReader.enabled=false
+```
+
 ## Build Guide
 Use JDK 8+ and maven 3+ to build
 
