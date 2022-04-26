@@ -1,4 +1,7 @@
 # Shuttle: High Available, High Performance Remote Shuffle Service
+![thumbnail_1870B2B9@1C5FB502 ECC56662](https://user-images.githubusercontent.com/3745064/165201635-fe39b5ae-8b82-4404-80c4-6626c45f01b3.jpg)
+
+
 RSS provides remote shuffle capability to group and dump shuffle data into distribute file system by partition. 
 
 The goal of RSS is to transfer the small and random IO to sequence IO, result to improve the performance and  stablility of application.
