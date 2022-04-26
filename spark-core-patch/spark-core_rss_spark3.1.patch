@@ -17,3 +17,41 @@ diff --git a/core/src/main/scala/org/apache/spark/SparkEnv.scala b/core/src/main
        val transConf = SparkTransportConf.fromSparkConf(conf, "shuffle", numUsableCores)
        Some(new ExternalBlockStoreClient(transConf, securityManager,
          securityManager.isAuthenticationEnabled(), conf.get(config.SHUFFLE_REGISTRATION_TIMEOUT)))
+Index: core/src/main/scala/org/apache/spark/storage/BlockManager.scala
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/core/src/main/scala/org/apache/spark/storage/BlockManager.scala b/core/src/main/scala/org/apache/spark/storage/BlockManager.scala
+--- a/core/src/main/scala/org/apache/spark/storage/BlockManager.scala	(revision 4a0c3e2e2191a4e2b18f9538ffeb30e7e774081f)
++++ b/core/src/main/scala/org/apache/spark/storage/BlockManager.scala	(revision 6d26ad559347a226ed317c8699dea0f68c16a64e)
+@@ -177,7 +177,10 @@
+   extends BlockDataManager with BlockEvictionHandler with Logging {
+ 
+   // same as `conf.get(config.SHUFFLE_SERVICE_ENABLED)`
+-  private[spark] val externalShuffleServiceEnabled: Boolean = externalBlockStoreClient.isDefined
++  private[spark] val externalShuffleServiceEnabled: Boolean = conf.get(config.SHUFFLE_SERVICE_ENABLED)
++
++  private[spark] val isOrs2Shuffle = conf.get("spark.shuffle.manager", "sort")
++    .startsWith("org.apache.spark.shuffle.Ors")
+ 
+   private val remoteReadNioBufferConversion =
+     conf.get(Network.NETWORK_REMOTE_READ_NIO_BUFFER_CONVERSION)
+@@ -490,7 +493,7 @@
+ 
+     blockManagerId = if (idFromMaster != null) idFromMaster else id
+ 
+-    shuffleServerId = if (externalShuffleServiceEnabled) {
++    shuffleServerId = if (externalShuffleServiceEnabled && !isOrs2Shuffle) {
+       logInfo(s"external shuffle service port = $externalShuffleServicePort")
+       BlockManagerId(executorId, blockTransferService.hostName, externalShuffleServicePort)
+     } else {
+@@ -498,7 +501,7 @@
+     }
+ 
+     // Register Executors' configuration with the local shuffle service, if one should exist.
+-    if (externalShuffleServiceEnabled && !blockManagerId.isDriver) {
++    if (externalShuffleServiceEnabled && !blockManagerId.isDriver && !isOrs2Shuffle) {
+       registerWithExternalShuffleServer()
+     }
+ 
