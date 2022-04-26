@@ -5,8 +5,9 @@
 RSS provides remote shuffle capability to group and dump shuffle data into distribute file system by partition. 
 
 The goal of RSS is to transfer the small and random IO to sequence IO, result to improve the performance and  stablility of application.
-See more details on [docs link](docs/server-high-level-design.md).
+See more details on [docs link](docs/server-high-level-design.md).  
 
+[Detailed introduction](https://mp.weixin.qq.com/s/FMvKGvVYcxNG4dNOFQlF0g)  
 Our email: bigdata-arch@oppo.com
 
 Please contact us if you has any question or suggestion.
