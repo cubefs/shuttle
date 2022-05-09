@@ -10,6 +10,11 @@ See more details on [docs link](docs/server-high-level-design.md).
 [Detailed introduction](https://mp.weixin.qq.com/s/FMvKGvVYcxNG4dNOFQlF0g)  
 Our email: bigdata-arch@oppo.com
 
+WeChat Group QR-code：
+
+![qr_download](https://user-images.githubusercontent.com/3745064/167414356-1416de3c-ea08-42ce-a110-008b741ab05d.png)
+
+
 Please contact us if you has any question or suggestion.
 
 ## Architecture diagram of Shuttle system
