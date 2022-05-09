@@ -30,7 +30,8 @@ The ShuffleReader provide following functionalities:
 ## The basic design of Shuttle
 The following architecture diagram illustrates how it works:
 
-![rss-arch](rss-arch.png)
+![shuttle-high-level-view](https://user-images.githubusercontent.com/3745064/167381975-e9e15201-65b9-463c-a43a-16c5141b71c3.png)
+
 
 The basic work flow like following desc：
 
