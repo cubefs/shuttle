@@ -11,6 +11,12 @@ See more details on [docs link](docs/server-high-level-design.md).
 Our email: bigdata-arch@oppo.com
 
 Please contact us if you has any question or suggestion.
+
+## Architecture diagram of Shuttle system
+
+![shuttle-arch-diagram](https://user-images.githubusercontent.com/3745064/167382634-0557234e-dd15-46fd-be3b-bf7c8a943833.png)
+
+
 ## Spark Version matching
 
 | branch name | spark version |
