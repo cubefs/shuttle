@@ -1,9 +1,9 @@
-# RSS design doc
+# Shuttle design doc
 
-The OPPO Remote Shuffle Service(RSS) is designed as standalone service (not depend on Yarn NodeManager external shuffle service).
-The goal of RSS is to change the small and random IO to sequence IO, result to improve the performance and  stablility of application.
+The Shuttle is designed as standalone service (not depend on Yarn NodeManager external shuffle service).
+The goal of Shuttle rss is to change the small and random IO to sequence IO, result to improve the performance and  stablility of application.
 
-RSS has four part : ShuffleMaster and ShuffleWorker.
+Shuttle rss has four part : ShuffleMaster and ShuffleWorker.
 The ShuffleMaster provide following functionalities:
  - manage shuffle workers:
    1. shuffle workers status monitoring and transferring
@@ -27,7 +27,7 @@ The ShuffleWriter provide following functionalities:
 The ShuffleReader provide following functionalities:
  - read shuffle data and checksum from partition shuffle file async
 
-## The basic design of RSS
+## The basic design of Shuttle
 The following architecture diagram illustrates how it works:
 
 ![rss-arch](rss-arch.png)
