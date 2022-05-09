@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source "$(cd "`dirname "$0"`"; pwd)"/../conf/rss_env.sh
+source "$(cd "`dirname "$0"`"; pwd)"/../conf/shuttle_env.sh
 source "$(cd "`dirname "$0"`"; pwd)"/rss_common.sh
 
 action=$1

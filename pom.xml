@@ -22,7 +22,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.oppo</groupId>
-    <artifactId>oppo-remote-shuffle-service</artifactId>
+    <artifactId>shuttle-rss</artifactId>
     <version>0.1.0</version>
     <name>shuttle</name>
     <description>OPPO Remote shuffle service and client.</description>

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source "$(cd "`dirname "$0"`"; pwd)"/../conf/rss_env.sh
+source "$(cd "`dirname "$0"`"; pwd)"/../conf/shuttle_env.sh
 
 action=$1
 export RSS_SERVER_NAME=master_${RSS_DATA_CENTER}_${RSS_CLUSTER}
