@@ -12,7 +12,8 @@ Our email: bigdata-arch@oppo.com
 
 WeChat Group QR-code：
 
-![qr_download](https://user-images.githubusercontent.com/3745064/167414356-1416de3c-ea08-42ce-a110-008b741ab05d.png)
+![HH7D](https://user-images.githubusercontent.com/3745064/170019227-be93073a-ad6d-48de-9612-22f075c6de16.png)
+
 
 
 Please contact us if you has any question or suggestion.
