@@ -106,6 +106,17 @@ Start ShuffleWorker server with distribute package as a java application, run:
 sh bin/run_worker.sh start
 `
 
+### Prometheus compatible metrics support 
+How to enable Prometheus metrics support?
+Start worker/master with parameter:
+`
+-Dmetrics.export.port=xxxx
+`
+Metrics data url:
+`
+ip:port/metric
+`
+
 Remarks:
 ShuffleWorker uses port to specification, so we can start more shuffle workers with diff ports on one host.
 
