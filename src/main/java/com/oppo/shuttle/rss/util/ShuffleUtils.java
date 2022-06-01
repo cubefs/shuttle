@@ -79,10 +79,10 @@ public class ShuffleUtils {
           String taskId,
           String appName) {
 
-    int retryIntervalMillis = 100;
+    int retryIntervalMillis = 15000;
     ShuffleMessage.GetWorkersResponse response = CommonUtils.retry(
             retryIntervalMillis,
-            maxTryMillis,
+            6 * retryIntervalMillis,
             () -> {
               try {
                 logger.info("Trying to get max {} ORS2 workers, data center: {}, cluster: {}, " ,
@@ -94,6 +94,7 @@ public class ShuffleUtils {
                 return null;
               }
             });
+
     if (response == null || response.getSeverDetailList().isEmpty()) {
       throw new Ors2Exception("Failed to get all ORS2 servers");
     }

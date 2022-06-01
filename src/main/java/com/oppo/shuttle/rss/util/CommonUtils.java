@@ -55,7 +55,6 @@ public class CommonUtils {
             Thread.sleep(mills);
         } catch (InterruptedException e) {
             logger.error("InterruptedException in safeSleep: ", e);
-            e.printStackTrace();
         }
     }
 
@@ -67,9 +66,15 @@ public class CommonUtils {
             if (result != null) {
                 return result;
             }
-            safeSleep(intervalMillis);
+
+            try {
+                Thread.sleep(intervalMillis);
+            } catch (InterruptedException e) {
+                logger.error("InterruptedException in sleep: ", e);
+                break;
+            }
         } while (System.currentTimeMillis() - start <= timeoutMills);
-        return  null;
+        return null;
     }
 
     public static <T> Collection<T> retryUntilNotEmpty(long intervalMillis, long timeoutMills, Supplier<Collection<T>> callable) {

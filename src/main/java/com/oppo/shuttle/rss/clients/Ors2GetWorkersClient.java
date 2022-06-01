@@ -61,8 +61,7 @@ public class Ors2GetWorkersClient implements AutoCloseable {
             }
             return (ShuffleMessage.GetWorkersResponse) ors2MasterClientDecoder.getResult();
         } catch (InterruptedException | TimeoutException t) {
-            logger.error("Can't get any workers in {} seconds, try again later. ", Constants.SHUFFLE_GET_RESULT_TIMEOUT, t);
-            Thread.currentThread().interrupt();
+            logger.warn("Can't get any workers in {} seconds, try again later. ", Constants.SHUFFLE_GET_RESULT_TIMEOUT, t);
             return null;
         }
     }
