@@ -17,6 +17,7 @@
 package org.apache.spark.shuffle
 
 import io.netty.channel.DefaultEventLoop
+import org.apache.commons.lang3.StringUtils
 import org.apache.spark.SparkConf
 import org.apache.spark.shuffle.ors2.Ors2SparkListener
 import org.apache.spark.sql.functions.{count, sum}
@@ -148,5 +149,16 @@ class Ors2ShuffleManagerTest {
     assert(count == 10000)
 
     assert(df.reduce(_ + _) == 50005000)
+  }
+
+  @Test
+  def dockerTest(): Unit = {
+    val zk = System.getProperty("shuttle.docker.zkserver");
+    if (StringUtils.isEmpty(zk)) {
+      return ;
+    }
+    val conf = new SparkConf()
+    conf.set(Ors2Config.serviceRegistryZKServers, zk)
+    runWithConf(conf)
   }
 }

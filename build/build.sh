@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 RSS_HOME="$(cd "`dirname "$0"`/.."; pwd)"
-DIST_DIR="$RSS_HOME/dist"
-DIST_ZIP=rss-spark.zip
+DIST_DIR="$RSS_HOME/build/dist"
+DIST_ZIP=shuttle-rss.zip
 CONF_DIR=$1
 
 

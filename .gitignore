@@ -45,7 +45,7 @@ jenkins.xml
 target/
 ors2-data/
 state-data/
-dist/
+build/dist/
 
 # Ignore any mocks sub-directory.
 mocks/

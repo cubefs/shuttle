@@ -16,6 +16,7 @@
 
 package com.oppo.shuttle.rss.util;
 
+import com.oppo.shuttle.rss.common.Constants;
 import com.oppo.shuttle.rss.exceptions.Ors2Exception;
 import com.oppo.shuttle.rss.exceptions.Ors2NetworkException;
 import io.netty.channel.Channel;
@@ -25,6 +26,7 @@ import org.apache.commons.httpclient.HttpStatus;
 import org.apache.commons.httpclient.methods.PostMethod;
 import org.apache.commons.httpclient.methods.PutMethod;
 import org.apache.commons.httpclient.methods.StringRequestEntity;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -34,14 +36,19 @@ public class NetworkUtils {
     private static final Logger logger = LoggerFactory.getLogger(NetworkUtils.class);
 
     public static String getLocalIp() {
-        InetAddress address;
+        // for docker
+        String ip = System.getenv(Constants.SHUTTLE_HOST_IP_ENV_NAME);
+        if (!StringUtils.isEmpty(ip)) {
+            return ip;
+        }
+
         try {
-            address = InetAddress.getLocalHost();
+            InetAddress address = InetAddress.getLocalHost();
+            return address.getHostAddress();
         } catch (UnknownHostException e) {
             logger.warn("Get local ip failed!");
             throw new Ors2NetworkException("Unable to fetch address details for localhost", e);
         }
-        return address.getHostAddress();
     }
 
     /**

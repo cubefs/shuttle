@@ -46,10 +46,30 @@ Use JDK 8+ and maven 3+ to build
 sh build/build.sh
 `
 
-This command generates dist/rss-spark.zip. The directory structure :
+This command generates build/dist/shuttle-rss.zip. The directory structure :
 `
 conf bin lib client
 `
+
+## Build for docker
++ First you need to compile the zip package: `sh build/build.sh`。
++ Create a docker image: `docker build -t shuttle-rss:1.0 .`
++ Prepare the config file directory
++ run service:  
+  
+      ```
+        docker run \
+        -d \
+        -p 19189:19189 \
+        -p 19188:19188 \
+        -p 19191:19191 \
+        -p 19190:19190 \
+        --env SHUTTLE_HOST_IP="share the host ip" \
+        -v "your conf dir":/usr/local/shuttle-rss/conf \
+        shuttle-rss:1.0 \
+        all
+      ```
+
 
 ## Build Shuttle servers [ shuffle master/worker ]
 `

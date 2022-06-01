@@ -72,5 +72,6 @@ public class Constants {
   public static final String TEST_DATACENTER_DEFAULT = "default_dc";
   public static final String TEST_CLUSTER_DEFAULT = "default_cluster";
 
+  public static final String SHUTTLE_HOST_IP_ENV_NAME = "SHUTTLE_HOST_IP";
 
 }
