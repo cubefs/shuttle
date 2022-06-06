@@ -57,7 +57,7 @@ class Ors2ShuffleManager(conf: SparkConf) extends ShuffleManager with Logging {
   private val appName = conf.get(SparkAppNameKey, "")
   val dfsDirPrefix = conf.get(Ors2Config.dfsDirPrefix)
 
-  private val serviceManager = createServiceManager
+  private lazy val serviceManager = createServiceManager
 
   private val clientFactory: Ors2ClientFactory = new Ors2ClientFactory(conf)
 
