@@ -22,13 +22,10 @@ import com.oppo.shuttle.rss.storage.fs.alluxio.AlluxioFileSystemFactory;
 import com.oppo.shuttle.rss.storage.fs.cfs.CfsFileSystemFactory;
 import com.oppo.shuttle.rss.storage.fs.dfs.DfsSystemFactory;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.hadoop.conf.Configuration;
-import org.apache.spark.util.Utils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.*;
-import java.net.URL;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
@@ -43,18 +40,18 @@ public class ConfUtil {
 
     public static final String SPARK_CFS_CONF_FILE = "cfs-site.xml";
 
-    public static final String SPARK_ALLUXIO_CONF_FILE = "alluxio-site.xml";
+    public static final String SPARK_ALLUXIO_CONF_FILE = "alluxio-site.properties";
 
-    public static final String RSS_CONF_DIR_ENV = "RSS_CONF_DIR";
+    public static final String ORS2_CONF_DIR_ENV = "ORS2_CONF_DIR";
 
-    public static final String RSS_CONF_DIR_PROP = "rss.conf.dir";
+    public static final String ORS2_CONF_DIR_PROP = "ors2.conf.dir";
 
     public static final String BLACK_LIST_CONF = "black-list.conf";
 
     public static String getOrs2ConfDir() {
-        String confDir = System.getenv(RSS_CONF_DIR_ENV);
+        String confDir = System.getenv(ORS2_CONF_DIR_ENV);
         if (confDir == null) {
-            confDir = System.getProperty(RSS_CONF_DIR_PROP);
+            confDir = System.getProperty(ORS2_CONF_DIR_PROP);
         }
         return confDir;
     }
@@ -87,31 +84,22 @@ public class ConfUtil {
     }
 
     public static Ors2FilesystemConf getDefaultFileSystemConf(List<String> fileList, List<String> classPathList) {
-        Configuration configuration = new Configuration(false);
+        Ors2FilesystemConf filesystemConf = new Ors2FilesystemConf();
 
         // for shuffle worker
         String confDir = getOrs2ConfDir();
         if (!StringUtils.isEmpty(confDir) && new File(confDir).exists()) {
             for (String path : fileList) {
-                File file = Paths.get(confDir, path).toFile();
-
-                if (file.exists()) {
-                    configuration.addResource(new org.apache.hadoop.fs.Path(file.getPath()));
-                    logger.info("Add hadoop file config: " + file.getPath());
-                }
+                filesystemConf.addResource(Paths.get(confDir, path).toString(), Ors2FilesystemConf.TARGET_FILE);
             }
         }
 
         // hadoop default and spark overlayed config
         classPathList.forEach(file -> {
-            URL url = Utils.getContextOrSparkClassLoader().getResource(file);
-            if (url != null) {
-                configuration.addResource(url);
-                logger.info("Add hadoop classpath config: " + url);
-            }
+            filesystemConf.addResource(file, Ors2FilesystemConf.TARGET_CLASSPATH);
         });
 
-        return new Ors2FilesystemConf(configuration);
+        return filesystemConf;
     }
 
     public static List<String> getWorkerBlackList() {
