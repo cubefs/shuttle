@@ -56,7 +56,6 @@ start() {
     ${RSS_WORKER_MEMORY} -XX:MaxGCPauseMillis=300 -XX:InitiatingHeapOccupancyPercent=70 \
     -Dlog4j.configuration=file:${RSS_CONF_DIR}/log4j.properties -Dlog.dir=${logDir} \
     ${RSS_WORKER_JVM_OPTS} \
-    -cp ${RSS_HOME}/lib/*.jar \
     com.oppo.shuttle.rss.server.worker.ShuffleWorker \
     ${RSS_WORKER_SERVER_OPTS} \
     > ${logDir}/rss.out 2>&1 < /dev/null  &

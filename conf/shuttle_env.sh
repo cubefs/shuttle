@@ -6,7 +6,12 @@ export JAVA_HOME=/usr/local/jdk8/
 export RSS_HOME="$(cd "$(dirname "$0")"/..; pwd)"
 export RSS_CONF_DIR=${RSS_HOME}/conf
 export HADOOP_USER_NAME=hive
+
+# Please set the hadoop local library directory here
 export RSS_JAVA_LIB=/xxx
+
+RSS_CLASSPATH=$(echo $RSS_HOME/lib/*.jar | tr ' ' ':')
+export CLASSPATH=${RSS_CLASSPATH}
 
 # Define the cluster
 export RSS_DATA_CENTER=dc1

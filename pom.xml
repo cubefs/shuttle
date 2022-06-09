@@ -231,12 +231,14 @@
             <groupId>io.chubaofs</groupId>
             <artifactId>cfs-hadoop</artifactId>
             <version>${cfs.version}</version>
-        </dependency>-->
+        </dependency>
+        -->
 
         <dependency>
             <groupId>org.alluxio</groupId>
             <artifactId>alluxio-shaded-client</artifactId>
             <version>${alluxio.version}</version>
+            <scope>provided</scope>
         </dependency>
 
         <!-- hdfs integration dependencies -->
@@ -368,9 +370,7 @@
                                     <include>org.apache.thrift</include>
                                     <include>com.google.protobuf</include>
                                     <include>net.java.dev.jna</include>
-                                    <include>io.chubaofs</include>
                                     <include>com.carrotsearch</include>
-                                    <include>org.alluxio</include>
                                 </includes>
                             </artifactSet>
                             <relocations>
