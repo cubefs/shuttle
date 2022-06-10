@@ -25,13 +25,13 @@ object Ors2Config {
     ConfigBuilder("spark.shuffle.rss.dataCenter")
       .doc("data center for RSS cluster. If not specified, will try to get value from the environment.")
       .stringConf
-      .createWithDefault("dg_hdfs")
+      .createWithDefault("default_dc")
 
   val cluster: ConfigEntry[String] =
     ConfigBuilder("spark.shuffle.rss.cluster")
       .doc("RSS cluster name.")
       .stringConf
-      .createWithDefault("test_hdfs")
+      .createWithDefault("default_cluster")
 
   val masterName: ConfigEntry[String] =
     ConfigBuilder("spark.shuffle.rss.masterName")
@@ -48,12 +48,6 @@ object Ors2Config {
   val serviceRegistryZKServers: ConfigEntry[String] =
     ConfigBuilder("spark.shuffle.rss.serviceRegistry.zookeeper.servers")
       .doc("ZooKeeper host:port addresses. Specify more than one as a comma-separated string.")
-      .stringConf
-      .createWithDefault("")
-
-  val serviceRegistryServer: ConfigEntry[String] =
-    ConfigBuilder("spark.shuffle.rss.serviceRegistry.server")
-      .doc("Registry server host:port addresses.")
       .stringConf
       .createWithDefault("")
 
@@ -105,7 +99,7 @@ object Ors2Config {
     ConfigBuilder("spark.shuffle.rss.writer.maxRequestSize")
       .doc("The maximum amount of data per network request. Multiple blocks may be combined to send a single request to the server.")
       .bytesConf(ByteUnit.BYTE)
-      .createWithDefaultString("1472kb")
+      .createWithDefaultString("2mb")
 
   val maxTotalBufferDataSize: ConfigEntry[Long] =
     ConfigBuilder("spark.shuffle.rss.writer.maxTotalBufferDataSize")
@@ -166,23 +160,11 @@ object Ors2Config {
       .stringConf
       .createWithDefault(SHUFFLE_WRITER_AUTO)
 
-  val packageQueueSize: ConfigEntry[Int] =
-    ConfigBuilder("spark.shuffle.rss.package.queueSize")
-      .doc("Max number of clients can connect to server")
-      .intConf
-      .createWithDefault(1024)
-
   val writerAsyncFinish: ConfigEntry[Boolean] =
     ConfigBuilder("spark.shuffle.rss.writer.async")
       .doc("whether use async mode for writer to finish uploading data.")
       .booleanConf
       .createWithDefault(true)
-
-  val maxClientsPerServer: ConfigEntry[Int] =
-    ConfigBuilder("spark.shuffle.rss.max.client.per.server")
-      .doc("Max number of clients can connect to server")
-      .intConf
-      .createWithDefault(10)
 
   val getClientMaxRetries: ConfigEntry[Int] =
     ConfigBuilder("spark.shuffle.rss.get.client.max.retries")
@@ -201,18 +183,6 @@ object Ors2Config {
       .doc("Query shuffle data input ready interval (milliseconds) e.g. whether a map task's data finished.")
       .intConf
       .createWithDefault(100)
-
-  val dataInputReadyMaxWaitTime: ConfigEntry[Long] =
-    ConfigBuilder("spark.shuffle.rss.inputReady.maxWaitTime")
-      .doc("Max wait time in shuffle reader to wait data ready in dfs (milliseconds).")
-      .longConf
-      .createWithDefault(5*60*1000L)
-
-  val excludeShuffleWorkers: ConfigEntry[String] =
-    ConfigBuilder("spark.shuffle.rss.excludeShuffleWorkers")
-      .doc("The excluded shuffle workers hostsName, separated by comma.")
-      .stringConf
-      .createWithDefault("")
 
   val maxRequestShuffleWorkerCount: ConfigEntry[Int] =
     ConfigBuilder("spark.shuffle.rss.maxRequestWorkerCount")
@@ -256,45 +226,6 @@ object Ors2Config {
       .booleanConf
       .createWithDefault(false)
 
-  val sendQueueMaxSize: ConfigEntry[Int] =
-    ConfigBuilder("spark.shuffle.rss.sender.queue.max.size")
-      .doc("sender queue max size for shuffle writer to store shuffle records and " +
-        "send them to shuffle server in background threads.")
-      .intConf
-      .createWithDefault(10)
-
-  val sendDelayTime =
-    ConfigBuilder("spark.shuffle.rss.sender.queue.delay.time")
-      .doc("Add new send task every this time")
-      .timeConf(TimeUnit.MILLISECONDS)
-      .createWithDefaultString("1s")
-
-  val sendQueueCoreSize: ConfigEntry[Int] =
-    ConfigBuilder("spark.shuffle.rss.sender.queue.core.size")
-      .doc("sender queue core size for shuffle writer to store shuffle records and " +
-        "send them to shuffle server in background threads.")
-      .intConf
-      .createWithDefault(1)
-
-  val blockWaitQueueSize: ConfigEntry[Int] =
-    ConfigBuilder("spark.shuffle.rss.sender.queue.size")
-      .doc("sender queue size for shuffle writer to store shuffle records and " +
-        "send them to shuffle server in background threads.")
-      .intConf
-      .createWithDefault(1024)
-
-  val sendQueueKeepAliveTime =
-    ConfigBuilder("spark.shuffle.rss.sender.queue.keep.alive.time")
-    .doc("Kill idle sender threads if these thread exists longer than this time.")
-    .timeConf(TimeUnit.MILLISECONDS)
-    .createWithDefaultString("5s")
-
-  val acquireTokenMaxRetries: ConfigEntry[Int] =
-    ConfigBuilder("spark.shuffle.rss.acquire.token.max.retries")
-      .doc("Maximum number of retries acquiring build connection info from server before giving up.")
-      .intConf
-      .createWithDefault(1)
-
   val sendDataMaxRetries: ConfigEntry[Int] =
     ConfigBuilder("spark.shuffle.rss.sender.max.retries")
     .doc("Maximum number of retries when sending data to server before giving up.")
@@ -325,32 +256,6 @@ object Ors2Config {
       .timeConf(TimeUnit.MILLISECONDS)
       .createWithDefaultString("30s")
 
-
-  val sendDataFailureMaxRetries: ConfigEntry[Int] =
-    ConfigBuilder("spark.shuffle.rss.send.data.failure.max.retries")
-      .doc("Maximum number of retries sending data to server occure error, we'd stop the application.")
-      .intConf
-      .createWithDefault(20)
-
-  val acquireTokenWaitTime =
-    ConfigBuilder("spark.shuffle.rss.acquire.token.wait.time")
-    .doc("When acquiring token encounters error, wait this time and retry")
-    .timeConf(TimeUnit.MILLISECONDS)
-    .createWithDefaultString("10ms")
-
-  val socketNetWorkTimeout =
-    ConfigBuilder("spark.shuffle.rss.send.client.socket.network.timeout")
-      .doc("Connect to server socket timeout, " +
-        "take care that this value should not exceed Int max value")
-      .timeConf(TimeUnit.MILLISECONDS)
-      .createWithDefaultString("30s")
-
-  val sendDataWaitTime =
-    ConfigBuilder("spark.shuffle.rss.send.client.timeout")
-      .doc("When sending data encounters error, wait this time and retry")
-      .timeConf(TimeUnit.MILLISECONDS)
-      .createWithDefaultString("200ms")
-
   val ShuffleVersion: ConfigEntry[Int] =
     ConfigBuilder("spark.shuffle.rss.version")
       .doc("rss shuffle version")
@@ -369,13 +274,6 @@ object Ors2Config {
       .doc("The probability of mock error in shuffle reader")
       .doubleConf
       .createWithDefault(0.0)
-
-  val mockWriteErrorProbability: ConfigEntry[Double] =
-    ConfigBuilder("spark.shuffle.rss.write.mockErrorProbability")
-      .doc("The probability of mock error in shuffle writer")
-      .doubleConf
-      .createWithDefault(0.0)
-
 
   // file read config
   val readBufferSize: ConfigEntry[Long] =
