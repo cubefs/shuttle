@@ -21,8 +21,8 @@ import com.oppo.shuttle.rss.common.MasterDispatchServers;
 import com.oppo.shuttle.rss.common.Pair;
 import com.oppo.shuttle.rss.common.ServerDetailWithStatus;
 import com.oppo.shuttle.rss.common.ServerListDir;
+import com.oppo.shuttle.rss.exceptions.Ors2Exception;
 import com.oppo.shuttle.rss.metrics.Ors2MetricsConstants;
-import com.oppo.shuttle.rss.util.CommonUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -70,14 +70,16 @@ public abstract class ShuffleMasterDispatcher {
         }
         Map<String, ServerListDir> serverListDirMap = workerList.get(dataCenter);
         if (serverListDirMap != null && !serverListDirMap.containsKey(cluster)){
-            // choose a random cluster
-            List<String> clusters = new ArrayList<>(serverListDirMap.keySet());
-            cluster = clusters.get(rand.nextInt(clusters.size()));
+            cluster = masterConfig.getCluster();
         }
 
         Collection<ServerDetailWithStatus> allServers = tryToGetServers(dataCenter, cluster);
         List<ServerDetailWithStatus> candidateSeverList = new ArrayList<>();
         ServerListDir serverListDir = new ServerListDir(ShuffleServerConfig.DEFAULT_ROOT_DIR, "");
+        if (allServers == null) {
+            throw new Ors2Exception(String.format("dataCenter: %s, cluster %s no worker available", dataCenter, cluster));
+        }
+
         if (!allServers.isEmpty()){
             serverListDir = ShuffleWorkerStatusManager.getWorkerList().get(dataCenter).get(cluster);
             candidateSeverList = allServers
@@ -89,26 +91,18 @@ public abstract class ShuffleMasterDispatcher {
         if (Ors2MetricsConstants.workerNum.labels(dataCenter, cluster, "blacklist").get() +
                 Ors2MetricsConstants.workerNum.labels(dataCenter, cluster, "punish").get() >
                 Ors2MetricsConstants.workerNum.labels(dataCenter, cluster, "normal").get()){
-            logger.warn("Too many unhealthy workers, refuse the request.");
-            candidateSeverList = Collections.emptyList();
+            throw new Ors2Exception("Too many unhealthy workers, refuse the request.");
         }
 
         return new MasterDispatchServers(dataCenter, cluster, serverListDir.getRootDir(), candidateSeverList, serverListDir.getFsConf());
     }
 
     private Collection<ServerDetailWithStatus> tryToGetServers(String dataCenter, String cluster){
-        int retryIntervalMillis = 5000;
-        int timeOutMills = 30000;
-        return CommonUtils.retryUntilNotEmpty(
-                retryIntervalMillis,
-                timeOutMills,
-                () -> {
-                    Map<String, Map<String, ServerListDir>> workerList = ShuffleWorkerStatusManager.getWorkerList();
-                    if (workerList.containsKey(dataCenter) && workerList.get(dataCenter).containsKey(cluster)){
-                        return workerList.get(dataCenter).get(cluster).getHostStatusMap().values();
-                    }
-                    return null;
-                });
+        Map<String, Map<String, ServerListDir>> workerList = ShuffleWorkerStatusManager.getWorkerList();
+        if (workerList.containsKey(dataCenter) && workerList.get(dataCenter).containsKey(cluster)){
+            return workerList.get(dataCenter).get(cluster).getHostStatusMap().values();
+        }
+        return null;
     }
 
 
