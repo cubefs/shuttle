@@ -42,16 +42,16 @@ public class ConfUtil {
 
     public static final String SPARK_ALLUXIO_CONF_FILE = "alluxio-site.properties";
 
-    public static final String ORS2_CONF_DIR_ENV = "ORS2_CONF_DIR";
+    public static final String RSS_CONF_DIR_ENV = "RSS_CONF_DIR";
 
-    public static final String ORS2_CONF_DIR_PROP = "ors2.conf.dir";
+    public static final String RSS_CONF_DIR_PROP = "rss.conf.dir";
 
     public static final String BLACK_LIST_CONF = "black-list.conf";
 
-    public static String getOrs2ConfDir() {
-        String confDir = System.getenv(ORS2_CONF_DIR_ENV);
+    public static String getRSSConfDir() {
+        String confDir = System.getenv(RSS_CONF_DIR_ENV);
         if (confDir == null) {
-            confDir = System.getProperty(ORS2_CONF_DIR_PROP);
+            confDir = System.getProperty(RSS_CONF_DIR_PROP);
         }
         return confDir;
     }
@@ -87,7 +87,7 @@ public class ConfUtil {
         Ors2FilesystemConf filesystemConf = new Ors2FilesystemConf();
 
         // for shuffle worker
-        String confDir = getOrs2ConfDir();
+        String confDir = getRSSConfDir();
         if (!StringUtils.isEmpty(confDir) && new File(confDir).exists()) {
             for (String path : fileList) {
                 filesystemConf.addResource(Paths.get(confDir, path).toString(), Ors2FilesystemConf.TARGET_FILE);
@@ -103,7 +103,7 @@ public class ConfUtil {
     }
 
     public static List<String> getWorkerBlackList() {
-        String confDir = getOrs2ConfDir();
+        String confDir = getRSSConfDir();
         ArrayList<String> blackList = new ArrayList<>();
         if (!StringUtils.isEmpty(confDir) && new File(confDir).exists()) {
             File blackListFile = Paths.get(confDir, BLACK_LIST_CONF).toFile();

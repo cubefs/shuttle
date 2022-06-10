@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
-
-<configuration>
-    <property>
-        <name>alluxio.user.file.master.client.pool.size.max</name>
-        <value>100240</value>
-    </property>
-</configuration>
