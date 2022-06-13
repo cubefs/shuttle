@@ -104,8 +104,7 @@ public class ApplicationRequestController {
                 logger.info("{} request can't get resource in {} seconds, return fail.", appId, WAIT_RESOURCE_TIMEOUT);
                 return false;
             } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
-                logger.warn("Request can't get resource in {} seconds", WAIT_RESOURCE_TIMEOUT);
+                logger.warn("Request can't get resource in {} seconds", WAIT_RESOURCE_TIMEOUT, e);
                 return false;
             }
         }

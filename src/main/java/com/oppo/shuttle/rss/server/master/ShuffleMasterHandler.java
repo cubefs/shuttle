@@ -119,7 +119,7 @@ public class ShuffleMasterHandler extends SimpleChannelInboundHandler<ByteBuf> {
         // count each worker distributed times
         serverList.forEach(t -> Ors2MetricsConstants.workerDistributeTimes.labels(t.getServerId()).inc());
 
-        logger.info("Got {} workers for request: {}", serverList.size(), serverList.stream().map(Ors2WorkerDetail::toString).collect(Collectors.toList()));
+        logger.debug("Got {} workers for request: {}", serverList.size(), serverList.stream().map(Ors2WorkerDetail::toString).collect(Collectors.toList()));
         GetWorkersResponse response;
         response = GetWorkersResponse.newBuilder()
                 .addAllSeverDetail(serverList.stream().map(Ors2WorkerDetail::convertToProto).collect(Collectors.toList()))

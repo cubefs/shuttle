@@ -137,7 +137,6 @@ public class Ors2MasterClient implements AutoCloseable {
                             String.format("Connecting to shuffle master %s timed out (%s ms)", address, timeoutMillis));
                 }
             } catch (InterruptedException | Ors2IOException e) {
-                Thread.currentThread().interrupt();
                 logger.error("Waiting connect to master interrupted: ", e);
                 return null;
             }

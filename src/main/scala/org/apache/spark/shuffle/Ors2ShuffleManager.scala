@@ -57,7 +57,7 @@ class Ors2ShuffleManager(conf: SparkConf) extends ShuffleManager with Logging {
   private val appName = conf.get(SparkAppNameKey, "")
   val dfsDirPrefix: String = conf.get(Ors2Config.dfsDirPrefix)
 
-  private lazy val serviceManager = createServiceManager
+  private var serviceManager: ServiceManager = _
 
   private val clientFactory: Ors2ClientFactory = new Ors2ClientFactory(conf)
 
@@ -271,29 +271,33 @@ class Ors2ShuffleManager(conf: SparkConf) extends ShuffleManager with Logging {
 
   override def stop(): Unit = {
     try {
-      serviceManager.close()
+      if (serviceManager != null) {
+        serviceManager.close()
+      }
       clientFactory.stop()
-    }catch {
+    } catch {
       case e: Throwable => log.error("Stop error", e)
     }
   }
 
-  private def createServiceManager: ServiceManager = {
-    val serviceManagerType = conf.get(Ors2Config.serviceManagerType)
-    logInfo(s"Service registry type: $serviceManagerType")
-    var zkServers = getZooKeeperServers
+  private def getOrCreateServiceManager: ServiceManager = {
+    if (serviceManager != null) {
+      return serviceManager
+    }
 
-    serviceManagerType match {
+    val zkManager = new ZkShuffleServiceManager(getZooKeeperServers, networkTimeoutMillis, networkRetries)
+
+    val serviceManagerType = conf.get(Ors2Config.serviceManagerType)
+    serviceManager = serviceManagerType match {
       case Constants.MANAGER_TYPE_ZK =>
-        new ZkShuffleServiceManager(zkServers, networkTimeoutMillis, networkRetries)
+        zkManager
       case Constants.MANAGER_TYPE_MASTER =>
-        val zkManager = new ZkShuffleServiceManager(zkServers, networkTimeoutMillis, networkRetries)
-        if (isGetActiveMasterFromZk) {
-          initActiveMaster(zkManager)
-        }
+        initActiveMaster(zkManager)
         new Ors2MasterServerManager(zkManager, networkTimeoutMillis, retryInterval, masterName, useEpoll)
       case _ => throw new RuntimeException(s"Invalid service registry type: $serviceManagerType")
     }
+
+    serviceManager
   }
 
   private def getZooKeeperServers: String = {
@@ -302,10 +306,17 @@ class Ors2ShuffleManager(conf: SparkConf) extends ShuffleManager with Logging {
   }
 
   private def initActiveMaster(zkManager: ZkShuffleServiceManager): Unit = {
-    if (zkManager.getActiveCluster != null) {
-      masterName = zkManager.getActiveCluster
+    if (isGetActiveMasterFromZk) {
+      // Try to get the currently used master from zk
+      val zkActiveMaster = zkManager.getActiveCluster
+      if (zkActiveMaster != null) {
+        masterName = zkActiveMaster
+      } else {
+        log.warn("Active master name is not set in zk path /shuffle_rss_path/use_cluster/shuffle_master, " +
+          "so use the default master name")
+      }
     }
-    logInfo(s"Active master is ${masterName}")
+    logInfo(s"shuttle rss use master $masterName, isGetActiveMasterFromZk $isGetActiveMasterFromZk")
   }
 
   def randomItem[T](items: Array[T]): T = {
@@ -371,7 +382,7 @@ class Ors2ShuffleManager(conf: SparkConf) extends ShuffleManager with Logging {
     }
 
     val configuredServerList = ShuffleUtils.getShuffleServersWithoutCheck(
-      serviceManager,
+      getOrCreateServiceManager,
       requestWorkerCount,
       networkTimeoutMillis,
       dataCenter,

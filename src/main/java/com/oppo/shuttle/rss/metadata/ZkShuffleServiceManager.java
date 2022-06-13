@@ -55,7 +55,7 @@ import java.util.stream.Collectors;
 public class ZkShuffleServiceManager implements ServiceManager {
     private static final Logger logger = LoggerFactory.getLogger(ZkShuffleServiceManager.class);
 
-    private static final String ZK_ORS2_BASE_PATH = "shuffle_rss_path";
+    private static final String ZK_RSS_BASE_PATH = "shuffle_rss_path";
     private static final String ZK_WORKER_SUBPATH = "shuffle_worker";
     private static final String ZK_MASTER_SUBPATH = "shuffle_master";
     private static final String ZK_MASTER_HA_PATH = "shuffle_master_ha";
@@ -90,7 +90,7 @@ public class ZkShuffleServiceManager implements ServiceManager {
         RetryPolicy retryPolicy = new ExponentialBackoffRetry(baseSleepTimeMs, maxRetries, maxSleepMs);
         zkCurator = CuratorFrameworkFactory.newClient(zkServerConnStr, timeoutMs, timeoutMs, retryPolicy);
         zkCurator.start();
-        logger.info("Init ZkShuffleWorkerManager: " + toString());
+        logger.info("Init ZkShuffleWorkerManager: " + this);
     }
 
     public void setData(String path, byte[] data) {
@@ -177,7 +177,7 @@ public class ZkShuffleServiceManager implements ServiceManager {
     }
 
     private String getWorkerPath(String dataCenter, String cluster) {
-        return String.format("/%s/%s/%s/%s", ZK_ORS2_BASE_PATH, dataCenter, cluster, ZK_WORKER_SUBPATH);
+        return String.format("/%s/%s/%s/%s", ZK_RSS_BASE_PATH, dataCenter, cluster, ZK_WORKER_SUBPATH);
     }
 
     public String getMasterWatchPath(String masterName) {
@@ -189,12 +189,12 @@ public class ZkShuffleServiceManager implements ServiceManager {
     }
 
     public String getActiveMasterWatchPath() {
-        StringBuilder sb = new StringBuilder("/").append(ZK_ORS2_BASE_PATH).append("/use_cluster/").append(ZK_MASTER_SUBPATH);
+        StringBuilder sb = new StringBuilder("/").append(ZK_RSS_BASE_PATH).append("/use_cluster/").append(ZK_MASTER_SUBPATH);
         return sb.toString();
     }
 
     private String getMasterRootPath(String masterName, ServerRole type) {
-        StringBuilder sb = new StringBuilder("/").append(ZK_ORS2_BASE_PATH).append("/")
+        StringBuilder sb = new StringBuilder("/").append(ZK_RSS_BASE_PATH).append("/")
                 .append(masterName).append("/").append(ZK_MASTER_SUBPATH).append("/");
         switch (type) {
             case SS_MASTER:
@@ -448,7 +448,7 @@ public class ZkShuffleServiceManager implements ServiceManager {
     }
 
     public String getDagRoot() {
-        return String.format("/%s/%s", ZK_ORS2_BASE_PATH, ZK_STORAGE_DAG_PATH);
+        return String.format("/%s/%s", ZK_RSS_BASE_PATH, ZK_STORAGE_DAG_PATH);
     }
 
 }
