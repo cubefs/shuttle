@@ -19,6 +19,7 @@ package com.oppo.shuttle.rss.clients;
 import com.oppo.shuttle.rss.clients.handler.Request;
 import com.oppo.shuttle.rss.clients.handler.ResponseCallback;
 import com.oppo.shuttle.rss.common.*;
+import com.oppo.shuttle.rss.exceptions.Ors2Exception;
 import com.oppo.shuttle.rss.exceptions.Ors2NetworkException;
 import com.oppo.shuttle.rss.messages.ShufflePacket;
 import org.apache.commons.lang3.RandomUtils;
@@ -51,6 +52,7 @@ public class NettyClient {
 
     private final Semaphore semaphore;
 
+    private final long netWorkTimeout;
     private final int ioMaxRetry;
     private final long retryBaseWaitTime;
 
@@ -59,7 +61,7 @@ public class NettyClient {
     private final Ors2ClientFactory clientFactory;
 
     public NettyClient(List<Ors2ServerGroup> groupList, SparkConf conf, AppTaskInfo taskInfo, Ors2ClientFactory clientFactory) {
-        long netWorkTimeout = (long) conf.get(Ors2Config.networkTimeout());
+        netWorkTimeout = clientFactory.getNetWorkTimeout();
         ioMaxRetry = Math.max((int) conf.get(Ors2Config.sendDataMaxRetries()), 1);
         retryBaseWaitTime = (long) conf.get(Ors2Config.retryBaseWaitTime());
         long networkSlowTime = (long) conf.get(Ors2Config.networkSlowTime());
@@ -137,7 +139,11 @@ public class NettyClient {
         clientFactory.checkNetworkException();
 
         try {
-            semaphore.acquire();
+            if (!semaphore.tryAcquire(netWorkTimeout, TimeUnit.MILLISECONDS)) {
+                clientFactory.checkNetworkException();
+                throw new Ors2Exception(String.format("The network request is blocked, " +
+                        "and the idle token cannot be obtained for more than %s ms ",  netWorkTimeout));
+            }
 
             Tuple2<ShuffleClient, ShuffleClient> tuple2 = getClient(workerId, 0, Optional.empty());
             Request request = new Request(packet, workerId, tuple2._1, tuple2._2, callback);
@@ -146,7 +152,7 @@ public class NettyClient {
             request.writeBuild();
         }catch (Exception e) {
             logger.error("Send package to shuffle worker failed: ", e);
-            throw new RuntimeException(e);
+            throw new Ors2Exception(e);
         }
     }
 
@@ -156,7 +162,7 @@ public class NettyClient {
 
     public void waitFinish() {
         int v = getRemainPackageNum();
-        SleepWaitTimeout waitTimeout = new SleepWaitTimeout(clientFactory.getNetWorkTimeout());
+        SleepWaitTimeout waitTimeout = new SleepWaitTimeout(netWorkTimeout);
 
         while (v != 0) {
             clientFactory.checkNetworkException();
