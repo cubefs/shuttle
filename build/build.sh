@@ -24,7 +24,7 @@ cp "$RSS_HOME"/target/shuttle-rss-*-client.jar "$DIST_DIR"/client
 # If the configuration file directory is known, the configuration file will be copied.
 # Otherwise the configuration will be downloaded from the cloud platform configuration center
 # The configuration file usually contains the following:
-# 1. shuttle_env.sh Environment variable
+# 1. rss_env.sh Environment variable
 # 2. core-site.xml、hdfs-site.xml、cfs-site.xml、alluxio-site.xml
 if [ -n "$CONF_DIR" ]; then
     cp "$CONF_DIR"/* "$DIST_DIR"/conf

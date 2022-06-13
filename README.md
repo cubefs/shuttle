@@ -91,7 +91,7 @@ shuttle-rss-xxx-client.jar   for rss Shuffle Clients
 ## Other Server Depends on Zookeeper、Distribute File System [ HDFS / CFS / Alluxio ]
 
 ## Necessary configuration
-Modify the following options in conf/shuttle_env.sh：
+Modify the following options in conf/rss_env.sh：
 ```
 # Define Shuttle rss cluster name
 export RSS_DATA_CENTER=dc1
