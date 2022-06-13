@@ -44,7 +44,7 @@ class Ors2ShuffleReader[K, C](
 ) extends ShuffleReader[K, C] with Logging {
   override def read(): Iterator[Product2[K, C]] = {
     val readType = conf.get(Ors2Config.shuffleReadType)
-    logInfo(s"ORS2 Shuffle read started, readType: $readType, appShuffleId: $stageShuffleId, partitions: [$startPartition, $endPartition)")
+    logInfo(s"shuttle rss read started, readType: $readType, appShuffleId: $stageShuffleId, partitions: [$startPartition, $endPartition)")
 
     val shuffleDep = shuffleDependency
     logInfo(s"Shuffle aggregatorDefined? ${shuffleDep.aggregator.isDefined}, " +

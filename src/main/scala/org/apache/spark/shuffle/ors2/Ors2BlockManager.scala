@@ -328,7 +328,7 @@ case class Ors2BlockManager(
     val spillTime = System.nanoTime() - start
     _spillTime += spillTime
     writeMetrics.incWriteTime(spillTime)
-    logInfo(s"Ors2 write finish, total package ${nettyClient.getFinishPackageNum}, total size ${Utils.bytesToString(_spillDataSize)}, " +
+    logInfo(s"shuttle rss write finish, total package ${nettyClient.getFinishPackageNum}, total size ${Utils.bytesToString(_spillDataSize)}, " +
       s"sync spill ${_spillCount} times, cost ${TimeUnit.NANOSECONDS.toMillis(_spillTime)} millis.")
     nettyClient.close()
 

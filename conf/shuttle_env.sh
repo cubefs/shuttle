@@ -30,7 +30,7 @@ export RSS_MASTER_JVM_OPTS="-Dmetrics.report.psa=$RSS_PSA -Djava.library.path=$R
 export RSS_WORKER_JVM_OPTS="$RSS_MASTER_OPTS"
 
 export RSS_MASTER_MEMORY="-Xms2g -Xmx2g"
-export RSS_WORKER_MEMORY="-Xms20g -Xmx20g"
+export RSS_WORKER_MEMORY="-Xms8g -Xmx8g"
 
 # Limit the number of cpu cores used. Unlimited by default
 export RSS_CGROUP_CORES=-1

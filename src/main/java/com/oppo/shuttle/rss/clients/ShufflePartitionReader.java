@@ -65,7 +65,7 @@ public class ShufflePartitionReader implements ShuffleReader {
    * partition data dir path
    * example: /ors2/data/appId/shuffleId/partitionId
    */
-  private String partitionDir;
+  private final String partitionDir;
 
   private PartitionPipeReader currentPipeReader;
 
@@ -83,21 +83,21 @@ public class ShufflePartitionReader implements ShuffleReader {
    * key: pipeName
    * value: PartitionPipeReader(include index/data reader and other assist info)
    */
-  private Map<String, PartitionPipeReader> pipesReader = new HashMap<>(4);
+  private final Map<String, PartitionPipeReader> pipesReader = new HashMap<>(4);
 
   /**
    * key: int, mapId
    * value: long, checksum of map
    */
-  private IntLongHashMap mapCheckSumFromIndex;
-  private IntLongHashMap readingDataCheckSum;
+  private final IntLongHashMap mapCheckSumFromIndex;
+  private final IntLongHashMap readingDataCheckSum;
 
   private final double mockErrorProbability;
   Map<String, ShuffleFileInfo> indexDataFileInfo = new HashMap<>(4);
 
   private final ShuffleStorage storage;
 
-  private LongHashSet packageIndex;
+  private final LongHashSet packageIndex;
 
   public ShufflePartitionReader(Ors2ClusterConf clusterConf, StageShuffleId stageShuffleId,
                                 int partitionId, int startMapIndex, int endMapIndex,
@@ -134,14 +134,16 @@ public class ShufflePartitionReader implements ShuffleReader {
   public void waitAllPipeDataDump() {
     SleepWaitTimeout waitTimeout = new SleepWaitTimeout(inputReadyWaitTime);
 
+    int waitNumber = 0;
     while (!allPipeDataDumped) {
       try {
-        waitTimeout.sleepAdd(50);
+        int sleepTime = Math.min(30_000, ++waitNumber * 50);
+        waitTimeout.sleepAdd(sleepTime);
         initPipeReaders();
-        logger.info("sleep 50 millis wait for dumping data");
+        logger.info("sleep {}({}times) millis wait for dumping data", sleepTime, waitNumber);
       } catch (TimeoutException e) {
         throw new Ors2Exception("Waiting for timeout. If this is normal, it is recommended to increase the value of" +
-                " spark.shuffle.ors2.read.waitFinalizeTimeout, the current configuration is: " + inputReadyWaitTime + " ms");
+                " spark.shuffle.rss.read.waitFinalizeTimeout, the current configuration is: " + inputReadyWaitTime + " ms");
       }
     }
   }

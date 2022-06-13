@@ -85,7 +85,7 @@ public class ShuffleUtils {
             6 * retryIntervalMillis,
             () -> {
               try {
-                logger.info("Trying to get max {} ORS2 workers, data center: {}, cluster: {}, " ,
+                logger.info("Trying to get max {} shuttle rss workers, data center: {}, cluster: {}, " ,
                         maxServerCount, dataCenter, cluster);
                 return serviceManager.getServersWithConf(dataCenter, cluster, maxServerCount,
                         jobPriority, appId, dagId, taskId, appName);

@@ -55,7 +55,7 @@ class Ors2ShuffleManager(conf: SparkConf) extends ShuffleManager with Logging {
   private val jobPriority = conf.get(Ors2Config.jobPriority)
   private val taskId = conf.get(Ors2Config.taskId)
   private val appName = conf.get(SparkAppNameKey, "")
-  val dfsDirPrefix = conf.get(Ors2Config.dfsDirPrefix)
+  val dfsDirPrefix: String = conf.get(Ors2Config.dfsDirPrefix)
 
   private lazy val serviceManager = createServiceManager
 
@@ -75,7 +75,7 @@ class Ors2ShuffleManager(conf: SparkConf) extends ShuffleManager with Logging {
     logInfo(s"Use ShuffleManager: ${this.getClass().getSimpleName()}")
 
     if (conf.get(ADAPTIVE_EXECUTION_ENABLED) && conf.get(LOCAL_SHUFFLE_READER_ENABLED)) {
-      throw new Ors2Exception(s"Ors2 shuffle does not support local file reading. " +
+      throw new Ors2Exception(s"shuttle rss does not support local file reading. " +
         s"Please set ${LOCAL_SHUFFLE_READER_ENABLED.key} to false")
     }
 
@@ -103,7 +103,7 @@ class Ors2ShuffleManager(conf: SparkConf) extends ShuffleManager with Logging {
       ors2Servers, networkTimeoutMillis, clusterConf)
 
     val dependencyInfo = s"numPartitions: ${dependency.partitioner.numPartitions}, " +
-      s"serializer: ${dependency.serializer.getClass().getSimpleName()}, " +
+      s"serializer: ${dependency.serializer.getClass.getSimpleName}, " +
       s"keyOrdering: ${dependency.keyOrdering}, " +
       s"aggregator: ${dependency.aggregator}, " +
       s"mapSideCombine: ${dependency.mapSideCombine}, " +
@@ -199,7 +199,7 @@ class Ors2ShuffleManager(conf: SparkConf) extends ShuffleManager with Logging {
         }
 
         val numPartitions = ors2ShuffleHandle.dependency.partitioner.numPartitions
-        logInfo(s"ORS2 shuffle writer use ${writer.getClass.getSimpleName}. " +
+        logInfo(s"shuttle rss writer use ${writer.getClass.getSimpleName}. " +
           s"$handle, numPartitions: $numPartitions, mapId: $mapId, stageId: ${context.stageId()}, shuffleId: ${handle.shuffleId}")
         writer
       }
@@ -230,7 +230,7 @@ class Ors2ShuffleManager(conf: SparkConf) extends ShuffleManager with Logging {
     context: TaskContext,
     metrics: ShuffleReadMetricsReporter
   ): ShuffleReader[K, C] = {
-    logInfo(s"ORS2 getReaderForRange: Use ShuffleManager: " +
+    logInfo(s"shuttle rss getReaderForRange: Use ShuffleManager: " +
       s"${this.getClass.getSimpleName}, $handle, partitions: [$startPartition, $endPartition)")
 
     val Ors2ShuffleHandle = handle.asInstanceOf[Ors2ShuffleHandle[K, _, C]]
@@ -328,9 +328,9 @@ class Ors2ShuffleManager(conf: SparkConf) extends ShuffleManager with Logging {
     }).toArray
 
     if (serverGroup.isEmpty) {
-      throw new Ors2NoShuffleWorkersException("There is no reachable ORS2 server")
+      throw new Ors2NoShuffleWorkersException("There is no reachable shuttle rss server")
     }
-    logInfo(s"ORS2 server assign to shuffle id $shuffleId group size: ${serverGroup.length}," +
+    logInfo(s"shuttle rss server assign to shuffle id $shuffleId group size: ${serverGroup.length}," +
       s" workersPerGroup: ${workersPerGroup}, serverCombinations:")
 
     serverGroup.indices.foreach(id => {
