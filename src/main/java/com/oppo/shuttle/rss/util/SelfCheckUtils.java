@@ -57,7 +57,6 @@ public class SelfCheckUtils {
     private static String getSelfCheckFile(String rootDir, String localIp) {
         String localCheckPath = rootDir + "/local_self_check_" + localIp + "_" +
                 System.currentTimeMillis();
-        storage.createDirectories(rootDir);
         return localCheckPath + Constants.SHUFFLE_DATA_FILE_POSTFIX;
     }
 

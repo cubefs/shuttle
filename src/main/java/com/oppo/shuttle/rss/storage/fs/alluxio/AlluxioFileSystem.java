@@ -27,10 +27,7 @@ import alluxio.exception.AlluxioException;
 import alluxio.exception.ExceptionMessage;
 import alluxio.exception.FileDoesNotExistException;
 import alluxio.exception.InvalidPathException;
-import alluxio.grpc.CreateDirectoryPOptions;
-import alluxio.grpc.CreateFilePOptions;
-import alluxio.grpc.DeletePOptions;
-import alluxio.grpc.SetAttributePOptions;
+import alluxio.grpc.*;
 import alluxio.util.ConfigurationUtils;
 import com.oppo.shuttle.rss.common.Ors2FilesystemConf;
 import com.oppo.shuttle.rss.storage.fs.FSDataOutputStream;
@@ -54,6 +51,13 @@ public class AlluxioFileSystem extends FileSystem {
     private static final Logger logger = LoggerFactory.getLogger(AlluxioFileSystem.class);
     protected final alluxio.client.file.FileSystem fs;
     private final URI uri;
+
+
+    private static final String EXIST_LOAD_METADATA_TYPE = "alluxio.user.exist.load.metadata.type";
+    private static final String EXIST_LOAD_METADATA_TYPE_DEFAULT = "NEVER";
+
+    private static final String DELETE_ONLY_ALLUXIO = "alluxio.user.delete.only.alluxio";
+    private static final String DELETE_ONLY_ALLUXIO_DEFAULT = "true";
 
     public AlluxioFileSystem(URI uri, Ors2FilesystemConf ors2Conf) {
         try {
@@ -131,7 +135,11 @@ public class AlluxioFileSystem extends FileSystem {
     @Override
     public boolean exists(Path path) throws IOException {
         try {
-            return fs.exists(toAlluxioURI(path));
+            String loadType = conf.get(EXIST_LOAD_METADATA_TYPE, EXIST_LOAD_METADATA_TYPE_DEFAULT);
+            ExistsPOptions existsPOptions = ExistsPOptions.newBuilder()
+                    .setLoadMetadataType(LoadMetadataPType.valueOf(loadType))
+                    .build();
+            return fs.exists(toAlluxioURI(path), existsPOptions);
         } catch (InvalidPathException e) {
             return false;
         } catch (AlluxioException e) {
@@ -142,9 +150,12 @@ public class AlluxioFileSystem extends FileSystem {
     @Override
     public boolean delete(Path path, boolean recursive) throws IOException {
         AlluxioURI uri = toAlluxioURI(path);
+        // We don't care about the underlying storage system data, because the shuffle data is only stored in alluxio
+        String alluxioOnly = conf.get(DELETE_ONLY_ALLUXIO, DELETE_ONLY_ALLUXIO_DEFAULT);
         DeletePOptions options = DeletePOptions
                 .newBuilder()
                 .setRecursive(recursive)
+                .setAlluxioOnly(Boolean.parseBoolean(alluxioOnly))
                 .build();
         try {
             fs.delete(uri, options);
@@ -210,7 +221,7 @@ public class AlluxioFileSystem extends FileSystem {
     public FSDataOutputStream append(Path path) throws IOException {
         AlluxioURI uri = toAlluxioURI(path);
         try {
-            if (fs.exists(uri)) {
+            if (exists(path)) {
                 throw new IOException("append() to existing Alluxio path is currently not supported: " + uri);
             }
             CreateFilePOptions options = CreateFilePOptions

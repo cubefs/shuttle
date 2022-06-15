@@ -100,6 +100,10 @@ public class Ors2FilesystemConf implements Serializable {
         return props.get(key);
     }
 
+    public String get(String key, String defaultValue) {
+        return props.getOrDefault(key, defaultValue);
+    }
+
     public void addResource(String path, String tpe) {
         File file = new File(path);
         URL url = Utils.getContextOrSparkClassLoader().getResource(path);
