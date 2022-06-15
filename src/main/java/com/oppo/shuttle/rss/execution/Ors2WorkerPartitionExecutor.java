@@ -34,7 +34,7 @@ public class Ors2WorkerPartitionExecutor extends Ors2AbstractExecutorService<Run
     }
 
     public Ors2WorkerPartitionExecutor(int threadNum) {
-        this(threadNum, 1024, 300);
+        this(threadNum, 50, 300);
     }
 
     private void init() {

@@ -107,7 +107,7 @@ public class ShuffleServerConfig {
 
   private int shuffleWorkerDumpers = Runtime.getRuntime().availableProcessors();
 
-  private int dumpersQueueSize = 100;
+  private int dumpersQueueSize = 50;
 
   private int retryBuildConnectBuffer = 30;
   private int priorityJobBuildConnectBuffer = 100;
