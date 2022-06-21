@@ -161,4 +161,12 @@ class Ors2ShuffleManagerTest {
     conf.set(Ors2Config.serviceRegistryZKServers, zk)
     runWithConf(conf)
   }
+
+  @Test
+  def skipFlowControl(): Unit = {
+    val conf = new SparkConf()
+      .set(Ors2Config.shuffleWriterType, Ors2Config.SHUFFLE_WRITER_UNSAFE)
+      .set(Ors2Config.flowControlEnable, false)
+    runWithConf(conf)
+  }
 }

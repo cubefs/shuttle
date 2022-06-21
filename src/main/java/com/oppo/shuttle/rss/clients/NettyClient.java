@@ -55,6 +55,7 @@ public class NettyClient {
     private final long netWorkTimeout;
     private final int ioMaxRetry;
     private final long retryBaseWaitTime;
+    private final boolean flowControlEnable;
 
     private final ResponseCallback callback;
 
@@ -64,6 +65,7 @@ public class NettyClient {
         netWorkTimeout = clientFactory.getNetWorkTimeout();
         ioMaxRetry = Math.max((int) conf.get(Ors2Config.sendDataMaxRetries()), 1);
         retryBaseWaitTime = (long) conf.get(Ors2Config.retryBaseWaitTime());
+        flowControlEnable = (boolean) conf.get(Ors2Config.flowControlEnable());
         long networkSlowTime = (long) conf.get(Ors2Config.networkSlowTime());
         mapWriteDispersion = (boolean) conf.get(Ors2Config.mapWriteDispersion());
         int workerRetryNumber = (int) conf.get(Ors2Config.workerRetryNumber());
@@ -146,7 +148,7 @@ public class NettyClient {
             }
 
             Tuple2<ShuffleClient, ShuffleClient> tuple2 = getClient(workerId, 0, Optional.empty());
-            Request request = new Request(packet, workerId, tuple2._1, tuple2._2, callback);
+            Request request = new Request(flowControlEnable, packet, workerId, tuple2._1, tuple2._2, callback);
 
             readySend.incrementAndGet();
             request.writeBuild();
@@ -203,7 +205,8 @@ public class NettyClient {
         }
 
         Tuple2<ShuffleClient, ShuffleClient> tuple2 = getClient(request.getWorkerId(), retry, errorServer);
-        return new Request(request.getPacket(), request.getWorkerId(), tuple2._1, tuple2._2, request.getCallback());
+        return new Request(flowControlEnable, request.getPacket(), request.getWorkerId(),
+                tuple2._1, tuple2._2, request.getCallback());
     }
 
     public Ors2ClientFactory getClientFactory() {

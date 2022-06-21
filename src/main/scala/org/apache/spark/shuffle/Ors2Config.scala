@@ -327,6 +327,12 @@ object Ors2Config {
       .booleanConf
       .createWithDefault(true)
 
+  val flowControlEnable: ConfigEntry[Boolean] =
+    ConfigBuilder("spark.shuffle.rss.flowControlEnable")
+      .doc("Whether to enable flow control. Defaults to true")
+      .booleanConf
+      .createWithDefault(true)
+
   val SHUFFLE_TYPE_ASYNC = "async"
   val SHUFFLE_TYPE_SYNC = "sync"
 

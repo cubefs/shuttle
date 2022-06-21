@@ -17,11 +17,13 @@
 package com.oppo.shuttle.rss.clients.handler;
 
 import com.oppo.shuttle.rss.clients.ShuffleClient;
+import com.oppo.shuttle.rss.common.Constants;
 import com.oppo.shuttle.rss.common.Ors2WorkerDetail;
 import com.oppo.shuttle.rss.messages.ShufflePacket;
 import org.apache.spark.util.Utils;
 
 public class Request {
+    private final boolean flowControlEnable;
     private final ShufflePacket packet;
     private final ShuffleClient buildClient;
     private final ShuffleClient dataClient;
@@ -33,11 +35,13 @@ public class Request {
     private final int workerId;
 
     public Request(
+            boolean flowControlEnable,
             ShufflePacket packet,
             int workerId,
             ShuffleClient buildClient,
             ShuffleClient dataClient,
             ResponseCallback callback) {
+        this.flowControlEnable = flowControlEnable;
         this.packet = packet;
         this.buildClient = buildClient;
         this.dataClient = dataClient;
@@ -66,7 +70,11 @@ public class Request {
     }
 
     public void writeBuild() {
-        buildClient.writeAndFlush(this, packet.buildBuffer());
+        if (flowControlEnable) {
+            buildClient.writeAndFlush(this, packet.buildBuffer());
+        } else {
+            writeData(Constants.SKIP_CHECK_BUILD_ID, Constants.SKIP_CHECK_BUILD_ID);
+        }
     }
 
     public void writeData(int id, long value) {

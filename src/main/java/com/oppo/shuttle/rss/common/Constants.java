@@ -74,4 +74,5 @@ public class Constants {
 
   public static final String SHUTTLE_HOST_IP_ENV_NAME = "SHUTTLE_HOST_IP";
 
+  public static final int SKIP_CHECK_BUILD_ID = -100;
 }

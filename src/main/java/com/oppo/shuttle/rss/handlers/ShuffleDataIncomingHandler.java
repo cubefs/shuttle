@@ -16,6 +16,7 @@
 
 package com.oppo.shuttle.rss.handlers;
 
+import com.oppo.shuttle.rss.common.Constants;
 import com.oppo.shuttle.rss.common.StageShuffleId;
 import com.oppo.shuttle.rss.exceptions.Ors2InvalidDataException;
 import com.oppo.shuttle.rss.execution.BuildConnectionExecutor;
@@ -58,11 +59,13 @@ public class ShuffleDataIncomingHandler extends ChannelInboundHandlerAdapter {
         ShuffleData shuffleData = (ShuffleData) msg;
         ShuffleMessage.UploadPackageRequest up = shuffleData.getUploadPackage();
 
-        if (!buildConnExecutor.checkConnectionIdValue(up.getBuildId(), up.getBuildValue())) {
-            logger.warn("invalid or timeout connectionId&Value: {}, {}, for {}, address {}",
-                    up.getBuildId(), up.getBuildValue(), up.getAppId(), shuffleConnInfo);
-        } else {
-            buildConnExecutor.releaseConnection(up.getBuildId());
+        if (up.getBuildId() != Constants.SKIP_CHECK_BUILD_ID) {
+            if(!buildConnExecutor.checkConnectionIdValue(up.getBuildId(), up.getBuildValue())) {
+                logger.warn("invalid or timeout connectionId&Value: {}, {}, for {}, address {}",
+                        up.getBuildId(), up.getBuildValue(), up.getAppId(), shuffleConnInfo);
+            } else {
+                buildConnExecutor.releaseConnection(up.getBuildId());
+            }
         }
 
         if (appId == null) {
