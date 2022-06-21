@@ -163,17 +163,6 @@ public class ShuffleDataExecutor {
         return storageDir;
     }
 
-    public void initStageSpace(StageShuffleId appShuffleId) {
-        ShuffleStageSpace shuffleStageSpace = getStageSpace(appShuffleId);
-
-        synchronized (runningStages) {
-            if (!runningStages.contains(shuffleStageSpace)) {
-                logger.info("add runningStage: {}", appShuffleId);
-                runningStages.add(shuffleStageSpace);
-            }
-        }
-    }
-
     /**
      * process incoming shuffle block package data
      */
@@ -276,11 +265,15 @@ public class ShuffleDataExecutor {
     }
     
     private ShuffleStageSpace getStageSpace(StageShuffleId stageShuffleId) {
-        ShuffleStageSpace stageSpace = stageSpaces.computeIfAbsent(stageShuffleId,
-          key->new ShuffleStageSpace(partitionExecutor, storage, serverId, stageShuffleId,
-                  0, checkDataInShuffleWorker));
-
-        return stageSpace;
+        return stageSpaces.computeIfAbsent(stageShuffleId, key-> {
+            ShuffleStageSpace stageSpace = new ShuffleStageSpace(partitionExecutor, storage,
+                    serverId, stageShuffleId, 0, checkDataInShuffleWorker);
+            synchronized (runningStages) {
+                logger.info("add runningStage: {}", stageShuffleId);
+                runningStages.add(stageSpace);
+            }
+            return stageSpace;
+        });
     }
 
     private void removeExpiredAppObj() {

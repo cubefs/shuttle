@@ -76,8 +76,6 @@ public class ShuffleDataIncomingHandler extends ChannelInboundHandlerAdapter {
                 up.getStageAttempt(),
                 up.getShuffleId());
 
-        executor.initStageSpace(stageShuffleId);
-
         ShuffleMessage.UploadPackageResponse uploadResponse = ShuffleMessage
                 .UploadPackageResponse
                 .newBuilder()
