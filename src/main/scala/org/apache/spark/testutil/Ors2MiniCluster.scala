@@ -40,13 +40,17 @@ class Ors2MiniCluster(val numServer: Int,
 
   val shuffleWorkers: ListBuffer[ShuffleWorker] = ListBuffer()
 
-  val shuffleDir = s"rss-data"
+  val shuffleDir = s"target/rss-data"
 
-  val stateDir = s"state-data"
+  val stateDir = s"target/state-data"
 
   val startPort = 19190
 
   val serverList: java.util.ArrayList[Ors2WorkerDetail] = new java.util.ArrayList()
+
+  if (!new File(shuffleDir).exists()) {
+    new File(shuffleDir).mkdirs()
+  }
 
   Runtime.getRuntime.addShutdownHook(new Thread() {
     override def run(): Unit = {

@@ -59,8 +59,9 @@ public class ShuffleStageSpace {
   private final boolean checkDataInShuffleWorker;
 
   private final String rootDir;
-  private final File finalizedFile;
-  private volatile AtomicReference<Boolean> finalized = new AtomicReference<>(false);
+  private final String stageFinalizedPath;
+  private final String appCompletePath;
+  private final AtomicReference<Boolean> finalized = new AtomicReference<>(false);
 
 //  Map<attempt, Map<partition, List<Checksum>>>
   private Map<Long, Map<Integer, LinkedList<Checksum>>> checksumBuffer = new HashMap<>(2);
@@ -91,7 +92,9 @@ public class ShuffleStageSpace {
       this.mapChecksum  = new ConcurrentHashMap<>();
       this.mapDataSize  = new ConcurrentHashMap<>();
     }
-    this.finalizedFile = new File(ShuffleFileUtils.getStageCompleteSignPath(rootDir, stageShuffleId).toString());
+    stageFinalizedPath = ShuffleFileUtils.getStageCompleteSignPath(rootDir, stageShuffleId).toString();
+    appCompletePath = ShuffleFileUtils
+            .getAppCompleteSignPath(rootDir, stageShuffleId.getAppId(), stageShuffleId.getAppAttempt()).toString();
   }
 
   public synchronized void addCheckSum(int mapId, long attemptId, ShuffleMessage.UploadPackageRequest.CheckSums checkSums) {
@@ -222,8 +225,6 @@ public class ShuffleStageSpace {
   }
 
   public void finalizeStage() {
-    logger.warn("finalizedFile:{}", finalizedFile.getPath());
-
     submitChecksum();
     checksumBuffer = new HashMap<>();
 
@@ -240,9 +241,12 @@ public class ShuffleStageSpace {
      partitionExecutor.execute(executorId, run);
   }
 
-  public boolean finalizedFileExists(ShuffleStorage storage) {
-    logger.debug("finalizedFile:{}", finalizedFile.getPath());
-    return storage.exists(finalizedFile.getPath());
+  public boolean finalizedFileExists() {
+    return storage.exists(stageFinalizedPath);
+  }
+
+  public boolean appCompleteFileExists() {
+    return storage.exists(appCompletePath);
   }
 
   public void setFinalized(boolean finalized) {
@@ -253,14 +257,10 @@ public class ShuffleStageSpace {
     return finalized.get();
   }
 
-  public synchronized void closeWriters() {
-    try {
-      for (ShufflePartitionUnsafeWriter writer : dataWriters.values()) {
-        writer.close();
-      }
-    } catch (Exception e) {
-      logger.error("Exception when close data writers and index writers", e);
-    }
+  public void clearDataFile() {
+    dataWriters.forEach((partitionId, writer) -> {
+      execute(partitionId, writer::destroy);
+    });
   }
 
   public synchronized void finalizeWriters() {

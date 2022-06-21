@@ -125,13 +125,17 @@ public class ShuffleDataExecutor {
                 ShuffleStageSpace ss = sit.next();
                 boolean removeStage = false;
                 try {
-                    if (!ss.isFinalized() && ss.finalizedFileExists(storage)) {
-                        removeStage = true;
+                    if (!ss.isFinalized() && ss.finalizedFileExists()) {
                         ss.finalizeStage();
                         logger.info("Finalize stage success: {}", ss.getStageShuffleId());
+                    } else if (ss.isFinalized() && ss.appCompleteFileExists()) {
+                        removeStage = true;
+                        ss.clearDataFile();
+                        logger.info("Clear stage success: {}", ss.getStageShuffleId());
                     }
                 } catch (Throwable e) {
-                    logger.error("Finalize stage fail: {}", ss.getStageShuffleId(), e);
+                    removeStage = true;
+                    logger.error("Finalize or clear stage fail: {}", ss.getStageShuffleId(), e);
                 } finally {
                     if (removeStage) { sit.remove(); }
                 }
@@ -311,13 +315,7 @@ public class ShuffleDataExecutor {
                 removedAppShuffleStageStates.forEach(stage -> {
                     logger.info("Removed expired stage: {}", stage.getStageShuffleId());
                     runningStages.remove(stage);
-                    try {
-                        if (!stage.isFinalized()) {
-                            stage.finalizeStage();
-                        }
-                    } catch (Exception e) {
-                        logger.warn("Removed expired stage {},  finalizeStage fail", stage.getStageShuffleId(), e);
-                    }
+                    stage.clearDataFile();
                 });
             }
 

@@ -30,8 +30,7 @@ public class ShuffleFileUtils {
         return String.format("shuffle_%s_%d_%d", hostName, shuffleId, partitionId);
     }
     
-    public static String getShuffleFilePath(String rootDir,
-                                            StageShuffleId appShuffleId, int partitionId, String hostName) {
+    public static String getShuffleFilePath(String rootDir, StageShuffleId appShuffleId, int partitionId, String hostName) {
         String fileName = getShuffleFileName(
                 appShuffleId.getShuffleId(), partitionId, hostName);
 
@@ -45,14 +44,19 @@ public class ShuffleFileUtils {
         return path;
     }
 
-    public static Path getStageCompleteSignPath(String rootDir,
-        StageShuffleId stageShuffleId) {
-
+    public static Path getStageCompleteSignPath(String rootDir, StageShuffleId stageShuffleId) {
         Path path = Paths.get(
             getAppShuffleDir(rootDir, stageShuffleId.getAppId()),
                 stageShuffleId.getAppAttempt(),
             String.valueOf(stageShuffleId.getShuffleId()),
             String.valueOf(stageShuffleId.getStageAttempt()), "_SUCCEED");
+        return path;
+    }
+
+    public static Path getAppCompleteSignPath(String rootDir, String appId, String appAttempt) {
+        Path path = Paths.get(
+                getAppShuffleDir(rootDir, appId),
+                appAttempt + "_SUCCEED");
         return path;
     }
 

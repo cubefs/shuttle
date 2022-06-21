@@ -103,9 +103,11 @@ public class NetworkUtils {
      * @return
      */
     public static String getConnectInfo(ChannelHandlerContext ctx) {
+        if (ctx == null || ctx.channel() == null) {
+            return null;
+        }
+
         Channel channel = ctx.channel();
-        return String.format("{%s - > %s}", channel.remoteAddress(), channel.localAddress());
+        return String.format("[%s -> %s]", channel.localAddress(), channel.remoteAddress());
     }
-
-
 }

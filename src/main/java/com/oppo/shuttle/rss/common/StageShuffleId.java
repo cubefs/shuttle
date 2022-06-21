@@ -68,11 +68,11 @@ public class StageShuffleId {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder("StageShuffleId{ appId=").append(appId)
-                .append("appAttempt=").append(appAttempt)
-                .append("stageAttempt=").append(stageAttempt)
-                .append("shuffleId=").append(shuffleId)
-                .append("}");
-        return sb.toString();
+        return "StageShuffleId{" +
+                "appId='" + appId + '\'' +
+                ", appAttempt='" + appAttempt + '\'' +
+                ", stageAttempt=" + stageAttempt +
+                ", shuffleId=" + shuffleId +
+                '}';
     }
 }

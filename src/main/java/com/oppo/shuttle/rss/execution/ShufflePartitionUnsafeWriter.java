@@ -253,4 +253,23 @@ public class ShufflePartitionUnsafeWriter {
 
         finalized.set(true);
     }
+
+    public synchronized void destroy() {
+        String finalPath = FileUtils.getFinalFile(dataFile).getPath();
+        if (finalized.get() && storage.exists(finalPath)) {
+            deleteQuietly("success", finalPath);
+        } else {
+            close();
+            deleteQuietly("fail", dataFile.getPath());
+        }
+    }
+
+    private void deleteQuietly(String mark, String path) {
+        try {
+            storage.deleteFile(path);
+            logger.debug("delete {} file {}", mark, path);
+        } catch (Exception e) {
+            logger.debug("delete {} error", path, e);
+        }
+    }
 }

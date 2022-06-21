@@ -72,7 +72,7 @@ class Ors2ShuffleManager(conf: SparkConf) extends ShuffleManager with Logging {
    */
   override def registerShuffle[K, V, C](shuffleId: Int, dependency: ShuffleDependency[K, V, C]):
   ShuffleHandle = {
-    logInfo(s"Use ShuffleManager: ${this.getClass().getSimpleName()}")
+    logInfo(s"Use ShuffleManager: ${this.getClass.getSimpleName}")
 
     if (conf.get(ADAPTIVE_EXECUTION_ENABLED) && conf.get(LOCAL_SHUFFLE_READER_ENABLED)) {
       throw new Ors2Exception(s"shuttle rss does not support local file reading. " +
@@ -99,8 +99,8 @@ class Ors2ShuffleManager(conf: SparkConf) extends ShuffleManager with Logging {
 
     logInfo(s"partitionMapToShuffleWorkers to shuffle id $shuffleId size: ${partitionMapToShuffleWorkers.size}: $partitionMapToShuffleWorkers")
 
-    Ors2SparkListener.registerListener(sparkContext, conf.getAppId, appAttempt,
-      ors2Servers, networkTimeoutMillis, clusterConf)
+    Ors2SparkListener.registerListener(sparkContext, conf.getAppId, appAttempt, shuffleId,
+      ors2Servers, networkTimeoutMillis, clusterConf, getOrCreateServiceManager)
 
     val dependencyInfo = s"numPartitions: ${dependency.partitioner.numPartitions}, " +
       s"serializer: ${dependency.serializer.getClass.getSimpleName}, " +
