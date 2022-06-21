@@ -16,6 +16,8 @@
 
 package com.oppo.shuttle.rss.execution;
 
+import com.oppo.shuttle.rss.exceptions.Ors2Exception;
+
 public class ShuffleIndexByteBuffer {
     private byte[] bytes;
     private int capacity;
@@ -39,9 +41,9 @@ public class ShuffleIndexByteBuffer {
         index += delta;
     }
 
-    public void writeInt(int x) throws Exception {
+    public void writeInt(int x) throws Ors2Exception {
         if (index + Integer.BYTES > capacity) {
-            throw new Exception("ShuffleIndexByteBuffer writeInt not enough space");
+            throw new Ors2Exception("ShuffleIndexByteBuffer writeInt not enough space");
         }
         bytes[index] = (byte)(x >> 24);
         bytes[index + 1] = (byte)(x >> 16);
@@ -50,9 +52,9 @@ public class ShuffleIndexByteBuffer {
         index += Integer.BYTES;
     }
 
-    public void writeLong(long x) throws Exception {
+    public void writeLong(long x) throws Ors2Exception {
         if (index + Long.BYTES > capacity) {
-            throw new Exception("ShuffleIndexByteBuffer writeInt not enough space");
+            throw new Ors2Exception("ShuffleIndexByteBuffer writeInt not enough space");
         }
         bytes[index] = (byte)((int)(x >> 56));
         bytes[index + 1] = (byte)((int)(x >> 48));

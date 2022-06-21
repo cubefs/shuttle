@@ -58,9 +58,6 @@ public class ShuffleDataExecutor {
     private final ConcurrentHashMap<StageShuffleId, ShuffleStageSpace> stageSpaces
             = new ConcurrentHashMap<>();
 
-    // running shuffle stage , wait to finalize
-    private final Set<ShuffleStageSpace> runningStages = new HashSet<>();
-
     private final ShuffleStorage storage;
 
     private final long appObjRetentionMillis;
@@ -120,25 +117,22 @@ public class ShuffleDataExecutor {
     }
 
     private void checkFinalizedStage() {
-        synchronized (runningStages) {
-            for (Iterator<ShuffleStageSpace> sit = runningStages.iterator(); sit.hasNext(); ) {
-                ShuffleStageSpace ss = sit.next();
-                boolean removeStage = false;
-                try {
-                    if (!ss.isFinalized() && ss.finalizedFileExists()) {
-                        ss.finalizeStage();
-                        logger.info("Finalize stage success: {}", ss.getStageShuffleId());
-                    } else if (ss.isFinalized() && ss.appCompleteFileExists()) {
-                        removeStage = true;
-                        ss.clearDataFile();
-                        logger.info("Clear stage success: {}", ss.getStageShuffleId());
-                    }
-                } catch (Throwable e) {
-                    removeStage = true;
-                    logger.error("Finalize or clear stage fail: {}", ss.getStageShuffleId(), e);
-                } finally {
-                    if (removeStage) { sit.remove(); }
+        LinkedList<ShuffleStageSpace> shuffleStageSpaces = new LinkedList<>(stageSpaces.values());
+
+        for (ShuffleStageSpace stage : shuffleStageSpaces) {
+            try {
+                if (stage.shouldFinalized()) {
+                    stage.finalizeStage();
+                    logger.info("Finalize stage success: {}", stage.getStageShuffleId());
+                } else if (stage.shouldClear()) {
+                    stage.clearDataFile();
+                    logger.info("Clear stage success: {}", stage.getStageShuffleId());
+                } else if (stage.shouldDelete()) {
+                    stageSpaces.remove(stage.getStageShuffleId());
+                    logger.info("Delete stage success: {}", stage.getStageShuffleId());
                 }
+            } catch (Exception e) {
+                logger.error("Finalize or clear stage fail: {}", stage.getStageShuffleId(), e);
             }
         }
     }
@@ -176,10 +170,19 @@ public class ShuffleDataExecutor {
         int seqId = uploadPackage.getSeqId();
         ShuffleStageSpace shuffleStageSpace = getStageSpace(appShuffleId);
 
+        // An exception occurred in the stage writing, and the connection was closed. Make spark tasks fail fast
+        try  {
+            shuffleStageSpace.checkHasError();
+        } catch (Exception e) {
+            logger.error("stage exception", e);
+            ctx.close();
+            return;
+        }
+
         // If the task is retried,
         // it can be seen that the stage has ended, but the previous task may
         // still have data sent to the shuffle worker, and this part of the data needs to be discarded.
-        if (shuffleStageSpace.isFinalized()) {
+        if (!shuffleStageSpace.isRunning()) {
             logger.warn("The stage has ended(discarded data), appShuffleId {}, mapId {}, attemptId {}, seqId {}",
                     appShuffleId, mapId, attemptId, seqId);
             return;
@@ -219,21 +222,21 @@ public class ShuffleDataExecutor {
         stageFinalizedChecker.shutdown();
         expireAppObjRemoveService.shutdown();
 
-        synchronized (runningStages) {
-            System.out.printf("%s force submitChecksum%n", LocalDateTime.now());
-            for (ShuffleStageSpace ss : runningStages) {
-                ss.submitChecksum();
-            }
+        System.out.printf("%s force submitChecksum%n", LocalDateTime.now());
+        for (ShuffleStageSpace ss : stageSpaces.values()) {
+            ss.submitChecksum();
+        }
 
-            System.out.printf("%s force close partitionExecutor%n", LocalDateTime.now());
-            partitionExecutor.shutdown();
+        System.out.printf("%s force close partitionExecutor%n", LocalDateTime.now());
+        partitionExecutor.shutdown();
 
-            System.out.printf("%s force finalizeStage%n", LocalDateTime.now());
-            for (Iterator<ShuffleStageSpace> sit = runningStages.iterator(); sit.hasNext(); ) {
-                ShuffleStageSpace ss = sit.next();
-                ss.finalizeWriters();
-                sit.remove();
+        System.out.printf("%s force finalizeStage%n", LocalDateTime.now());
+        for (Iterator<ShuffleStageSpace> sit = stageSpaces.values().iterator(); sit.hasNext(); ) {
+            ShuffleStageSpace ss = sit.next();
+            if (ss.isRunning()) {
+                ss.finalizeStage();
             }
+            sit.remove();
         }
 
         System.out.printf("%s Stopped shuffle executor during shutdown%n", LocalDateTime.now());
@@ -268,10 +271,7 @@ public class ShuffleDataExecutor {
         return stageSpaces.computeIfAbsent(stageShuffleId, key-> {
             ShuffleStageSpace stageSpace = new ShuffleStageSpace(partitionExecutor, storage,
                     serverId, stageShuffleId, 0, checkDataInShuffleWorker);
-            synchronized (runningStages) {
-                logger.info("add runningStage: {}", stageShuffleId);
-                runningStages.add(stageSpace);
-            }
+            logger.info("add runningStage: {}", stageShuffleId);
             return stageSpace;
         });
     }
@@ -303,15 +303,10 @@ public class ShuffleDataExecutor {
                 continue;
             }
 
-            // Close writers in case there are still writers not closed
-            synchronized (runningStages) {
-                removedAppShuffleStageStates.forEach(stage -> {
-                    logger.info("Removed expired stage: {}", stage.getStageShuffleId());
-                    runningStages.remove(stage);
-                    stage.clearDataFile();
-                });
-            }
-
+            removedAppShuffleStageStates.forEach(stage -> {
+                logger.info("Removed expired stage: {}", stage.getStageShuffleId());
+                stage.clearDataFile();
+            });
             logger.info("Removed expired app obj from internal state: {}, number of app shuffle id: {}", appId,
                     expiredAppObjIds.size());
         }

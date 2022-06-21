@@ -18,7 +18,9 @@ package com.oppo.shuttle.rss.execution;
 
 import com.oppo.shuttle.rss.common.Constants;
 import com.oppo.shuttle.rss.common.PartitionShuffleId;
+import com.oppo.shuttle.rss.common.ShuffleStatus;
 import com.oppo.shuttle.rss.common.StageShuffleId;
+import com.oppo.shuttle.rss.exceptions.Ors2Exception;
 import com.oppo.shuttle.rss.exceptions.Ors2InvalidDataException;
 import com.oppo.shuttle.rss.exceptions.Ors2InvalidDirException;
 import com.oppo.shuttle.rss.messages.ShuffleMessage;
@@ -31,10 +33,11 @@ import org.apache.parquet.Strings;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.File;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicReference;
+
+import static com.oppo.shuttle.rss.common.ShuffleStatus.*;
 
 public class ShuffleStageSpace {
   private static final Logger logger = LoggerFactory.getLogger(ShuffleStageSpace.class);
@@ -61,7 +64,7 @@ public class ShuffleStageSpace {
   private final String rootDir;
   private final String stageFinalizedPath;
   private final String appCompletePath;
-  private final AtomicReference<Boolean> finalized = new AtomicReference<>(false);
+  private final AtomicReference<ShuffleStatus> status = new AtomicReference<>(RUNNING);
 
 //  Map<attempt, Map<partition, List<Checksum>>>
   private Map<Long, Map<Integer, LinkedList<Checksum>>> checksumBuffer = new HashMap<>(2);
@@ -73,6 +76,11 @@ public class ShuffleStageSpace {
   private final ShuffleStorage storage;
 
   private final String serverId;
+
+  private volatile boolean hasError = false;
+  private final AtomicReference<Throwable> lastException = new AtomicReference<>();
+
+  private long completeTimestamp;
 
   public ShuffleStageSpace(
           Ors2AbstractExecutorService<Runnable> executor,
@@ -145,9 +153,7 @@ public class ShuffleStageSpace {
 
   public synchronized void submitChecksum(int partitionId, long attemptId, List<Checksum> checksums) {
     ShufflePartitionUnsafeWriter writer = getOrCreateWriter(partitionId);
-    execute(partitionId, () -> {
-      writer.writeCheckSum(checksums, attemptId);
-    });
+    execute(writer, () -> writer.writeCheckSum(checksums, attemptId));
   }
 
   public synchronized void submitChecksum() {
@@ -160,14 +166,13 @@ public class ShuffleStageSpace {
 
         int partitionId = partitionChecksums.getKey();
         ShufflePartitionUnsafeWriter writer = getOrCreateWriter(partitionId);
-        execute(partitionId, () -> writer.writeCheckSum(partitionChecksums.getValue(), attemptId));
+        execute(writer, () -> writer.writeCheckSum(partitionChecksums.getValue(), attemptId));
         it.remove();
       }
     }
 
     logger.info("submit checksum, checksum size {}", checksumBufferedCount);
   }
-
 
   public synchronized StageShuffleId getStageShuffleId() {
     return stageShuffleId;
@@ -191,7 +196,7 @@ public class ShuffleStageSpace {
             stageShuffleId, partitionId, mapId, length, checksum);
         }
 
-        execute(partitionId, () -> partitionWriter.writeData(blockData, mapId, attemptId, seqId));
+        execute(partitionWriter,  () -> partitionWriter.writeData(blockData, mapId, attemptId, seqId));
     } catch (Exception e) {
       logger.error("Exception in processing coming partitionBlockData:", e);
     } finally {
@@ -225,52 +230,72 @@ public class ShuffleStageSpace {
   }
 
   public void finalizeStage() {
+    status.set(FINALIZED);
+
     submitChecksum();
     checksumBuffer = new HashMap<>();
 
     dataWriters.forEach((partitionId, writer) -> {
-      execute(partitionId, writer::finalizeDataAndIndex);
+      execute(writer, writer::finalizeDataAndIndex);
     });
-
-    finalized.set(true);
   }
 
-  public void execute(int partitionId, Runnable run) {
+  public void execute(ShufflePartitionUnsafeWriter writer, Runnable run) {
      int executorId = ShuffleUtils.generateShuffleExecutorIndex(stageShuffleId.getAppId(), stageShuffleId.getShuffleId(),
-            partitionId, partitionExecutor.getPoolSize());
-     partitionExecutor.execute(executorId, run);
+            writer.getPartitionId(), partitionExecutor.getPoolSize());
+     partitionExecutor.execute(executorId, () -> {
+       try {
+         run.run();
+       } catch (Exception e) {
+         logger.error("write file {} error", writer.getDataPath(), e);
+         setLastException(e);
+       }
+     });
   }
 
-  public boolean finalizedFileExists() {
-    return storage.exists(stageFinalizedPath);
+  public boolean shouldFinalized() {
+    return status.get() == RUNNING && storage.exists(stageFinalizedPath);
   }
 
-  public boolean appCompleteFileExists() {
-    return storage.exists(appCompletePath);
+  public boolean shouldClear() {
+    return status.get() != COMPLETE && storage.exists(appCompletePath);
   }
 
-  public void setFinalized(boolean finalized) {
-    this.finalized.set(finalized);
+  public boolean isRunning() {
+    return status.get() == RUNNING;
   }
 
-  public boolean isFinalized() {
-    return finalized.get();
+  public boolean shouldDelete() {
+    // Don't clean up the memory state immediately after the end stage.
+    // There may be outdated data on the network. Clean up immediately.
+    // This will cause the stage to retry the initialization.
+    return status.get() == COMPLETE && System.currentTimeMillis() - completeTimestamp >= Constants.COMPLETE_STAGE_MEMORY_RETENTION_MILLIS;
   }
 
   public void clearDataFile() {
-    dataWriters.forEach((partitionId, writer) -> {
-      execute(partitionId, writer::destroy);
-    });
+    status.set(COMPLETE);
+    completeTimestamp = System.currentTimeMillis();
+    dataWriters.forEach((partitionId, writer) -> execute(writer, writer::destroy));
   }
 
-  public synchronized void finalizeWriters() {
-    try {
-      for (ShufflePartitionUnsafeWriter writer : dataWriters.values()) {
-        writer.finalizeDataAndIndex();
+  protected void setLastException(Throwable e) {
+    hasError = true;
+    lastException.compareAndSet(null, e);
+  }
+
+  protected void checkHasError(){
+    if (hasError) {
+      Throwable e = lastException.get();
+      if (e instanceof RuntimeException) {
+        throw (RuntimeException) e;
+      } else {
+        throw new Ors2Exception(e);
       }
-    } catch (Exception e) {
-      logger.error("Exception when finalize writers", e);
     }
+  }
+
+  public ShuffleStatus getStatus() {
+    return status.get();
   }
 
   @Override

@@ -42,11 +42,9 @@ public class ShufflePartitionUnsafeWriter {
     private final ShuffleStorage storage;
 
     private File dataFile;
+    private String dataPath;
     private ShuffleOutputStream dataOutputStream;
-    private AtomicBoolean closed = new AtomicBoolean(true);
-
-    private AtomicBoolean finalized = new AtomicBoolean(false);
-
+    private final AtomicBoolean closed = new AtomicBoolean(true);
     private long writtenBytes = 0;
 
     ShuffleIndexByteBuffer indexByteBuffer = new ShuffleIndexByteBuffer(ShuffleIndex.NUM_BYTES);
@@ -72,13 +70,8 @@ public class ShufflePartitionUnsafeWriter {
 
         try {
             logger.info("Closing shuffle data file: {}", dataOutputStream.getLocation());
-
             dataOutputStream.close();
             closed.set(true);
-
-        } catch (Exception e) {
-            logger.error("Exception in close shuffle data file or index file, partition: {}, msg: {}",
-                    shufflePartitionId, e.getMessage(), e);
         } finally {
             try {
                 Ors2MetricsConstants.partitionCurrentCount.dec();
@@ -135,14 +128,14 @@ public class ShufflePartitionUnsafeWriter {
         if (closed.get()) {
             String parentPath = Paths.get(filePathBase).getParent().toString();
             storage.createDirectories(parentPath);
-            String dataFileName = filePathBase + Constants.SHUFFLE_DATA_FILE_POSTFIX;
+            dataPath = filePathBase + Constants.SHUFFLE_DATA_FILE_POSTFIX;
 
-            dataFile = new File(dataFileName);
+            dataFile = new File(dataPath);
             renameBackFinalFile(dataFile);
-            dataOutputStream = storage.createWriterStream(dataFileName, "");
+            dataOutputStream = storage.createWriterStream(dataPath, "");
 
             closed.set(false);
-            logger.info("Opening shuffle data file: {}, dataStream: {}", dataFileName, dataOutputStream.hashCode());
+            logger.info("Opening shuffle data file: {}, dataStream: {}", dataPath, dataOutputStream.hashCode());
             Ors2MetricsConstants.partitionCurrentCount.inc();
         } else {
             logger.info("Opened, dataFile: {}", dataFile.getPath());
@@ -151,37 +144,31 @@ public class ShufflePartitionUnsafeWriter {
 
     public synchronized int writeData(byte[] shuffleData, ShuffleIndex shuffleIndex) {
         int length = shuffleData.length;
-        try {
-            shuffleIndex.setLength(length);
-            shuffleIndex.setOffset(writtenBytes + ShuffleIndex.NUM_BYTES);
-            byte[] indexData = shuffleIndex.serialize();
 
-            dataOutputStream.write(indexData);
-            dataOutputStream.write(shuffleData);
-            writtenBytes += length + indexData.length;
+        shuffleIndex.setLength(length);
+        shuffleIndex.setOffset(writtenBytes + ShuffleIndex.NUM_BYTES);
+        byte[] indexData = shuffleIndex.serialize();
 
-        } catch (Exception e) {
-            logger.error("fs write error for {}, index {}", dataFile.getPath(), shuffleIndex, e);
-        }
+        dataOutputStream.write(indexData);
+        dataOutputStream.write(shuffleData);
+        writtenBytes += length + indexData.length;
 
         return length;
     }
 
     public synchronized int writeData(byte[] shuffleData, int mapId, long attemptId, int seqId) {
         int length = shuffleData.length;
-        try {
-            indexByteBuffer.clear();
-            indexByteBuffer.writeInt(mapId);
-            indexByteBuffer.writeLong(attemptId);
-            indexByteBuffer.writeInt(seqId);
-            indexByteBuffer.writeLong(writtenBytes + ShuffleIndex.NUM_BYTES);
-            indexByteBuffer.writeLong(length);
-            dataOutputStream.write(indexByteBuffer.getBytes());
-            dataOutputStream.write(shuffleData);
-            writtenBytes += shuffleData.length + ShuffleIndex.NUM_BYTES;
-        } catch (Exception e) {
-            logger.error("fs write error for {}, mapId {}", dataFile.getPath(), mapId, e);
-        }
+
+        indexByteBuffer.clear();
+        indexByteBuffer.writeInt(mapId);
+        indexByteBuffer.writeLong(attemptId);
+        indexByteBuffer.writeInt(seqId);
+        indexByteBuffer.writeLong(writtenBytes + ShuffleIndex.NUM_BYTES);
+        indexByteBuffer.writeLong(length);
+        dataOutputStream.write(indexByteBuffer.getBytes());
+        dataOutputStream.write(shuffleData);
+        writtenBytes += shuffleData.length + ShuffleIndex.NUM_BYTES;
+
         return length;
     }
 
@@ -191,23 +178,14 @@ public class ShufflePartitionUnsafeWriter {
     }
 
     public synchronized void writeCheckSum(List<Checksum> checksums, long attemptId) {
-        try {
-            boolean firstInited = false;
-            for (Checksum ck : checksums) {
-                indexByteBuffer.clear();
-                indexByteBuffer.writeInt(ck.getMapId());
-                if (!firstInited) {
-                    indexByteBuffer.writeLong(attemptId);
-                    indexByteBuffer.writeInt(Constants.CHECK_SUM_SEQID);
-                    indexByteBuffer.writeLong(0);
-                } else {
-                    indexByteBuffer.incrementIndex(20);
-                }
-                indexByteBuffer.writeLong(ck.getChecksum());
-                dataOutputStream.write(indexByteBuffer.getBytes());
-            }
-        } catch (Exception e) {
-            logger.error("writeCheckSum fail", e);
+        for (Checksum ck : checksums) {
+            indexByteBuffer.clear();
+            indexByteBuffer.writeInt(ck.getMapId());
+            indexByteBuffer.writeLong(attemptId);
+            indexByteBuffer.writeInt(Constants.CHECK_SUM_SEQID);
+            indexByteBuffer.writeLong(0);
+            indexByteBuffer.writeLong(ck.getChecksum());
+            dataOutputStream.write(indexByteBuffer.getBytes());
         }
     }
 
@@ -224,43 +202,37 @@ public class ShufflePartitionUnsafeWriter {
     }
 
     private void renameFileFinalized(File outputFile) {
-        try {
-            long start = System.currentTimeMillis();
-            File newIndexFile = FileUtils.getFinalFile(outputFile);
-            Path finalDirPath = Paths.get(newIndexFile.getParentFile().getPath());
-            if (!storage.exists(finalDirPath.toString())) {
-                storage.createDirectories(finalDirPath.toString());
-            }
-            if (storage.exists(newIndexFile.getPath())) {
-                logger.error("Finalize data for : {}, final index file exist: {}",
-                        outputFile.getPath(), newIndexFile.getName());
-            }
-            boolean renamed = storage.rename(outputFile.getPath(), newIndexFile.getPath());
-            logger.info("Rename index file: {}, length: {}, renamed: {}, this: {}, costTime: {}",
-                    newIndexFile.getPath(), newIndexFile.length(), renamed, hashCode(), System.currentTimeMillis() - start);
-        } catch (Exception e) {
-            logger.error("Rename index file exception:{} ", outputFile.getName(), e);
+        long start = System.currentTimeMillis();
+        File newIndexFile = FileUtils.getFinalFile(outputFile);
+        Path finalDirPath = Paths.get(newIndexFile.getParentFile().getPath());
+        if (!storage.exists(finalDirPath.toString())) {
+            storage.createDirectories(finalDirPath.toString());
         }
+        if (storage.exists(newIndexFile.getPath())) {
+            logger.error("Finalize data for : {}, final index file exist: {}",
+                    outputFile.getPath(), newIndexFile.getName());
+        }
+        boolean renamed = storage.rename(outputFile.getPath(), newIndexFile.getPath());
+        logger.info("Rename index file: {}, length: {}, renamed: {}, this: {}, costTime: {}",
+                newIndexFile.getPath(), newIndexFile.length(), renamed, hashCode(), System.currentTimeMillis() - start);
     }
 
 
     public synchronized void finalizeDataAndIndex() {
         logger.info("finalizeData buffered file {}", dataFile.getPath());
-
         close();
-
         renameFileFinalized(dataFile);
-
-        finalized.set(true);
     }
 
     public synchronized void destroy() {
-        String finalPath = FileUtils.getFinalFile(dataFile).getPath();
-        if (finalized.get() && storage.exists(finalPath)) {
-            deleteQuietly("success", finalPath);
-        } else {
+        if (storage.exists(dataPath)){
             close();
-            deleteQuietly("fail", dataFile.getPath());
+            deleteQuietly("fail", dataPath);
+        }
+
+        String finalPath = FileUtils.getFinalFile(dataFile).getPath();
+        if (storage.exists(finalPath)) {
+            deleteQuietly("success", finalPath);
         }
     }
 
@@ -271,5 +243,13 @@ public class ShufflePartitionUnsafeWriter {
         } catch (Exception e) {
             logger.debug("delete {} error", path, e);
         }
+    }
+
+    public String getDataPath() {
+        return dataPath;
+    }
+
+    public int getPartitionId() {
+        return shufflePartitionId.getPartitionId();
     }
 }

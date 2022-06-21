@@ -140,7 +140,7 @@ public class ShufflePartitionReader implements ShuffleReader {
         int sleepTime = Math.min(30_000, ++waitNumber * 50);
         waitTimeout.sleepAdd(sleepTime);
         initPipeReaders();
-        logger.info("sleep {}({}times) millis wait for dumping data", sleepTime, waitNumber);
+        logger.info("sleep {}({} times) millis wait for dumping data", sleepTime, waitNumber);
       } catch (TimeoutException e) {
         throw new Ors2Exception("Waiting for timeout. If this is normal, it is recommended to increase the value of" +
                 " spark.shuffle.rss.read.waitFinalizeTimeout, the current configuration is: " + inputReadyWaitTime + " ms");

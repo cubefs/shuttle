@@ -64,7 +64,7 @@ public class Constants {
   public static final long CLI_CONN_IDLE_TIMEOUT_MS = 3 * 60 * 1000L;
 
   public static final long APP_OBJ_RETENTION_MILLIS_DEFAULT = TimeUnit.HOURS.toMillis(6);
-  public static final long APP_STORAGE_RETENTION_MILLIS_DEFAULT = TimeUnit.HOURS.toMillis(24);
+  public static final long APP_STORAGE_RETENTION_MILLIS_DEFAULT = TimeUnit.HOURS.toMillis(8);
 
   /**
    * test constant config
@@ -75,4 +75,6 @@ public class Constants {
   public static final String SHUTTLE_HOST_IP_ENV_NAME = "SHUTTLE_HOST_IP";
 
   public static final int SKIP_CHECK_BUILD_ID = -100;
+
+  public static final long COMPLETE_STAGE_MEMORY_RETENTION_MILLIS = 5 * 60 * 1000;
 }
