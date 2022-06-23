@@ -7,7 +7,7 @@ on:
   push:
     branches: [ master, spark30, spark24 ]
   pull_request:
-    branches: [ master, spark30, spark24 ]
+    branches: [ master ]
 
 jobs:
   build:
@@ -22,4 +22,4 @@ jobs:
       with:
         java-version: 1.8
     - name: Build with Maven
-      run: mvn -B package --file pom.xml
+      run: mvn clean package -Pserver -DskipTests
