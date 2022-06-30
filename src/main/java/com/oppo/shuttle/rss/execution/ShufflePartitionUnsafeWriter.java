@@ -64,14 +64,12 @@ public class ShufflePartitionUnsafeWriter {
 
     public synchronized void close() {
         if (closed.get()) {
-            logger.error("Shuffle file already closed: {}, do not need to close it again", filePathBase);
             return;
         }
+        closed.set(true);
 
         try {
-            logger.info("Closing shuffle data file: {}", dataOutputStream.getLocation());
             dataOutputStream.close();
-            closed.set(true);
         } finally {
             try {
                 Ors2MetricsConstants.partitionCurrentCount.dec();
@@ -225,8 +223,13 @@ public class ShufflePartitionUnsafeWriter {
     }
 
     public synchronized void destroy() {
-        if (storage.exists(dataPath)){
+        try {
             close();
+        } catch (Exception e) {
+            logger.error("destroy", e);
+        }
+
+        if (storage.exists(dataPath)){
             deleteQuietly("fail", dataPath);
         }
 

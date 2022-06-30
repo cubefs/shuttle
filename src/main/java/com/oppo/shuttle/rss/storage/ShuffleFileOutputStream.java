@@ -100,16 +100,21 @@ public class ShuffleFileOutputStream implements ShuffleOutputStream {
 
     @Override
     public void close() {
+        if (closed.get()) {
+            return;
+        }
+        closed.set(true);
+
         try {
-            if (!closed.get()) {
-                logger.info("call outputStream close: {}", filePath);
+            logger.info("call outputStream close: {}", filePath);
+            try {
                 outputStream.flush();
+            } finally {
                 outputStream.close();
-                closed.set(true);
             }
         } catch (Throwable e) {
             throw new Ors2FileException(String.format("Failed to close file %s with exception %s",
-                filePath, e.getMessage(), e));
+                filePath, e.getMessage()), e);
         }
     }
 
