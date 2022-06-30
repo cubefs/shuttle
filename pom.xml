@@ -53,7 +53,6 @@
         <lmax.version>3.4.2</lmax.version>
         <alluxio.version>2.8.0</alluxio.version>
         <jna.version>5.6.0</jna.version>
-        <cfs.version>0.11.4</cfs.version>
         <jackson.version>2.10.0</jackson.version>
         <jackson.scala.version>2.10.0</jackson.scala.version>
         <skipIT>true</skipIT>
@@ -226,14 +225,6 @@
             <artifactId>jackson-module-scala_${scala.compat.version}</artifactId>
             <version>${jackson.scala.version}</version>
         </dependency>
-
-<!--
-        <dependency>
-            <groupId>io.chubaofs</groupId>
-            <artifactId>cfs-hadoop</artifactId>
-            <version>${cfs.version}</version>
-        </dependency>
--->
 
         <dependency>
             <groupId>org.alluxio</groupId>

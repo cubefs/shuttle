@@ -44,7 +44,8 @@ public class CfsFileSystem extends DfsFileSystem {
             }
             fs = createInternal(uri, hadoopConf);
 
-            logger.info("CfsFileSystem load success, uri: {}, master: {}, replication: 1, buffer: {}",
+            logger.info("CfsFileSystem load success, fsName {}, uri: {}, master: {}, replication: 1, buffer: {}",
+                    hadoopConf.get("fs.cfs.impl"),
                     uri,
                     hadoopConf.get("cfs.master.address"),
                     hadoopConf.get("cfs.min.buffersize"));
