@@ -6,7 +6,7 @@ source "$(cd "`dirname "$0"`"; pwd)"/rss_common.sh
 action=$1
 export RSS_SERVER_NAME=worker_${RSS_DATA_CENTER}_${RSS_CLUSTER}
 
-logDir=${RSS_HOME}/log-worker
+logDir=${RSS_HOME}/logs
 
 pidFile=${RSS_HOME}/worker.pid
 
@@ -44,7 +44,7 @@ waitPid() {
 start() {
     check
 
-    echo "" > ${logDir}/rss.out
+    echo "" > ${logDir}/worker.out
     nohup ${JAVA_HOME}/bin/java \
     -server -XX:+UseG1GC -XX:G1HeapRegionSize=8m -verbose:GC -XX:+PrintGCDetails \
     -XX:+PrintGCDateStamps -XX:+PrintGCTimeStamps \
@@ -54,11 +54,11 @@ start() {
     -XX:HeapDumpPath=${logDir}/rss_dump.hprof \
     -XX:+PrintStringTableStatistics \
     ${RSS_WORKER_MEMORY} -XX:MaxGCPauseMillis=300 -XX:InitiatingHeapOccupancyPercent=70 \
-    -Dlog4j.configuration=file:${RSS_CONF_DIR}/log4j.properties -Dlog.dir=${logDir} \
+    -Dlog4j.configuration=file:${RSS_CONF_DIR}/log4j.properties -Dlog.name=worker -Dlog.dir=${logDir} \
     ${RSS_WORKER_JVM_OPTS} \
     com.oppo.shuttle.rss.server.worker.ShuffleWorker \
     ${RSS_WORKER_SERVER_OPTS} \
-    > ${logDir}/rss.out 2>&1 < /dev/null  &
+    > ${logDir}/worker.out 2>&1 < /dev/null  &
 
     newPid=$!
     sleep 3
@@ -71,7 +71,7 @@ start() {
       echo "shuffle worker: ${RSS_SERVER_NAME} start fail"
     fi
 
-    head $logDir/rss.out
+    head $logDir/worker.out
 }
 
 stop() {

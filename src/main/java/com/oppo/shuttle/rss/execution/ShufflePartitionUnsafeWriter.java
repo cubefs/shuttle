@@ -124,6 +124,7 @@ public class ShufflePartitionUnsafeWriter {
 
     private synchronized void open() {
         if (closed.get()) {
+            long start = System.currentTimeMillis();
             String parentPath = Paths.get(filePathBase).getParent().toString();
             storage.createDirectories(parentPath);
             dataPath = filePathBase + Constants.SHUFFLE_DATA_FILE_POSTFIX;
@@ -133,7 +134,8 @@ public class ShufflePartitionUnsafeWriter {
             dataOutputStream = storage.createWriterStream(dataPath, "");
 
             closed.set(false);
-            logger.info("Opening shuffle data file: {}, dataStream: {}", dataPath, dataOutputStream.hashCode());
+            logger.info("Opening shuffle data file: {}, dataStream: {}, costTime {} ms", dataPath,
+                    dataOutputStream.hashCode(), System.currentTimeMillis() - start);
             Ors2MetricsConstants.partitionCurrentCount.inc();
         } else {
             logger.info("Opened, dataFile: {}", dataFile.getPath());
@@ -211,7 +213,7 @@ public class ShufflePartitionUnsafeWriter {
                     outputFile.getPath(), newIndexFile.getName());
         }
         boolean renamed = storage.rename(outputFile.getPath(), newIndexFile.getPath());
-        logger.info("Rename index file: {}, length: {}, renamed: {}, this: {}, costTime: {}",
+        logger.info("Rename index file: {}, length: {}, renamed: {}, this: {}, costTime: {} ms",
                 newIndexFile.getPath(), newIndexFile.length(), renamed, hashCode(), System.currentTimeMillis() - start);
     }
 

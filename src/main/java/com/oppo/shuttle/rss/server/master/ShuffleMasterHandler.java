@@ -96,7 +96,6 @@ public class ShuffleMasterHandler extends SimpleChannelInboundHandler<ByteBuf> {
     }
 
     private void handleDriverRequest(GetWorkersRequest getWorkersRequest, ChannelHandlerContext ctx) {
-        logger.info("Received driver request from {}, request is {}", ctx.channel().remoteAddress(), getWorkersRequest);
         String appName = "".equals(getWorkersRequest.getTaskId()) ?
                 getWorkersRequest.getAppName() : getWorkersRequest.getTaskId();
         if (!applicationRequestController.requestCome(appName, getWorkersRequest.getAppId())){
@@ -129,6 +128,8 @@ public class ShuffleMasterHandler extends SimpleChannelInboundHandler<ByteBuf> {
                 .setFileSystemConf(masterDispatchServers.getFsConf())
                 .setIsSuccess(true)
                 .build();
+
+        logDriverRequest(getWorkersRequest, response);
         HandlerUtil.writeResponseMsg(ctx, MessageConstants.RESPONSE_STATUS_OK, response, true, MessageConstants.MESSAGE_SHUFFLE_RESPONSE_INFO);
     }
 
@@ -141,5 +142,21 @@ public class ShuffleMasterHandler extends SimpleChannelInboundHandler<ByteBuf> {
         String msg = "Got exception in master handle process: " + NetworkUtils.getConnectInfo(ctx);
         logger.warn(msg, cause);
         ctx.close();
+    }
+
+    public static void logDriverRequest(GetWorkersRequest request, GetWorkersResponse response) {
+        logger.info(
+                "GetWorkersRequest: dagId={}, taskId={}, appName={}, appId={}, requestWorkerCount={}; " +
+                        "response: dataCenter={}, cluster={}, rootDir={}, serverSize={}",
+                request.getDagId(),
+                request.getTaskId(),
+                request.getAppName(),
+                request.getAppId(),
+                request.getRequestWorkerCount(),
+                response.getDataCenter(),
+                response.getCluster(),
+                response.getRootDir(),
+                response.getSeverDetailList().size()
+        );
     }
 }

@@ -5,7 +5,7 @@ source "$(cd "`dirname "$0"`"; pwd)"/../conf/rss_env.sh
 action=$1
 export RSS_SERVER_NAME=master_${RSS_DATA_CENTER}_${RSS_CLUSTER}
 
-logDir=${RSS_HOME}/log-master
+logDir=${RSS_HOME}/logs
 
 pidFile=${RSS_HOME}/master.pid
 
@@ -28,7 +28,7 @@ check() {
 start() {
     check
 
-    echo "" > ${logDir}/rss.out
+    echo "" > ${logDir}/master.out
     nohup ${JAVA_HOME}/bin/java \
     -server -XX:+UseG1GC -XX:G1HeapRegionSize=8m -verbose:GC -XX:+PrintGCDetails \
     -XX:+PrintGCDateStamps -XX:+PrintGCTimeStamps \
@@ -39,11 +39,11 @@ start() {
     -XX:HeapDumpPath=${logDir}/rss_dump.hprof \
     -XX:+PrintStringTableStatistics \
     ${RSS_MASTER_MEMORY} -XX:MaxGCPauseMillis=300 -XX:InitiatingHeapOccupancyPercent=70 \
-    -Dlog4j.configuration=file:${RSS_CONF_DIR}/log4j.properties -Dlog.dir=${logDir} \
+    -Dlog4j.configuration=file:${RSS_CONF_DIR}/log4j.properties -Dlog.name=master -Dlog.dir=${logDir} \
     ${RSS_MASTER_JVM_OPTS} \
     com.oppo.shuttle.rss.server.master.ShuffleMaster \
     ${RSS_MASTER_SERVER_OPTS} \
-    > ${logDir}/rss.out 2>&1 < /dev/null  &
+    > ${logDir}/master.out 2>&1 < /dev/null  &
 
     newPid=$!
     sleep 3
@@ -55,7 +55,7 @@ start() {
       echo "shuffle master: ${RSS_SERVER_NAME} start fail"
     fi
 
-    head $logDir/rss.out
+    head $logDir/master.out
 }
 
 stop() {

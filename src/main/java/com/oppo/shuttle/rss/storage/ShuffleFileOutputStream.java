@@ -65,7 +65,7 @@ public class ShuffleFileOutputStream implements ShuffleOutputStream {
             long cost = System.currentTimeMillis() - start;
             Ors2MetricsConstants.dumpLatencyHistogram.observe(cost);
             if (cost > 100) {
-                logger.warn("fs-flush so slow file {}, size {}, cost {}", filePath, length, cost);
+                logger.warn("fs-flush so slow file {}, size {}, cost {} ms", filePath, length, cost);
             }
         } catch (Throwable e) {
             throw new Ors2FileException(String.format(

@@ -19,14 +19,16 @@ package com.oppo.shuttle.rss.util;
 import com.oppo.shuttle.rss.ShuffleServerConfig;
 import com.oppo.shuttle.rss.common.Constants;
 import com.oppo.shuttle.rss.metrics.Ors2MetricsConstants;
-import com.oppo.shuttle.rss.storage.ShuffleOutputStream;
-import com.oppo.shuttle.rss.storage.ShuffleStorage;
+import com.oppo.shuttle.rss.storage.fs.FSDataOutputStream;
+import com.oppo.shuttle.rss.storage.fs.FileSystem;
+import com.oppo.shuttle.rss.storage.fs.Path;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.IOException;
+
 public class SelfCheckUtils {
 
-    private static ShuffleStorage storage;
     private static final String selfCheckInfo = "self check ok!";
     private static final Logger logger = LoggerFactory.getLogger(SelfCheckUtils.class);
 
@@ -38,18 +40,21 @@ public class SelfCheckUtils {
             return false;
         }
 
-        storage = config.getStorage();
-        String dataFile = getSelfCheckFile(config.getRootDirectory(), localIp);
-        try (ShuffleOutputStream writerStream = storage.createWriterStream(dataFile, "")) {
+        FileSystem fs = config.getStorage().getFs();
+        Path dataFile = Path.of(getSelfCheckFile(config.getRootDirectory(), localIp));
+        try (FSDataOutputStream writerStream = fs.create(dataFile, true)) {
             byte[] selfCheckBytes = selfCheckInfo.getBytes();
             writerStream.write(selfCheckBytes);
+            logger.info("Worker storage check success, write file: {} ", dataFile);
             return true;
         } catch (Throwable t) {
-            logger.error("Worker self check fail: ", t);
+            logger.error("Worker storage check fail: ", t);
             return false;
         } finally {
-            if (storage.exists(dataFile)){
-                storage.deleteFile(dataFile);
+            try {
+                fs.delete(dataFile, false);
+            } catch (IOException e) {
+                logger.warn("delete {}", dataFile, e);
             }
         }
     }
