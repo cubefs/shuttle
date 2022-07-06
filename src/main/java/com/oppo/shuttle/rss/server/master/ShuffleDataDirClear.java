@@ -72,9 +72,6 @@ public class ShuffleDataDirClear {
         }
 
         deleteExpiredDir(storage, storage.getRootDir(), appFileRetentionMillis);
-        if (storage.isCfs()) {
-            deleteExpiredDir(storage, "/ors2-discard", -1);
-        }
     }
 
     private void deleteExpiredDir(ShuffleFileStorage storage, String checkDir, long retentionMillis) {

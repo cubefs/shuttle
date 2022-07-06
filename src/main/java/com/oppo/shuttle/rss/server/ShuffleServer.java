@@ -119,9 +119,9 @@ public abstract class ShuffleServer {
                 .option(ChannelOption.SO_REUSEADDR, true)
                 .option(ChannelOption.ALLOCATOR, PooledByteBufAllocator.DEFAULT)
                 .childOption(ChannelOption.CONNECT_TIMEOUT_MILLIS, serverConfig.getNetworkTimeout())
-                .childOption(ChannelOption.ALLOCATOR, PooledByteBufAllocator.DEFAULT)
-                .childOption(ChannelOption.SO_RCVBUF, 128 * 1024)
-                .childOption(ChannelOption.SO_SNDBUF, 128 * 1024);
+                .childOption(ChannelOption.ALLOCATOR, PooledByteBufAllocator.DEFAULT);
+                // .childOption(ChannelOption.SO_RCVBUF, 128 * 1024)
+                // .childOption(ChannelOption.SO_SNDBUF, 128 * 1024);
     }
 
     /**

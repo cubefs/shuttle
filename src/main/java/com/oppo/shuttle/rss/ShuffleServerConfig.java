@@ -66,9 +66,9 @@ public class ShuffleServerConfig {
 
   private int workerLoadWeight = 1;
 
-  private int shuffleProcessThreads = 16;
+  private int shuffleProcessThreads = 32;
 
-  private int networkBacklog = 1000;
+  private int networkBacklog = 1024;
 
   private int networkTimeout = 30000;
 
@@ -368,8 +368,8 @@ public class ShuffleServerConfig {
     serverConfig.maxThroughputPerMin = Long.parseLong(cmd.getOptionValue("maxThroughputPerMin", "4294967296"));
     serverConfig.maxHoldDataSize = Long.parseLong(cmd.getOptionValue("maxHoldDataSize", "21474836480"));
     serverConfig.maxFlowControlTimes = Integer.parseInt(cmd.getOptionValue("maxFlowControlTimes", "10"));
-    serverConfig.shuffleProcessThreads = Integer.parseInt(cmd.getOptionValue("nettyWorkerThreads", "16"));
-    serverConfig.networkBacklog = Integer.parseInt(cmd.getOptionValue("networkBacklog", "1000"));
+    serverConfig.shuffleProcessThreads = Integer.parseInt(cmd.getOptionValue("nettyWorkerThreads", "32"));
+    serverConfig.networkBacklog = Integer.parseInt(cmd.getOptionValue("networkBacklog", "1024"));
     serverConfig.networkTimeout = Integer.parseInt(cmd.getOptionValue("networkTimeout", "30000"));
     serverConfig.networkRetries = Integer.parseInt(cmd.getOptionValue("networkRetries", "5"));
     serverConfig.appObjRetentionMillis = Long.parseLong(
