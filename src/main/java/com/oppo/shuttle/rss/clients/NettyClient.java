@@ -138,13 +138,11 @@ public class NettyClient {
     }
 
     public void send(int workerId, ShufflePacket packet) {
-        clientFactory.checkNetworkException();
-
         try {
-            if (!semaphore.tryAcquire(netWorkTimeout, TimeUnit.MILLISECONDS)) {
+            while (!semaphore.tryAcquire(Constants.CLIENT_TOKEN_WAIT_MS, TimeUnit.MILLISECONDS)) {
                 clientFactory.checkNetworkException();
-                throw new Ors2Exception(String.format("The network request is blocked, " +
-                        "and the idle token cannot be obtained for more than %s ms ",  netWorkTimeout));
+                logger.warn(String.format("The network request is blocked, " +
+                        "and the idle token cannot be obtained for more than %s ms ", Constants.CLIENT_TOKEN_WAIT_MS));
             }
 
             Tuple2<ShuffleClient, ShuffleClient> tuple2 = getClient(workerId, 0, Optional.empty());
@@ -165,17 +163,19 @@ public class NettyClient {
     public void waitFinish() {
         int v = getRemainPackageNum();
         SleepWaitTimeout waitTimeout = new SleepWaitTimeout(netWorkTimeout);
-
+        int waitNumber = 0;
         while (v != 0) {
             clientFactory.checkNetworkException();
             try {
-                waitTimeout.sleepAdd(50);
+                long sleepTime = Math.min(Constants.POLL_WAIT_MS, ((++waitNumber / 5) + 1) * 50L);
+                waitTimeout.sleepAdd(sleepTime);
                 v = getRemainPackageNum();
-                //logger.info("Waiting for the data packet to be sent, the current remaining: {}.", v);
             } catch (TimeoutException e) {
                 throw new RuntimeException("Waiting for the request to complete timed out", e);
             }
         }
+        logger.info("Wait for the data packet send finish, cost {} ms(times {})",
+                waitTimeout.getDurationMs(), waitNumber);
     }
 
     public int getFinishPackageNum() {

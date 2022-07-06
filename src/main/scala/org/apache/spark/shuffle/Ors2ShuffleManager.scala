@@ -301,7 +301,11 @@ class Ors2ShuffleManager(conf: SparkConf) extends ShuffleManager with Logging {
   }
 
   private def getZooKeeperServers: String = {
-    val serversValue = conf.get(Ors2Config.serviceRegistryZKServers)
+    var serversValue = conf.get(Ors2Config.serviceRegistryZKServers)
+    // Translation compatible with old configuration
+    if (StringUtils.isEmpty(serversValue)) {
+      serversValue = conf.get("spark.shuffle.ors2.serviceRegistry.zookeeper.servers")
+    }
     serversValue
   }
 

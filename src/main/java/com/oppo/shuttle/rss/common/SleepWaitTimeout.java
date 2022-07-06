@@ -64,4 +64,8 @@ public class SleepWaitTimeout {
             throw new TimeoutException();
         }
     }
+
+    public long getDurationMs() {
+        return System.currentTimeMillis() - start;
+    }
 }

@@ -87,8 +87,8 @@ public class Ors2ClientFactory {
                 .option(ChannelOption.ALLOCATOR, PooledByteBufAllocator.DEFAULT)
                 .option(ChannelOption.TCP_NODELAY, true)
                 .option(ChannelOption.CONNECT_TIMEOUT_MILLIS, (int) netWorkTimeout)
-                .option(ChannelOption.SO_SNDBUF, 128 * 1024)
-                .option(ChannelOption.SO_RCVBUF, 128 * 1024)
+                // .option(ChannelOption.SO_SNDBUF, 128 * 1024)
+                // .option(ChannelOption.SO_RCVBUF, 128 * 1024)
                 .handler(new ChannelInitializer<SocketChannel>() {
                     protected void initChannel(SocketChannel ch) throws Exception {
                         LengthFieldBasedFrameDecoder decoder = new LengthFieldBasedFrameDecoder(134217728, 5, 4);

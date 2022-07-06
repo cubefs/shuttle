@@ -87,7 +87,7 @@ object Ors2Config {
     ConfigBuilder("spark.shuffle.rss.writer.min.blockSize")
       .doc("Set the min block size of the writer. Limit the floor of writeBlockSize config")
       .bytesConf(ByteUnit.BYTE)
-      .createWithDefaultString("256kb")
+      .createWithDefaultString("64kb")
 
   val maxWriteBlockSize: ConfigEntry[Long] =
     ConfigBuilder("spark.shuffle.rss.writer.max.blockSize")
@@ -99,7 +99,7 @@ object Ors2Config {
     ConfigBuilder("spark.shuffle.rss.writer.maxRequestSize")
       .doc("The maximum amount of data per network request. Multiple blocks may be combined to send a single request to the server.")
       .bytesConf(ByteUnit.BYTE)
-      .createWithDefaultString("2mb")
+      .createWithDefaultString("1mb")
 
   val maxTotalBufferDataSize: ConfigEntry[Long] =
     ConfigBuilder("spark.shuffle.rss.writer.maxTotalBufferDataSize")

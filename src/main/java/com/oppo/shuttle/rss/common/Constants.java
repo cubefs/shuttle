@@ -77,4 +77,7 @@ public class Constants {
   public static final int SKIP_CHECK_BUILD_ID = -100;
 
   public static final long COMPLETE_STAGE_MEMORY_RETENTION_MILLIS = 5 * 60 * 1000;
+
+  public static final long CLIENT_TOKEN_WAIT_MS = 10000;
+  public static final long POLL_WAIT_MS = 300;
 }
