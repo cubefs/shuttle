@@ -22,6 +22,7 @@ import com.oppo.shuttle.rss.util.JsonUtils;
 import com.oppo.shuttle.rss.util.NetworkUtils;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.netty.channel.DefaultEventLoop;
+import io.netty.util.internal.PlatformDependent;
 import io.prometheus.client.Collector;
 import io.prometheus.client.CollectorRegistry;
 import io.prometheus.client.exporter.HTTPServer;
@@ -29,6 +30,7 @@ import io.prometheus.client.hotspot.DefaultExports;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import sun.misc.SharedSecrets;
 
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
@@ -125,6 +127,10 @@ public class Ors2MetricsExport {
 
         executor.scheduleAtFixedRate(() -> {
            try {
+               Ors2MetricsConstants.workerNettyDirectMemoryUsed.set(PlatformDependent.usedDirectMemory());
+               Ors2MetricsConstants.workerJavaDirectMemoryUsed.set(
+                       SharedSecrets.getJavaNioAccess().getDirectBufferPool().getMemoryUsed());
+
                report();
            } catch (Exception e) {
                logger.warn("Metrics report fail", e);

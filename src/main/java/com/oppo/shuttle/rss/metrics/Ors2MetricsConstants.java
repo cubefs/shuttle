@@ -82,6 +82,16 @@ public class Ors2MetricsConstants {
             .help("Workers distributed times")
             .register();
 
+    public static final Gauge workerNettyDirectMemoryUsed =  Gauge.build()
+            .name("worker_netty_memory_direct_used")
+            .help("netty direct memory usage")
+            .register();
+
+    public static final Gauge workerJavaDirectMemoryUsed = Gauge.build()
+            .name("worker_java_memory_direct_used")
+            .help("Java direct memory usage")
+            .register();
+
     public static void register() {
     }
 }
