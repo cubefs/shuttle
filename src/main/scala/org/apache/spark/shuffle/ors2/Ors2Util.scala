@@ -59,7 +59,7 @@ object Ors2Util extends Logging {
         maxRetryMillis,
         new Supplier[Seq[ShuffleInfo.MapShuffleInfo]] {
           override def get(): Seq[ShuffleInfo.MapShuffleInfo] = {
-            val mapStatusInfo = SparkEnv.get.mapOutputTracker.getMapSizesByExecutorId(shuffleId, startMapIndex, endMapIndex, partition, partition + 1)
+            val mapStatusInfo = SparkEnv.get.mapOutputTracker.getMapSizesByExecutorId(shuffleId, partition, partition + 1)
             logInfo(s"Got result from mapOutputTracker.getMapSizesByExecutorId")
             mapStatusInfo
               .toParArray
@@ -124,13 +124,12 @@ object Ors2Util extends Logging {
       mockReduceBlockManagerId(shuffleId, partition),
       shuffleId,
       -1,
-      -1,
       partition,
       s"Failed to read data for shuffle $shuffleId partition $partition due to ${ex.getMessage})",
       ex)
   }
 
   def createMapStatus(blockManagerId: BlockManagerId, partitionLengths: Array[Long], appTaskInfo: AppTaskInfo): MapStatus = {
-    MapStatus(blockManagerId, partitionLengths, appTaskInfo.getTaskAttemptId)
+    MapStatus(blockManagerId, partitionLengths)
   }
 }
