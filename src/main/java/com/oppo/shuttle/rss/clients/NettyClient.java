@@ -220,7 +220,10 @@ public class NettyClient {
         Ors2WorkerDetail useServer = serverGroup.getServer(workerId, retry, errorServer);
         for (int i = 0; i < loopTimes; i++) {
             try {
-                ShuffleClient buildClient = getBuildClient(useServer);
+                ShuffleClient buildClient = null;
+                if (flowControlEnable) {
+                    buildClient = getBuildClient(useServer);
+                }
                 ShuffleClient dataClient = getDataClient(useServer);
                 return Tuple2.apply(buildClient, dataClient);
             } catch (RuntimeException e) {
