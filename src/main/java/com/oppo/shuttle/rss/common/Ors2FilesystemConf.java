@@ -111,7 +111,7 @@ public class Ors2FilesystemConf implements Serializable {
 
         switch (ext) {
             case EXT_XML:
-                Configuration configuration = new Configuration();
+                Configuration configuration = new Configuration(false);
 
                 if (tpe.equals(TARGET_FILE)) {
                     if (file.exists() && file.canRead() && !file.isDirectory()) {
