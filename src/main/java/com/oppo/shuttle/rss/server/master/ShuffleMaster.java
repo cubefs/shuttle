@@ -80,6 +80,7 @@ public class ShuffleMaster extends ShuffleServer {
     public ShuffleMaster(ShuffleServerConfig masterConfig, ZkShuffleServiceManager zkManager) {
         this.masterConfig = masterConfig;
         this.localIp = NetworkUtils.getLocalIp();
+        this.zkManager = zkManager;
         init();
     }
 
