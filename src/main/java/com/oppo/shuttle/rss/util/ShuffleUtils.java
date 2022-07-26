@@ -75,11 +75,11 @@ public class ShuffleUtils {
           String cluster,
           String appId,
           String dagId,
-          int jobPriority,
+          int numPartitions,
           String taskId,
           String appName) {
 
-    int retryIntervalMillis = 15000;
+    int retryIntervalMillis = 30000;
     ShuffleMessage.GetWorkersResponse response = CommonUtils.retry(
             retryIntervalMillis,
             6 * retryIntervalMillis,
@@ -88,16 +88,21 @@ public class ShuffleUtils {
                 logger.info("Trying to get max {} shuttle rss workers, data center: {}, cluster: {}, " ,
                         maxServerCount, dataCenter, cluster);
                 return serviceManager.getServersWithConf(dataCenter, cluster, maxServerCount,
-                        jobPriority, appId, dagId, taskId, appName);
+                        numPartitions, appId, dagId, taskId, appName);
               } catch (Throwable ex) {
                 logger.warn("Failed to call ServiceRegistry.getServers", ex);
                 return null;
               }
             });
 
+    if (response != null && !response.getIsSuccess()) {
+      throw new Ors2Exception(response.getErrorMsg());
+    }
+
     if (response == null || response.getSeverDetailList().isEmpty()) {
       throw new Ors2Exception("Failed to get all ORS2 servers");
     }
+
     List<Ors2WorkerDetail> severDetailList = response.getSeverDetailList().stream()
             .map(Ors2WorkerDetail::convertFromProto)
             .collect(Collectors.toList());

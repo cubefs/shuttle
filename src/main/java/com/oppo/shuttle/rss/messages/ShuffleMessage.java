@@ -127,7 +127,7 @@ public final class ShuffleMessage {
     }
     public static final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptor() {
-      return ShuffleMessage.getDescriptor().getEnumTypes().get(0);
+      return com.oppo.shuttle.rss.messages.ShuffleMessage.getDescriptor().getEnumTypes().get(0);
     }
 
     private static final FlowControlType[] VALUES = values();
@@ -275,7 +275,7 @@ public final class ShuffleMessage {
     }
     public static final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptor() {
-      return ShuffleMessage.getDescriptor().getEnumTypes().get(1);
+      return com.oppo.shuttle.rss.messages.ShuffleMessage.getDescriptor().getEnumTypes().get(1);
     }
 
     private static final ShuffleWorkerStorageType[] VALUES = values();
@@ -456,15 +456,15 @@ public final class ShuffleMessage {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return ShuffleMessage.internal_static_shuffle_BuildConnectionRequest_descriptor;
+      return com.oppo.shuttle.rss.messages.ShuffleMessage.internal_static_shuffle_BuildConnectionRequest_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return ShuffleMessage.internal_static_shuffle_BuildConnectionRequest_fieldAccessorTable
+      return com.oppo.shuttle.rss.messages.ShuffleMessage.internal_static_shuffle_BuildConnectionRequest_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              ShuffleMessage.BuildConnectionRequest.class, ShuffleMessage.BuildConnectionRequest.Builder.class);
+              com.oppo.shuttle.rss.messages.ShuffleMessage.BuildConnectionRequest.class, com.oppo.shuttle.rss.messages.ShuffleMessage.BuildConnectionRequest.Builder.class);
     }
 
     public static final int VERSION_FIELD_NUMBER = 1;
@@ -652,10 +652,10 @@ public final class ShuffleMessage {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof ShuffleMessage.BuildConnectionRequest)) {
+      if (!(obj instanceof com.oppo.shuttle.rss.messages.ShuffleMessage.BuildConnectionRequest)) {
         return super.equals(obj);
       }
-      ShuffleMessage.BuildConnectionRequest other = (ShuffleMessage.BuildConnectionRequest) obj;
+      com.oppo.shuttle.rss.messages.ShuffleMessage.BuildConnectionRequest other = (com.oppo.shuttle.rss.messages.ShuffleMessage.BuildConnectionRequest) obj;
 
       if (getVersion()
           != other.getVersion()) return false;
@@ -704,69 +704,69 @@ public final class ShuffleMessage {
       return hash;
     }
 
-    public static ShuffleMessage.BuildConnectionRequest parseFrom(
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.BuildConnectionRequest parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static ShuffleMessage.BuildConnectionRequest parseFrom(
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.BuildConnectionRequest parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static ShuffleMessage.BuildConnectionRequest parseFrom(
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.BuildConnectionRequest parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static ShuffleMessage.BuildConnectionRequest parseFrom(
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.BuildConnectionRequest parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static ShuffleMessage.BuildConnectionRequest parseFrom(byte[] data)
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.BuildConnectionRequest parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static ShuffleMessage.BuildConnectionRequest parseFrom(
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.BuildConnectionRequest parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static ShuffleMessage.BuildConnectionRequest parseFrom(java.io.InputStream input)
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.BuildConnectionRequest parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static ShuffleMessage.BuildConnectionRequest parseFrom(
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.BuildConnectionRequest parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static ShuffleMessage.BuildConnectionRequest parseDelimitedFrom(java.io.InputStream input)
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.BuildConnectionRequest parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static ShuffleMessage.BuildConnectionRequest parseDelimitedFrom(
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.BuildConnectionRequest parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static ShuffleMessage.BuildConnectionRequest parseFrom(
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.BuildConnectionRequest parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static ShuffleMessage.BuildConnectionRequest parseFrom(
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.BuildConnectionRequest parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -779,7 +779,7 @@ public final class ShuffleMessage {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(ShuffleMessage.BuildConnectionRequest prototype) {
+    public static Builder newBuilder(com.oppo.shuttle.rss.messages.ShuffleMessage.BuildConnectionRequest prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     @java.lang.Override
@@ -800,21 +800,21 @@ public final class ShuffleMessage {
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:shuffle.BuildConnectionRequest)
-        ShuffleMessage.BuildConnectionRequestOrBuilder {
+        com.oppo.shuttle.rss.messages.ShuffleMessage.BuildConnectionRequestOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return ShuffleMessage.internal_static_shuffle_BuildConnectionRequest_descriptor;
+        return com.oppo.shuttle.rss.messages.ShuffleMessage.internal_static_shuffle_BuildConnectionRequest_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return ShuffleMessage.internal_static_shuffle_BuildConnectionRequest_fieldAccessorTable
+        return com.oppo.shuttle.rss.messages.ShuffleMessage.internal_static_shuffle_BuildConnectionRequest_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                ShuffleMessage.BuildConnectionRequest.class, ShuffleMessage.BuildConnectionRequest.Builder.class);
+                com.oppo.shuttle.rss.messages.ShuffleMessage.BuildConnectionRequest.class, com.oppo.shuttle.rss.messages.ShuffleMessage.BuildConnectionRequest.Builder.class);
       }
 
-      // Construct using com.andes.ors2.messages.ShuffleMessage.BuildConnectionRequest.newBuilder()
+      // Construct using com.oppo.shuttle.rss.messages.ShuffleMessage.BuildConnectionRequest.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -852,17 +852,17 @@ public final class ShuffleMessage {
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return ShuffleMessage.internal_static_shuffle_BuildConnectionRequest_descriptor;
+        return com.oppo.shuttle.rss.messages.ShuffleMessage.internal_static_shuffle_BuildConnectionRequest_descriptor;
       }
 
       @java.lang.Override
-      public ShuffleMessage.BuildConnectionRequest getDefaultInstanceForType() {
-        return ShuffleMessage.BuildConnectionRequest.getDefaultInstance();
+      public com.oppo.shuttle.rss.messages.ShuffleMessage.BuildConnectionRequest getDefaultInstanceForType() {
+        return com.oppo.shuttle.rss.messages.ShuffleMessage.BuildConnectionRequest.getDefaultInstance();
       }
 
       @java.lang.Override
-      public ShuffleMessage.BuildConnectionRequest build() {
-        ShuffleMessage.BuildConnectionRequest result = buildPartial();
+      public com.oppo.shuttle.rss.messages.ShuffleMessage.BuildConnectionRequest build() {
+        com.oppo.shuttle.rss.messages.ShuffleMessage.BuildConnectionRequest result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
@@ -870,8 +870,8 @@ public final class ShuffleMessage {
       }
 
       @java.lang.Override
-      public ShuffleMessage.BuildConnectionRequest buildPartial() {
-        ShuffleMessage.BuildConnectionRequest result = new ShuffleMessage.BuildConnectionRequest(this);
+      public com.oppo.shuttle.rss.messages.ShuffleMessage.BuildConnectionRequest buildPartial() {
+        com.oppo.shuttle.rss.messages.ShuffleMessage.BuildConnectionRequest result = new com.oppo.shuttle.rss.messages.ShuffleMessage.BuildConnectionRequest(this);
         result.version_ = version_;
         result.jobPriority_ = jobPriority_;
         result.retryIdx_ = retryIdx_;
@@ -917,16 +917,16 @@ public final class ShuffleMessage {
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof ShuffleMessage.BuildConnectionRequest) {
-          return mergeFrom((ShuffleMessage.BuildConnectionRequest)other);
+        if (other instanceof com.oppo.shuttle.rss.messages.ShuffleMessage.BuildConnectionRequest) {
+          return mergeFrom((com.oppo.shuttle.rss.messages.ShuffleMessage.BuildConnectionRequest)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(ShuffleMessage.BuildConnectionRequest other) {
-        if (other == ShuffleMessage.BuildConnectionRequest.getDefaultInstance()) return this;
+      public Builder mergeFrom(com.oppo.shuttle.rss.messages.ShuffleMessage.BuildConnectionRequest other) {
+        if (other == com.oppo.shuttle.rss.messages.ShuffleMessage.BuildConnectionRequest.getDefaultInstance()) return this;
         if (other.getVersion() != 0) {
           setVersion(other.getVersion());
         }
@@ -964,11 +964,11 @@ public final class ShuffleMessage {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        ShuffleMessage.BuildConnectionRequest parsedMessage = null;
+        com.oppo.shuttle.rss.messages.ShuffleMessage.BuildConnectionRequest parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (ShuffleMessage.BuildConnectionRequest) e.getUnfinishedMessage();
+          parsedMessage = (com.oppo.shuttle.rss.messages.ShuffleMessage.BuildConnectionRequest) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -1256,12 +1256,12 @@ public final class ShuffleMessage {
     }
 
     // @@protoc_insertion_point(class_scope:shuffle.BuildConnectionRequest)
-    private static final ShuffleMessage.BuildConnectionRequest DEFAULT_INSTANCE;
+    private static final com.oppo.shuttle.rss.messages.ShuffleMessage.BuildConnectionRequest DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new ShuffleMessage.BuildConnectionRequest();
+      DEFAULT_INSTANCE = new com.oppo.shuttle.rss.messages.ShuffleMessage.BuildConnectionRequest();
     }
 
-    public static ShuffleMessage.BuildConnectionRequest getDefaultInstance() {
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.BuildConnectionRequest getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -1286,7 +1286,7 @@ public final class ShuffleMessage {
     }
 
     @java.lang.Override
-    public ShuffleMessage.BuildConnectionRequest getDefaultInstanceForType() {
+    public com.oppo.shuttle.rss.messages.ShuffleMessage.BuildConnectionRequest getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -1317,7 +1317,7 @@ public final class ShuffleMessage {
      * <code>.shuffle.FlowControlType controlType = 3;</code>
      * @return The controlType.
      */
-    ShuffleMessage.FlowControlType getControlType();
+    com.oppo.shuttle.rss.messages.ShuffleMessage.FlowControlType getControlType();
 
     /**
      * <code>int64 responseTime = 4;</code>
@@ -1432,15 +1432,15 @@ public final class ShuffleMessage {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return ShuffleMessage.internal_static_shuffle_BuildConnectionResponse_descriptor;
+      return com.oppo.shuttle.rss.messages.ShuffleMessage.internal_static_shuffle_BuildConnectionResponse_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return ShuffleMessage.internal_static_shuffle_BuildConnectionResponse_fieldAccessorTable
+      return com.oppo.shuttle.rss.messages.ShuffleMessage.internal_static_shuffle_BuildConnectionResponse_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              ShuffleMessage.BuildConnectionResponse.class, ShuffleMessage.BuildConnectionResponse.Builder.class);
+              com.oppo.shuttle.rss.messages.ShuffleMessage.BuildConnectionResponse.class, com.oppo.shuttle.rss.messages.ShuffleMessage.BuildConnectionResponse.Builder.class);
     }
 
     public static final int ID_FIELD_NUMBER = 1;
@@ -1478,10 +1478,10 @@ public final class ShuffleMessage {
      * <code>.shuffle.FlowControlType controlType = 3;</code>
      * @return The controlType.
      */
-    @java.lang.Override public ShuffleMessage.FlowControlType getControlType() {
+    @java.lang.Override public com.oppo.shuttle.rss.messages.ShuffleMessage.FlowControlType getControlType() {
       @SuppressWarnings("deprecation")
-      ShuffleMessage.FlowControlType result = ShuffleMessage.FlowControlType.valueOf(controlType_);
-      return result == null ? ShuffleMessage.FlowControlType.UNRECOGNIZED : result;
+      com.oppo.shuttle.rss.messages.ShuffleMessage.FlowControlType result = com.oppo.shuttle.rss.messages.ShuffleMessage.FlowControlType.valueOf(controlType_);
+      return result == null ? com.oppo.shuttle.rss.messages.ShuffleMessage.FlowControlType.UNRECOGNIZED : result;
     }
 
     public static final int RESPONSETIME_FIELD_NUMBER = 4;
@@ -1553,7 +1553,7 @@ public final class ShuffleMessage {
       if (value_ != 0L) {
         output.writeInt64(2, value_);
       }
-      if (controlType_ != ShuffleMessage.FlowControlType.UNKNOWN.getNumber()) {
+      if (controlType_ != com.oppo.shuttle.rss.messages.ShuffleMessage.FlowControlType.UNKNOWN.getNumber()) {
         output.writeEnum(3, controlType_);
       }
       if (responseTime_ != 0L) {
@@ -1579,7 +1579,7 @@ public final class ShuffleMessage {
         size += com.google.protobuf.CodedOutputStream
           .computeInt64Size(2, value_);
       }
-      if (controlType_ != ShuffleMessage.FlowControlType.UNKNOWN.getNumber()) {
+      if (controlType_ != com.oppo.shuttle.rss.messages.ShuffleMessage.FlowControlType.UNKNOWN.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(3, controlType_);
       }
@@ -1600,10 +1600,10 @@ public final class ShuffleMessage {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof ShuffleMessage.BuildConnectionResponse)) {
+      if (!(obj instanceof com.oppo.shuttle.rss.messages.ShuffleMessage.BuildConnectionResponse)) {
         return super.equals(obj);
       }
-      ShuffleMessage.BuildConnectionResponse other = (ShuffleMessage.BuildConnectionResponse) obj;
+      com.oppo.shuttle.rss.messages.ShuffleMessage.BuildConnectionResponse other = (com.oppo.shuttle.rss.messages.ShuffleMessage.BuildConnectionResponse) obj;
 
       if (getId()
           != other.getId()) return false;
@@ -1642,69 +1642,69 @@ public final class ShuffleMessage {
       return hash;
     }
 
-    public static ShuffleMessage.BuildConnectionResponse parseFrom(
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.BuildConnectionResponse parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static ShuffleMessage.BuildConnectionResponse parseFrom(
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.BuildConnectionResponse parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static ShuffleMessage.BuildConnectionResponse parseFrom(
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.BuildConnectionResponse parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static ShuffleMessage.BuildConnectionResponse parseFrom(
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.BuildConnectionResponse parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static ShuffleMessage.BuildConnectionResponse parseFrom(byte[] data)
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.BuildConnectionResponse parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static ShuffleMessage.BuildConnectionResponse parseFrom(
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.BuildConnectionResponse parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static ShuffleMessage.BuildConnectionResponse parseFrom(java.io.InputStream input)
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.BuildConnectionResponse parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static ShuffleMessage.BuildConnectionResponse parseFrom(
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.BuildConnectionResponse parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static ShuffleMessage.BuildConnectionResponse parseDelimitedFrom(java.io.InputStream input)
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.BuildConnectionResponse parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static ShuffleMessage.BuildConnectionResponse parseDelimitedFrom(
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.BuildConnectionResponse parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static ShuffleMessage.BuildConnectionResponse parseFrom(
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.BuildConnectionResponse parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static ShuffleMessage.BuildConnectionResponse parseFrom(
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.BuildConnectionResponse parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -1717,7 +1717,7 @@ public final class ShuffleMessage {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(ShuffleMessage.BuildConnectionResponse prototype) {
+    public static Builder newBuilder(com.oppo.shuttle.rss.messages.ShuffleMessage.BuildConnectionResponse prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     @java.lang.Override
@@ -1738,21 +1738,21 @@ public final class ShuffleMessage {
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:shuffle.BuildConnectionResponse)
-        ShuffleMessage.BuildConnectionResponseOrBuilder {
+        com.oppo.shuttle.rss.messages.ShuffleMessage.BuildConnectionResponseOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return ShuffleMessage.internal_static_shuffle_BuildConnectionResponse_descriptor;
+        return com.oppo.shuttle.rss.messages.ShuffleMessage.internal_static_shuffle_BuildConnectionResponse_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return ShuffleMessage.internal_static_shuffle_BuildConnectionResponse_fieldAccessorTable
+        return com.oppo.shuttle.rss.messages.ShuffleMessage.internal_static_shuffle_BuildConnectionResponse_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                ShuffleMessage.BuildConnectionResponse.class, ShuffleMessage.BuildConnectionResponse.Builder.class);
+                com.oppo.shuttle.rss.messages.ShuffleMessage.BuildConnectionResponse.class, com.oppo.shuttle.rss.messages.ShuffleMessage.BuildConnectionResponse.Builder.class);
       }
 
-      // Construct using com.andes.ors2.messages.ShuffleMessage.BuildConnectionResponse.newBuilder()
+      // Construct using com.oppo.shuttle.rss.messages.ShuffleMessage.BuildConnectionResponse.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -1786,17 +1786,17 @@ public final class ShuffleMessage {
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return ShuffleMessage.internal_static_shuffle_BuildConnectionResponse_descriptor;
+        return com.oppo.shuttle.rss.messages.ShuffleMessage.internal_static_shuffle_BuildConnectionResponse_descriptor;
       }
 
       @java.lang.Override
-      public ShuffleMessage.BuildConnectionResponse getDefaultInstanceForType() {
-        return ShuffleMessage.BuildConnectionResponse.getDefaultInstance();
+      public com.oppo.shuttle.rss.messages.ShuffleMessage.BuildConnectionResponse getDefaultInstanceForType() {
+        return com.oppo.shuttle.rss.messages.ShuffleMessage.BuildConnectionResponse.getDefaultInstance();
       }
 
       @java.lang.Override
-      public ShuffleMessage.BuildConnectionResponse build() {
-        ShuffleMessage.BuildConnectionResponse result = buildPartial();
+      public com.oppo.shuttle.rss.messages.ShuffleMessage.BuildConnectionResponse build() {
+        com.oppo.shuttle.rss.messages.ShuffleMessage.BuildConnectionResponse result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
@@ -1804,8 +1804,8 @@ public final class ShuffleMessage {
       }
 
       @java.lang.Override
-      public ShuffleMessage.BuildConnectionResponse buildPartial() {
-        ShuffleMessage.BuildConnectionResponse result = new ShuffleMessage.BuildConnectionResponse(this);
+      public com.oppo.shuttle.rss.messages.ShuffleMessage.BuildConnectionResponse buildPartial() {
+        com.oppo.shuttle.rss.messages.ShuffleMessage.BuildConnectionResponse result = new com.oppo.shuttle.rss.messages.ShuffleMessage.BuildConnectionResponse(this);
         result.id_ = id_;
         result.value_ = value_;
         result.controlType_ = controlType_;
@@ -1849,16 +1849,16 @@ public final class ShuffleMessage {
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof ShuffleMessage.BuildConnectionResponse) {
-          return mergeFrom((ShuffleMessage.BuildConnectionResponse)other);
+        if (other instanceof com.oppo.shuttle.rss.messages.ShuffleMessage.BuildConnectionResponse) {
+          return mergeFrom((com.oppo.shuttle.rss.messages.ShuffleMessage.BuildConnectionResponse)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(ShuffleMessage.BuildConnectionResponse other) {
-        if (other == ShuffleMessage.BuildConnectionResponse.getDefaultInstance()) return this;
+      public Builder mergeFrom(com.oppo.shuttle.rss.messages.ShuffleMessage.BuildConnectionResponse other) {
+        if (other == com.oppo.shuttle.rss.messages.ShuffleMessage.BuildConnectionResponse.getDefaultInstance()) return this;
         if (other.getId() != 0) {
           setId(other.getId());
         }
@@ -1890,11 +1890,11 @@ public final class ShuffleMessage {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        ShuffleMessage.BuildConnectionResponse parsedMessage = null;
+        com.oppo.shuttle.rss.messages.ShuffleMessage.BuildConnectionResponse parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (ShuffleMessage.BuildConnectionResponse) e.getUnfinishedMessage();
+          parsedMessage = (com.oppo.shuttle.rss.messages.ShuffleMessage.BuildConnectionResponse) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -1990,17 +1990,17 @@ public final class ShuffleMessage {
        * @return The controlType.
        */
       @java.lang.Override
-      public ShuffleMessage.FlowControlType getControlType() {
+      public com.oppo.shuttle.rss.messages.ShuffleMessage.FlowControlType getControlType() {
         @SuppressWarnings("deprecation")
-        ShuffleMessage.FlowControlType result = ShuffleMessage.FlowControlType.valueOf(controlType_);
-        return result == null ? ShuffleMessage.FlowControlType.UNRECOGNIZED : result;
+        com.oppo.shuttle.rss.messages.ShuffleMessage.FlowControlType result = com.oppo.shuttle.rss.messages.ShuffleMessage.FlowControlType.valueOf(controlType_);
+        return result == null ? com.oppo.shuttle.rss.messages.ShuffleMessage.FlowControlType.UNRECOGNIZED : result;
       }
       /**
        * <code>.shuffle.FlowControlType controlType = 3;</code>
        * @param value The controlType to set.
        * @return This builder for chaining.
        */
-      public Builder setControlType(ShuffleMessage.FlowControlType value) {
+      public Builder setControlType(com.oppo.shuttle.rss.messages.ShuffleMessage.FlowControlType value) {
         if (value == null) {
           throw new NullPointerException();
         }
@@ -2143,12 +2143,12 @@ public final class ShuffleMessage {
     }
 
     // @@protoc_insertion_point(class_scope:shuffle.BuildConnectionResponse)
-    private static final ShuffleMessage.BuildConnectionResponse DEFAULT_INSTANCE;
+    private static final com.oppo.shuttle.rss.messages.ShuffleMessage.BuildConnectionResponse DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new ShuffleMessage.BuildConnectionResponse();
+      DEFAULT_INSTANCE = new com.oppo.shuttle.rss.messages.ShuffleMessage.BuildConnectionResponse();
     }
 
-    public static ShuffleMessage.BuildConnectionResponse getDefaultInstance() {
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.BuildConnectionResponse getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -2173,7 +2173,7 @@ public final class ShuffleMessage {
     }
 
     @java.lang.Override
-    public ShuffleMessage.BuildConnectionResponse getDefaultInstanceForType() {
+    public com.oppo.shuttle.rss.messages.ShuffleMessage.BuildConnectionResponse getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -2258,12 +2258,12 @@ public final class ShuffleMessage {
     /**
      * <code>repeated .shuffle.UploadPackageRequest.PartitionBlockData partitionBlocks = 11;</code>
      */
-    java.util.List<ShuffleMessage.UploadPackageRequest.PartitionBlockData>
+    java.util.List<com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.PartitionBlockData> 
         getPartitionBlocksList();
     /**
      * <code>repeated .shuffle.UploadPackageRequest.PartitionBlockData partitionBlocks = 11;</code>
      */
-    ShuffleMessage.UploadPackageRequest.PartitionBlockData getPartitionBlocks(int index);
+    com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.PartitionBlockData getPartitionBlocks(int index);
     /**
      * <code>repeated .shuffle.UploadPackageRequest.PartitionBlockData partitionBlocks = 11;</code>
      */
@@ -2271,12 +2271,12 @@ public final class ShuffleMessage {
     /**
      * <code>repeated .shuffle.UploadPackageRequest.PartitionBlockData partitionBlocks = 11;</code>
      */
-    java.util.List<? extends ShuffleMessage.UploadPackageRequest.PartitionBlockDataOrBuilder>
+    java.util.List<? extends com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.PartitionBlockDataOrBuilder> 
         getPartitionBlocksOrBuilderList();
     /**
      * <code>repeated .shuffle.UploadPackageRequest.PartitionBlockData partitionBlocks = 11;</code>
      */
-    ShuffleMessage.UploadPackageRequest.PartitionBlockDataOrBuilder getPartitionBlocksOrBuilder(
+    com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.PartitionBlockDataOrBuilder getPartitionBlocksOrBuilder(
         int index);
 
     /**
@@ -2288,11 +2288,11 @@ public final class ShuffleMessage {
      * <code>.shuffle.UploadPackageRequest.CheckSums checkSums = 12;</code>
      * @return The checkSums.
      */
-    ShuffleMessage.UploadPackageRequest.CheckSums getCheckSums();
+    com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.CheckSums getCheckSums();
     /**
      * <code>.shuffle.UploadPackageRequest.CheckSums checkSums = 12;</code>
      */
-    ShuffleMessage.UploadPackageRequest.CheckSumsOrBuilder getCheckSumsOrBuilder();
+    com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.CheckSumsOrBuilder getCheckSumsOrBuilder();
 
     /**
      * <code>int64 createTime = 13;</code>
@@ -2428,19 +2428,19 @@ public final class ShuffleMessage {
             }
             case 90: {
               if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                partitionBlocks_ = new java.util.ArrayList<ShuffleMessage.UploadPackageRequest.PartitionBlockData>();
+                partitionBlocks_ = new java.util.ArrayList<com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.PartitionBlockData>();
                 mutable_bitField0_ |= 0x00000001;
               }
               partitionBlocks_.add(
-                  input.readMessage(ShuffleMessage.UploadPackageRequest.PartitionBlockData.parser(), extensionRegistry));
+                  input.readMessage(com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.PartitionBlockData.parser(), extensionRegistry));
               break;
             }
             case 98: {
-              ShuffleMessage.UploadPackageRequest.CheckSums.Builder subBuilder = null;
+              com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.CheckSums.Builder subBuilder = null;
               if (checkSums_ != null) {
                 subBuilder = checkSums_.toBuilder();
               }
-              checkSums_ = input.readMessage(ShuffleMessage.UploadPackageRequest.CheckSums.parser(), extensionRegistry);
+              checkSums_ = input.readMessage(com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.CheckSums.parser(), extensionRegistry);
               if (subBuilder != null) {
                 subBuilder.mergeFrom(checkSums_);
                 checkSums_ = subBuilder.buildPartial();
@@ -2493,15 +2493,15 @@ public final class ShuffleMessage {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return ShuffleMessage.internal_static_shuffle_UploadPackageRequest_descriptor;
+      return com.oppo.shuttle.rss.messages.ShuffleMessage.internal_static_shuffle_UploadPackageRequest_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return ShuffleMessage.internal_static_shuffle_UploadPackageRequest_fieldAccessorTable
+      return com.oppo.shuttle.rss.messages.ShuffleMessage.internal_static_shuffle_UploadPackageRequest_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              ShuffleMessage.UploadPackageRequest.class, ShuffleMessage.UploadPackageRequest.Builder.class);
+              com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.class, com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.Builder.class);
     }
 
     public interface PartitionBlockDataOrBuilder extends
@@ -2619,15 +2619,15 @@ public final class ShuffleMessage {
       }
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return ShuffleMessage.internal_static_shuffle_UploadPackageRequest_PartitionBlockData_descriptor;
+        return com.oppo.shuttle.rss.messages.ShuffleMessage.internal_static_shuffle_UploadPackageRequest_PartitionBlockData_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return ShuffleMessage.internal_static_shuffle_UploadPackageRequest_PartitionBlockData_fieldAccessorTable
+        return com.oppo.shuttle.rss.messages.ShuffleMessage.internal_static_shuffle_UploadPackageRequest_PartitionBlockData_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                ShuffleMessage.UploadPackageRequest.PartitionBlockData.class, ShuffleMessage.UploadPackageRequest.PartitionBlockData.Builder.class);
+                com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.PartitionBlockData.class, com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.PartitionBlockData.Builder.class);
       }
 
       public static final int PARTITIONID_FIELD_NUMBER = 1;
@@ -2735,10 +2735,10 @@ public final class ShuffleMessage {
         if (obj == this) {
          return true;
         }
-        if (!(obj instanceof ShuffleMessage.UploadPackageRequest.PartitionBlockData)) {
+        if (!(obj instanceof com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.PartitionBlockData)) {
           return super.equals(obj);
         }
-        ShuffleMessage.UploadPackageRequest.PartitionBlockData other = (ShuffleMessage.UploadPackageRequest.PartitionBlockData) obj;
+        com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.PartitionBlockData other = (com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.PartitionBlockData) obj;
 
         if (getPartitionId()
             != other.getPartitionId()) return false;
@@ -2772,69 +2772,69 @@ public final class ShuffleMessage {
         return hash;
       }
 
-      public static ShuffleMessage.UploadPackageRequest.PartitionBlockData parseFrom(
+      public static com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.PartitionBlockData parseFrom(
           java.nio.ByteBuffer data)
           throws com.google.protobuf.InvalidProtocolBufferException {
         return PARSER.parseFrom(data);
       }
-      public static ShuffleMessage.UploadPackageRequest.PartitionBlockData parseFrom(
+      public static com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.PartitionBlockData parseFrom(
           java.nio.ByteBuffer data,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
         return PARSER.parseFrom(data, extensionRegistry);
       }
-      public static ShuffleMessage.UploadPackageRequest.PartitionBlockData parseFrom(
+      public static com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.PartitionBlockData parseFrom(
           com.google.protobuf.ByteString data)
           throws com.google.protobuf.InvalidProtocolBufferException {
         return PARSER.parseFrom(data);
       }
-      public static ShuffleMessage.UploadPackageRequest.PartitionBlockData parseFrom(
+      public static com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.PartitionBlockData parseFrom(
           com.google.protobuf.ByteString data,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
         return PARSER.parseFrom(data, extensionRegistry);
       }
-      public static ShuffleMessage.UploadPackageRequest.PartitionBlockData parseFrom(byte[] data)
+      public static com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.PartitionBlockData parseFrom(byte[] data)
           throws com.google.protobuf.InvalidProtocolBufferException {
         return PARSER.parseFrom(data);
       }
-      public static ShuffleMessage.UploadPackageRequest.PartitionBlockData parseFrom(
+      public static com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.PartitionBlockData parseFrom(
           byte[] data,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
         return PARSER.parseFrom(data, extensionRegistry);
       }
-      public static ShuffleMessage.UploadPackageRequest.PartitionBlockData parseFrom(java.io.InputStream input)
+      public static com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.PartitionBlockData parseFrom(java.io.InputStream input)
           throws java.io.IOException {
         return com.google.protobuf.GeneratedMessageV3
             .parseWithIOException(PARSER, input);
       }
-      public static ShuffleMessage.UploadPackageRequest.PartitionBlockData parseFrom(
+      public static com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.PartitionBlockData parseFrom(
           java.io.InputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
         return com.google.protobuf.GeneratedMessageV3
             .parseWithIOException(PARSER, input, extensionRegistry);
       }
-      public static ShuffleMessage.UploadPackageRequest.PartitionBlockData parseDelimitedFrom(java.io.InputStream input)
+      public static com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.PartitionBlockData parseDelimitedFrom(java.io.InputStream input)
           throws java.io.IOException {
         return com.google.protobuf.GeneratedMessageV3
             .parseDelimitedWithIOException(PARSER, input);
       }
-      public static ShuffleMessage.UploadPackageRequest.PartitionBlockData parseDelimitedFrom(
+      public static com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.PartitionBlockData parseDelimitedFrom(
           java.io.InputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
         return com.google.protobuf.GeneratedMessageV3
             .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
       }
-      public static ShuffleMessage.UploadPackageRequest.PartitionBlockData parseFrom(
+      public static com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.PartitionBlockData parseFrom(
           com.google.protobuf.CodedInputStream input)
           throws java.io.IOException {
         return com.google.protobuf.GeneratedMessageV3
             .parseWithIOException(PARSER, input);
       }
-      public static ShuffleMessage.UploadPackageRequest.PartitionBlockData parseFrom(
+      public static com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.PartitionBlockData parseFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
@@ -2847,7 +2847,7 @@ public final class ShuffleMessage {
       public static Builder newBuilder() {
         return DEFAULT_INSTANCE.toBuilder();
       }
-      public static Builder newBuilder(ShuffleMessage.UploadPackageRequest.PartitionBlockData prototype) {
+      public static Builder newBuilder(com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.PartitionBlockData prototype) {
         return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
       }
       @java.lang.Override
@@ -2868,21 +2868,21 @@ public final class ShuffleMessage {
       public static final class Builder extends
           com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
           // @@protoc_insertion_point(builder_implements:shuffle.UploadPackageRequest.PartitionBlockData)
-          ShuffleMessage.UploadPackageRequest.PartitionBlockDataOrBuilder {
+          com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.PartitionBlockDataOrBuilder {
         public static final com.google.protobuf.Descriptors.Descriptor
             getDescriptor() {
-          return ShuffleMessage.internal_static_shuffle_UploadPackageRequest_PartitionBlockData_descriptor;
+          return com.oppo.shuttle.rss.messages.ShuffleMessage.internal_static_shuffle_UploadPackageRequest_PartitionBlockData_descriptor;
         }
 
         @java.lang.Override
         protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
             internalGetFieldAccessorTable() {
-          return ShuffleMessage.internal_static_shuffle_UploadPackageRequest_PartitionBlockData_fieldAccessorTable
+          return com.oppo.shuttle.rss.messages.ShuffleMessage.internal_static_shuffle_UploadPackageRequest_PartitionBlockData_fieldAccessorTable
               .ensureFieldAccessorsInitialized(
-                  ShuffleMessage.UploadPackageRequest.PartitionBlockData.class, ShuffleMessage.UploadPackageRequest.PartitionBlockData.Builder.class);
+                  com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.PartitionBlockData.class, com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.PartitionBlockData.Builder.class);
         }
 
-        // Construct using com.andes.ors2.messages.ShuffleMessage.UploadPackageRequest.PartitionBlockData.newBuilder()
+        // Construct using com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.PartitionBlockData.newBuilder()
         private Builder() {
           maybeForceBuilderInitialization();
         }
@@ -2914,17 +2914,17 @@ public final class ShuffleMessage {
         @java.lang.Override
         public com.google.protobuf.Descriptors.Descriptor
             getDescriptorForType() {
-          return ShuffleMessage.internal_static_shuffle_UploadPackageRequest_PartitionBlockData_descriptor;
+          return com.oppo.shuttle.rss.messages.ShuffleMessage.internal_static_shuffle_UploadPackageRequest_PartitionBlockData_descriptor;
         }
 
         @java.lang.Override
-        public ShuffleMessage.UploadPackageRequest.PartitionBlockData getDefaultInstanceForType() {
-          return ShuffleMessage.UploadPackageRequest.PartitionBlockData.getDefaultInstance();
+        public com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.PartitionBlockData getDefaultInstanceForType() {
+          return com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.PartitionBlockData.getDefaultInstance();
         }
 
         @java.lang.Override
-        public ShuffleMessage.UploadPackageRequest.PartitionBlockData build() {
-          ShuffleMessage.UploadPackageRequest.PartitionBlockData result = buildPartial();
+        public com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.PartitionBlockData build() {
+          com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.PartitionBlockData result = buildPartial();
           if (!result.isInitialized()) {
             throw newUninitializedMessageException(result);
           }
@@ -2932,8 +2932,8 @@ public final class ShuffleMessage {
         }
 
         @java.lang.Override
-        public ShuffleMessage.UploadPackageRequest.PartitionBlockData buildPartial() {
-          ShuffleMessage.UploadPackageRequest.PartitionBlockData result = new ShuffleMessage.UploadPackageRequest.PartitionBlockData(this);
+        public com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.PartitionBlockData buildPartial() {
+          com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.PartitionBlockData result = new com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.PartitionBlockData(this);
           result.partitionId_ = partitionId_;
           result.dataLength_ = dataLength_;
           result.data_ = data_;
@@ -2976,16 +2976,16 @@ public final class ShuffleMessage {
         }
         @java.lang.Override
         public Builder mergeFrom(com.google.protobuf.Message other) {
-          if (other instanceof ShuffleMessage.UploadPackageRequest.PartitionBlockData) {
-            return mergeFrom((ShuffleMessage.UploadPackageRequest.PartitionBlockData)other);
+          if (other instanceof com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.PartitionBlockData) {
+            return mergeFrom((com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.PartitionBlockData)other);
           } else {
             super.mergeFrom(other);
             return this;
           }
         }
 
-        public Builder mergeFrom(ShuffleMessage.UploadPackageRequest.PartitionBlockData other) {
-          if (other == ShuffleMessage.UploadPackageRequest.PartitionBlockData.getDefaultInstance()) return this;
+        public Builder mergeFrom(com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.PartitionBlockData other) {
+          if (other == com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.PartitionBlockData.getDefaultInstance()) return this;
           if (other.getPartitionId() != 0) {
             setPartitionId(other.getPartitionId());
           }
@@ -3013,11 +3013,11 @@ public final class ShuffleMessage {
             com.google.protobuf.CodedInputStream input,
             com.google.protobuf.ExtensionRegistryLite extensionRegistry)
             throws java.io.IOException {
-          ShuffleMessage.UploadPackageRequest.PartitionBlockData parsedMessage = null;
+          com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.PartitionBlockData parsedMessage = null;
           try {
             parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
           } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-            parsedMessage = (ShuffleMessage.UploadPackageRequest.PartitionBlockData) e.getUnfinishedMessage();
+            parsedMessage = (com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.PartitionBlockData) e.getUnfinishedMessage();
             throw e.unwrapIOException();
           } finally {
             if (parsedMessage != null) {
@@ -3170,12 +3170,12 @@ public final class ShuffleMessage {
       }
 
       // @@protoc_insertion_point(class_scope:shuffle.UploadPackageRequest.PartitionBlockData)
-      private static final ShuffleMessage.UploadPackageRequest.PartitionBlockData DEFAULT_INSTANCE;
+      private static final com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.PartitionBlockData DEFAULT_INSTANCE;
       static {
-        DEFAULT_INSTANCE = new ShuffleMessage.UploadPackageRequest.PartitionBlockData();
+        DEFAULT_INSTANCE = new com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.PartitionBlockData();
       }
 
-      public static ShuffleMessage.UploadPackageRequest.PartitionBlockData getDefaultInstance() {
+      public static com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.PartitionBlockData getDefaultInstance() {
         return DEFAULT_INSTANCE;
       }
 
@@ -3200,7 +3200,7 @@ public final class ShuffleMessage {
       }
 
       @java.lang.Override
-      public ShuffleMessage.UploadPackageRequest.PartitionBlockData getDefaultInstanceForType() {
+      public com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.PartitionBlockData getDefaultInstanceForType() {
         return DEFAULT_INSTANCE;
       }
 
@@ -3361,15 +3361,15 @@ public final class ShuffleMessage {
       }
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return ShuffleMessage.internal_static_shuffle_UploadPackageRequest_CheckSums_descriptor;
+        return com.oppo.shuttle.rss.messages.ShuffleMessage.internal_static_shuffle_UploadPackageRequest_CheckSums_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return ShuffleMessage.internal_static_shuffle_UploadPackageRequest_CheckSums_fieldAccessorTable
+        return com.oppo.shuttle.rss.messages.ShuffleMessage.internal_static_shuffle_UploadPackageRequest_CheckSums_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                ShuffleMessage.UploadPackageRequest.CheckSums.class, ShuffleMessage.UploadPackageRequest.CheckSums.Builder.class);
+                com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.CheckSums.class, com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.CheckSums.Builder.class);
       }
 
       public static final int CHECKSUMPARTITIONS_FIELD_NUMBER = 1;
@@ -3504,10 +3504,10 @@ public final class ShuffleMessage {
         if (obj == this) {
          return true;
         }
-        if (!(obj instanceof ShuffleMessage.UploadPackageRequest.CheckSums)) {
+        if (!(obj instanceof com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.CheckSums)) {
           return super.equals(obj);
         }
-        ShuffleMessage.UploadPackageRequest.CheckSums other = (ShuffleMessage.UploadPackageRequest.CheckSums) obj;
+        com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.CheckSums other = (com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.CheckSums) obj;
 
         if (!getChecksumPartitionsList()
             .equals(other.getChecksumPartitionsList())) return false;
@@ -3537,69 +3537,69 @@ public final class ShuffleMessage {
         return hash;
       }
 
-      public static ShuffleMessage.UploadPackageRequest.CheckSums parseFrom(
+      public static com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.CheckSums parseFrom(
           java.nio.ByteBuffer data)
           throws com.google.protobuf.InvalidProtocolBufferException {
         return PARSER.parseFrom(data);
       }
-      public static ShuffleMessage.UploadPackageRequest.CheckSums parseFrom(
+      public static com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.CheckSums parseFrom(
           java.nio.ByteBuffer data,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
         return PARSER.parseFrom(data, extensionRegistry);
       }
-      public static ShuffleMessage.UploadPackageRequest.CheckSums parseFrom(
+      public static com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.CheckSums parseFrom(
           com.google.protobuf.ByteString data)
           throws com.google.protobuf.InvalidProtocolBufferException {
         return PARSER.parseFrom(data);
       }
-      public static ShuffleMessage.UploadPackageRequest.CheckSums parseFrom(
+      public static com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.CheckSums parseFrom(
           com.google.protobuf.ByteString data,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
         return PARSER.parseFrom(data, extensionRegistry);
       }
-      public static ShuffleMessage.UploadPackageRequest.CheckSums parseFrom(byte[] data)
+      public static com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.CheckSums parseFrom(byte[] data)
           throws com.google.protobuf.InvalidProtocolBufferException {
         return PARSER.parseFrom(data);
       }
-      public static ShuffleMessage.UploadPackageRequest.CheckSums parseFrom(
+      public static com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.CheckSums parseFrom(
           byte[] data,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
         return PARSER.parseFrom(data, extensionRegistry);
       }
-      public static ShuffleMessage.UploadPackageRequest.CheckSums parseFrom(java.io.InputStream input)
+      public static com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.CheckSums parseFrom(java.io.InputStream input)
           throws java.io.IOException {
         return com.google.protobuf.GeneratedMessageV3
             .parseWithIOException(PARSER, input);
       }
-      public static ShuffleMessage.UploadPackageRequest.CheckSums parseFrom(
+      public static com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.CheckSums parseFrom(
           java.io.InputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
         return com.google.protobuf.GeneratedMessageV3
             .parseWithIOException(PARSER, input, extensionRegistry);
       }
-      public static ShuffleMessage.UploadPackageRequest.CheckSums parseDelimitedFrom(java.io.InputStream input)
+      public static com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.CheckSums parseDelimitedFrom(java.io.InputStream input)
           throws java.io.IOException {
         return com.google.protobuf.GeneratedMessageV3
             .parseDelimitedWithIOException(PARSER, input);
       }
-      public static ShuffleMessage.UploadPackageRequest.CheckSums parseDelimitedFrom(
+      public static com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.CheckSums parseDelimitedFrom(
           java.io.InputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
         return com.google.protobuf.GeneratedMessageV3
             .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
       }
-      public static ShuffleMessage.UploadPackageRequest.CheckSums parseFrom(
+      public static com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.CheckSums parseFrom(
           com.google.protobuf.CodedInputStream input)
           throws java.io.IOException {
         return com.google.protobuf.GeneratedMessageV3
             .parseWithIOException(PARSER, input);
       }
-      public static ShuffleMessage.UploadPackageRequest.CheckSums parseFrom(
+      public static com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.CheckSums parseFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
@@ -3612,7 +3612,7 @@ public final class ShuffleMessage {
       public static Builder newBuilder() {
         return DEFAULT_INSTANCE.toBuilder();
       }
-      public static Builder newBuilder(ShuffleMessage.UploadPackageRequest.CheckSums prototype) {
+      public static Builder newBuilder(com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.CheckSums prototype) {
         return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
       }
       @java.lang.Override
@@ -3633,21 +3633,21 @@ public final class ShuffleMessage {
       public static final class Builder extends
           com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
           // @@protoc_insertion_point(builder_implements:shuffle.UploadPackageRequest.CheckSums)
-          ShuffleMessage.UploadPackageRequest.CheckSumsOrBuilder {
+          com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.CheckSumsOrBuilder {
         public static final com.google.protobuf.Descriptors.Descriptor
             getDescriptor() {
-          return ShuffleMessage.internal_static_shuffle_UploadPackageRequest_CheckSums_descriptor;
+          return com.oppo.shuttle.rss.messages.ShuffleMessage.internal_static_shuffle_UploadPackageRequest_CheckSums_descriptor;
         }
 
         @java.lang.Override
         protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
             internalGetFieldAccessorTable() {
-          return ShuffleMessage.internal_static_shuffle_UploadPackageRequest_CheckSums_fieldAccessorTable
+          return com.oppo.shuttle.rss.messages.ShuffleMessage.internal_static_shuffle_UploadPackageRequest_CheckSums_fieldAccessorTable
               .ensureFieldAccessorsInitialized(
-                  ShuffleMessage.UploadPackageRequest.CheckSums.class, ShuffleMessage.UploadPackageRequest.CheckSums.Builder.class);
+                  com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.CheckSums.class, com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.CheckSums.Builder.class);
         }
 
-        // Construct using com.andes.ors2.messages.ShuffleMessage.UploadPackageRequest.CheckSums.newBuilder()
+        // Construct using com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.CheckSums.newBuilder()
         private Builder() {
           maybeForceBuilderInitialization();
         }
@@ -3675,17 +3675,17 @@ public final class ShuffleMessage {
         @java.lang.Override
         public com.google.protobuf.Descriptors.Descriptor
             getDescriptorForType() {
-          return ShuffleMessage.internal_static_shuffle_UploadPackageRequest_CheckSums_descriptor;
+          return com.oppo.shuttle.rss.messages.ShuffleMessage.internal_static_shuffle_UploadPackageRequest_CheckSums_descriptor;
         }
 
         @java.lang.Override
-        public ShuffleMessage.UploadPackageRequest.CheckSums getDefaultInstanceForType() {
-          return ShuffleMessage.UploadPackageRequest.CheckSums.getDefaultInstance();
+        public com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.CheckSums getDefaultInstanceForType() {
+          return com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.CheckSums.getDefaultInstance();
         }
 
         @java.lang.Override
-        public ShuffleMessage.UploadPackageRequest.CheckSums build() {
-          ShuffleMessage.UploadPackageRequest.CheckSums result = buildPartial();
+        public com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.CheckSums build() {
+          com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.CheckSums result = buildPartial();
           if (!result.isInitialized()) {
             throw newUninitializedMessageException(result);
           }
@@ -3693,8 +3693,8 @@ public final class ShuffleMessage {
         }
 
         @java.lang.Override
-        public ShuffleMessage.UploadPackageRequest.CheckSums buildPartial() {
-          ShuffleMessage.UploadPackageRequest.CheckSums result = new ShuffleMessage.UploadPackageRequest.CheckSums(this);
+        public com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.CheckSums buildPartial() {
+          com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.CheckSums result = new com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.CheckSums(this);
           int from_bitField0_ = bitField0_;
           if (((bitField0_ & 0x00000001) != 0)) {
             checksumPartitions_.makeImmutable();
@@ -3744,16 +3744,16 @@ public final class ShuffleMessage {
         }
         @java.lang.Override
         public Builder mergeFrom(com.google.protobuf.Message other) {
-          if (other instanceof ShuffleMessage.UploadPackageRequest.CheckSums) {
-            return mergeFrom((ShuffleMessage.UploadPackageRequest.CheckSums)other);
+          if (other instanceof com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.CheckSums) {
+            return mergeFrom((com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.CheckSums)other);
           } else {
             super.mergeFrom(other);
             return this;
           }
         }
 
-        public Builder mergeFrom(ShuffleMessage.UploadPackageRequest.CheckSums other) {
-          if (other == ShuffleMessage.UploadPackageRequest.CheckSums.getDefaultInstance()) return this;
+        public Builder mergeFrom(com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.CheckSums other) {
+          if (other == com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.CheckSums.getDefaultInstance()) return this;
           if (!other.checksumPartitions_.isEmpty()) {
             if (checksumPartitions_.isEmpty()) {
               checksumPartitions_ = other.checksumPartitions_;
@@ -3789,11 +3789,11 @@ public final class ShuffleMessage {
             com.google.protobuf.CodedInputStream input,
             com.google.protobuf.ExtensionRegistryLite extensionRegistry)
             throws java.io.IOException {
-          ShuffleMessage.UploadPackageRequest.CheckSums parsedMessage = null;
+          com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.CheckSums parsedMessage = null;
           try {
             parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
           } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-            parsedMessage = (ShuffleMessage.UploadPackageRequest.CheckSums) e.getUnfinishedMessage();
+            parsedMessage = (com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.CheckSums) e.getUnfinishedMessage();
             throw e.unwrapIOException();
           } finally {
             if (parsedMessage != null) {
@@ -3978,12 +3978,12 @@ public final class ShuffleMessage {
       }
 
       // @@protoc_insertion_point(class_scope:shuffle.UploadPackageRequest.CheckSums)
-      private static final ShuffleMessage.UploadPackageRequest.CheckSums DEFAULT_INSTANCE;
+      private static final com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.CheckSums DEFAULT_INSTANCE;
       static {
-        DEFAULT_INSTANCE = new ShuffleMessage.UploadPackageRequest.CheckSums();
+        DEFAULT_INSTANCE = new com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.CheckSums();
       }
 
-      public static ShuffleMessage.UploadPackageRequest.CheckSums getDefaultInstance() {
+      public static com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.CheckSums getDefaultInstance() {
         return DEFAULT_INSTANCE;
       }
 
@@ -4008,7 +4008,7 @@ public final class ShuffleMessage {
       }
 
       @java.lang.Override
-      public ShuffleMessage.UploadPackageRequest.CheckSums getDefaultInstanceForType() {
+      public com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.CheckSums getDefaultInstanceForType() {
         return DEFAULT_INSTANCE;
       }
 
@@ -4179,19 +4179,19 @@ public final class ShuffleMessage {
     }
 
     public static final int PARTITIONBLOCKS_FIELD_NUMBER = 11;
-    private java.util.List<ShuffleMessage.UploadPackageRequest.PartitionBlockData> partitionBlocks_;
+    private java.util.List<com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.PartitionBlockData> partitionBlocks_;
     /**
      * <code>repeated .shuffle.UploadPackageRequest.PartitionBlockData partitionBlocks = 11;</code>
      */
     @java.lang.Override
-    public java.util.List<ShuffleMessage.UploadPackageRequest.PartitionBlockData> getPartitionBlocksList() {
+    public java.util.List<com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.PartitionBlockData> getPartitionBlocksList() {
       return partitionBlocks_;
     }
     /**
      * <code>repeated .shuffle.UploadPackageRequest.PartitionBlockData partitionBlocks = 11;</code>
      */
     @java.lang.Override
-    public java.util.List<? extends ShuffleMessage.UploadPackageRequest.PartitionBlockDataOrBuilder>
+    public java.util.List<? extends com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.PartitionBlockDataOrBuilder> 
         getPartitionBlocksOrBuilderList() {
       return partitionBlocks_;
     }
@@ -4206,20 +4206,20 @@ public final class ShuffleMessage {
      * <code>repeated .shuffle.UploadPackageRequest.PartitionBlockData partitionBlocks = 11;</code>
      */
     @java.lang.Override
-    public ShuffleMessage.UploadPackageRequest.PartitionBlockData getPartitionBlocks(int index) {
+    public com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.PartitionBlockData getPartitionBlocks(int index) {
       return partitionBlocks_.get(index);
     }
     /**
      * <code>repeated .shuffle.UploadPackageRequest.PartitionBlockData partitionBlocks = 11;</code>
      */
     @java.lang.Override
-    public ShuffleMessage.UploadPackageRequest.PartitionBlockDataOrBuilder getPartitionBlocksOrBuilder(
+    public com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.PartitionBlockDataOrBuilder getPartitionBlocksOrBuilder(
         int index) {
       return partitionBlocks_.get(index);
     }
 
     public static final int CHECKSUMS_FIELD_NUMBER = 12;
-    private ShuffleMessage.UploadPackageRequest.CheckSums checkSums_;
+    private com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.CheckSums checkSums_;
     /**
      * <code>.shuffle.UploadPackageRequest.CheckSums checkSums = 12;</code>
      * @return Whether the checkSums field is set.
@@ -4233,14 +4233,14 @@ public final class ShuffleMessage {
      * @return The checkSums.
      */
     @java.lang.Override
-    public ShuffleMessage.UploadPackageRequest.CheckSums getCheckSums() {
-      return checkSums_ == null ? ShuffleMessage.UploadPackageRequest.CheckSums.getDefaultInstance() : checkSums_;
+    public com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.CheckSums getCheckSums() {
+      return checkSums_ == null ? com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.CheckSums.getDefaultInstance() : checkSums_;
     }
     /**
      * <code>.shuffle.UploadPackageRequest.CheckSums checkSums = 12;</code>
      */
     @java.lang.Override
-    public ShuffleMessage.UploadPackageRequest.CheckSumsOrBuilder getCheckSumsOrBuilder() {
+    public com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.CheckSumsOrBuilder getCheckSumsOrBuilder() {
       return getCheckSums();
     }
 
@@ -4457,10 +4457,10 @@ public final class ShuffleMessage {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof ShuffleMessage.UploadPackageRequest)) {
+      if (!(obj instanceof com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest)) {
         return super.equals(obj);
       }
-      ShuffleMessage.UploadPackageRequest other = (ShuffleMessage.UploadPackageRequest) obj;
+      com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest other = (com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest) obj;
 
       if (getBuildId()
           != other.getBuildId()) return false;
@@ -4553,69 +4553,69 @@ public final class ShuffleMessage {
       return hash;
     }
 
-    public static ShuffleMessage.UploadPackageRequest parseFrom(
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static ShuffleMessage.UploadPackageRequest parseFrom(
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static ShuffleMessage.UploadPackageRequest parseFrom(
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static ShuffleMessage.UploadPackageRequest parseFrom(
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static ShuffleMessage.UploadPackageRequest parseFrom(byte[] data)
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static ShuffleMessage.UploadPackageRequest parseFrom(
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static ShuffleMessage.UploadPackageRequest parseFrom(java.io.InputStream input)
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static ShuffleMessage.UploadPackageRequest parseFrom(
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static ShuffleMessage.UploadPackageRequest parseDelimitedFrom(java.io.InputStream input)
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static ShuffleMessage.UploadPackageRequest parseDelimitedFrom(
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static ShuffleMessage.UploadPackageRequest parseFrom(
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static ShuffleMessage.UploadPackageRequest parseFrom(
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -4628,7 +4628,7 @@ public final class ShuffleMessage {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(ShuffleMessage.UploadPackageRequest prototype) {
+    public static Builder newBuilder(com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     @java.lang.Override
@@ -4649,21 +4649,21 @@ public final class ShuffleMessage {
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:shuffle.UploadPackageRequest)
-        ShuffleMessage.UploadPackageRequestOrBuilder {
+        com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequestOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return ShuffleMessage.internal_static_shuffle_UploadPackageRequest_descriptor;
+        return com.oppo.shuttle.rss.messages.ShuffleMessage.internal_static_shuffle_UploadPackageRequest_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return ShuffleMessage.internal_static_shuffle_UploadPackageRequest_fieldAccessorTable
+        return com.oppo.shuttle.rss.messages.ShuffleMessage.internal_static_shuffle_UploadPackageRequest_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                ShuffleMessage.UploadPackageRequest.class, ShuffleMessage.UploadPackageRequest.Builder.class);
+                com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.class, com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.Builder.class);
       }
 
-      // Construct using com.andes.ors2.messages.ShuffleMessage.UploadPackageRequest.newBuilder()
+      // Construct using com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -4728,17 +4728,17 @@ public final class ShuffleMessage {
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return ShuffleMessage.internal_static_shuffle_UploadPackageRequest_descriptor;
+        return com.oppo.shuttle.rss.messages.ShuffleMessage.internal_static_shuffle_UploadPackageRequest_descriptor;
       }
 
       @java.lang.Override
-      public ShuffleMessage.UploadPackageRequest getDefaultInstanceForType() {
-        return ShuffleMessage.UploadPackageRequest.getDefaultInstance();
+      public com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest getDefaultInstanceForType() {
+        return com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.getDefaultInstance();
       }
 
       @java.lang.Override
-      public ShuffleMessage.UploadPackageRequest build() {
-        ShuffleMessage.UploadPackageRequest result = buildPartial();
+      public com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest build() {
+        com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
@@ -4746,8 +4746,8 @@ public final class ShuffleMessage {
       }
 
       @java.lang.Override
-      public ShuffleMessage.UploadPackageRequest buildPartial() {
-        ShuffleMessage.UploadPackageRequest result = new ShuffleMessage.UploadPackageRequest(this);
+      public com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest buildPartial() {
+        com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest result = new com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest(this);
         int from_bitField0_ = bitField0_;
         result.buildId_ = buildId_;
         result.buildValue_ = buildValue_;
@@ -4815,16 +4815,16 @@ public final class ShuffleMessage {
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof ShuffleMessage.UploadPackageRequest) {
-          return mergeFrom((ShuffleMessage.UploadPackageRequest)other);
+        if (other instanceof com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest) {
+          return mergeFrom((com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(ShuffleMessage.UploadPackageRequest other) {
-        if (other == ShuffleMessage.UploadPackageRequest.getDefaultInstance()) return this;
+      public Builder mergeFrom(com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest other) {
+        if (other == com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.getDefaultInstance()) return this;
         if (other.getBuildId() != 0) {
           setBuildId(other.getBuildId());
         }
@@ -4914,11 +4914,11 @@ public final class ShuffleMessage {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        ShuffleMessage.UploadPackageRequest parsedMessage = null;
+        com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (ShuffleMessage.UploadPackageRequest) e.getUnfinishedMessage();
+          parsedMessage = (com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -5329,22 +5329,22 @@ public final class ShuffleMessage {
         return this;
       }
 
-      private java.util.List<ShuffleMessage.UploadPackageRequest.PartitionBlockData> partitionBlocks_ =
+      private java.util.List<com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.PartitionBlockData> partitionBlocks_ =
         java.util.Collections.emptyList();
       private void ensurePartitionBlocksIsMutable() {
         if (!((bitField0_ & 0x00000001) != 0)) {
-          partitionBlocks_ = new java.util.ArrayList<ShuffleMessage.UploadPackageRequest.PartitionBlockData>(partitionBlocks_);
+          partitionBlocks_ = new java.util.ArrayList<com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.PartitionBlockData>(partitionBlocks_);
           bitField0_ |= 0x00000001;
          }
       }
 
       private com.google.protobuf.RepeatedFieldBuilderV3<
-          ShuffleMessage.UploadPackageRequest.PartitionBlockData, ShuffleMessage.UploadPackageRequest.PartitionBlockData.Builder, ShuffleMessage.UploadPackageRequest.PartitionBlockDataOrBuilder> partitionBlocksBuilder_;
+          com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.PartitionBlockData, com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.PartitionBlockData.Builder, com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.PartitionBlockDataOrBuilder> partitionBlocksBuilder_;
 
       /**
        * <code>repeated .shuffle.UploadPackageRequest.PartitionBlockData partitionBlocks = 11;</code>
        */
-      public java.util.List<ShuffleMessage.UploadPackageRequest.PartitionBlockData> getPartitionBlocksList() {
+      public java.util.List<com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.PartitionBlockData> getPartitionBlocksList() {
         if (partitionBlocksBuilder_ == null) {
           return java.util.Collections.unmodifiableList(partitionBlocks_);
         } else {
@@ -5364,7 +5364,7 @@ public final class ShuffleMessage {
       /**
        * <code>repeated .shuffle.UploadPackageRequest.PartitionBlockData partitionBlocks = 11;</code>
        */
-      public ShuffleMessage.UploadPackageRequest.PartitionBlockData getPartitionBlocks(int index) {
+      public com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.PartitionBlockData getPartitionBlocks(int index) {
         if (partitionBlocksBuilder_ == null) {
           return partitionBlocks_.get(index);
         } else {
@@ -5375,7 +5375,7 @@ public final class ShuffleMessage {
        * <code>repeated .shuffle.UploadPackageRequest.PartitionBlockData partitionBlocks = 11;</code>
        */
       public Builder setPartitionBlocks(
-          int index, ShuffleMessage.UploadPackageRequest.PartitionBlockData value) {
+          int index, com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.PartitionBlockData value) {
         if (partitionBlocksBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -5392,7 +5392,7 @@ public final class ShuffleMessage {
        * <code>repeated .shuffle.UploadPackageRequest.PartitionBlockData partitionBlocks = 11;</code>
        */
       public Builder setPartitionBlocks(
-          int index, ShuffleMessage.UploadPackageRequest.PartitionBlockData.Builder builderForValue) {
+          int index, com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.PartitionBlockData.Builder builderForValue) {
         if (partitionBlocksBuilder_ == null) {
           ensurePartitionBlocksIsMutable();
           partitionBlocks_.set(index, builderForValue.build());
@@ -5405,7 +5405,7 @@ public final class ShuffleMessage {
       /**
        * <code>repeated .shuffle.UploadPackageRequest.PartitionBlockData partitionBlocks = 11;</code>
        */
-      public Builder addPartitionBlocks(ShuffleMessage.UploadPackageRequest.PartitionBlockData value) {
+      public Builder addPartitionBlocks(com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.PartitionBlockData value) {
         if (partitionBlocksBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -5422,7 +5422,7 @@ public final class ShuffleMessage {
        * <code>repeated .shuffle.UploadPackageRequest.PartitionBlockData partitionBlocks = 11;</code>
        */
       public Builder addPartitionBlocks(
-          int index, ShuffleMessage.UploadPackageRequest.PartitionBlockData value) {
+          int index, com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.PartitionBlockData value) {
         if (partitionBlocksBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -5439,7 +5439,7 @@ public final class ShuffleMessage {
        * <code>repeated .shuffle.UploadPackageRequest.PartitionBlockData partitionBlocks = 11;</code>
        */
       public Builder addPartitionBlocks(
-          ShuffleMessage.UploadPackageRequest.PartitionBlockData.Builder builderForValue) {
+          com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.PartitionBlockData.Builder builderForValue) {
         if (partitionBlocksBuilder_ == null) {
           ensurePartitionBlocksIsMutable();
           partitionBlocks_.add(builderForValue.build());
@@ -5453,7 +5453,7 @@ public final class ShuffleMessage {
        * <code>repeated .shuffle.UploadPackageRequest.PartitionBlockData partitionBlocks = 11;</code>
        */
       public Builder addPartitionBlocks(
-          int index, ShuffleMessage.UploadPackageRequest.PartitionBlockData.Builder builderForValue) {
+          int index, com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.PartitionBlockData.Builder builderForValue) {
         if (partitionBlocksBuilder_ == null) {
           ensurePartitionBlocksIsMutable();
           partitionBlocks_.add(index, builderForValue.build());
@@ -5467,7 +5467,7 @@ public final class ShuffleMessage {
        * <code>repeated .shuffle.UploadPackageRequest.PartitionBlockData partitionBlocks = 11;</code>
        */
       public Builder addAllPartitionBlocks(
-          java.lang.Iterable<? extends ShuffleMessage.UploadPackageRequest.PartitionBlockData> values) {
+          java.lang.Iterable<? extends com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.PartitionBlockData> values) {
         if (partitionBlocksBuilder_ == null) {
           ensurePartitionBlocksIsMutable();
           com.google.protobuf.AbstractMessageLite.Builder.addAll(
@@ -5507,14 +5507,14 @@ public final class ShuffleMessage {
       /**
        * <code>repeated .shuffle.UploadPackageRequest.PartitionBlockData partitionBlocks = 11;</code>
        */
-      public ShuffleMessage.UploadPackageRequest.PartitionBlockData.Builder getPartitionBlocksBuilder(
+      public com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.PartitionBlockData.Builder getPartitionBlocksBuilder(
           int index) {
         return getPartitionBlocksFieldBuilder().getBuilder(index);
       }
       /**
        * <code>repeated .shuffle.UploadPackageRequest.PartitionBlockData partitionBlocks = 11;</code>
        */
-      public ShuffleMessage.UploadPackageRequest.PartitionBlockDataOrBuilder getPartitionBlocksOrBuilder(
+      public com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.PartitionBlockDataOrBuilder getPartitionBlocksOrBuilder(
           int index) {
         if (partitionBlocksBuilder_ == null) {
           return partitionBlocks_.get(index);  } else {
@@ -5524,7 +5524,7 @@ public final class ShuffleMessage {
       /**
        * <code>repeated .shuffle.UploadPackageRequest.PartitionBlockData partitionBlocks = 11;</code>
        */
-      public java.util.List<? extends ShuffleMessage.UploadPackageRequest.PartitionBlockDataOrBuilder>
+      public java.util.List<? extends com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.PartitionBlockDataOrBuilder> 
            getPartitionBlocksOrBuilderList() {
         if (partitionBlocksBuilder_ != null) {
           return partitionBlocksBuilder_.getMessageOrBuilderList();
@@ -5535,31 +5535,31 @@ public final class ShuffleMessage {
       /**
        * <code>repeated .shuffle.UploadPackageRequest.PartitionBlockData partitionBlocks = 11;</code>
        */
-      public ShuffleMessage.UploadPackageRequest.PartitionBlockData.Builder addPartitionBlocksBuilder() {
+      public com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.PartitionBlockData.Builder addPartitionBlocksBuilder() {
         return getPartitionBlocksFieldBuilder().addBuilder(
-            ShuffleMessage.UploadPackageRequest.PartitionBlockData.getDefaultInstance());
+            com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.PartitionBlockData.getDefaultInstance());
       }
       /**
        * <code>repeated .shuffle.UploadPackageRequest.PartitionBlockData partitionBlocks = 11;</code>
        */
-      public ShuffleMessage.UploadPackageRequest.PartitionBlockData.Builder addPartitionBlocksBuilder(
+      public com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.PartitionBlockData.Builder addPartitionBlocksBuilder(
           int index) {
         return getPartitionBlocksFieldBuilder().addBuilder(
-            index, ShuffleMessage.UploadPackageRequest.PartitionBlockData.getDefaultInstance());
+            index, com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.PartitionBlockData.getDefaultInstance());
       }
       /**
        * <code>repeated .shuffle.UploadPackageRequest.PartitionBlockData partitionBlocks = 11;</code>
        */
-      public java.util.List<ShuffleMessage.UploadPackageRequest.PartitionBlockData.Builder>
+      public java.util.List<com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.PartitionBlockData.Builder> 
            getPartitionBlocksBuilderList() {
         return getPartitionBlocksFieldBuilder().getBuilderList();
       }
       private com.google.protobuf.RepeatedFieldBuilderV3<
-          ShuffleMessage.UploadPackageRequest.PartitionBlockData, ShuffleMessage.UploadPackageRequest.PartitionBlockData.Builder, ShuffleMessage.UploadPackageRequest.PartitionBlockDataOrBuilder>
+          com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.PartitionBlockData, com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.PartitionBlockData.Builder, com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.PartitionBlockDataOrBuilder> 
           getPartitionBlocksFieldBuilder() {
         if (partitionBlocksBuilder_ == null) {
           partitionBlocksBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              ShuffleMessage.UploadPackageRequest.PartitionBlockData, ShuffleMessage.UploadPackageRequest.PartitionBlockData.Builder, ShuffleMessage.UploadPackageRequest.PartitionBlockDataOrBuilder>(
+              com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.PartitionBlockData, com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.PartitionBlockData.Builder, com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.PartitionBlockDataOrBuilder>(
                   partitionBlocks_,
                   ((bitField0_ & 0x00000001) != 0),
                   getParentForChildren(),
@@ -5569,9 +5569,9 @@ public final class ShuffleMessage {
         return partitionBlocksBuilder_;
       }
 
-      private ShuffleMessage.UploadPackageRequest.CheckSums checkSums_;
+      private com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.CheckSums checkSums_;
       private com.google.protobuf.SingleFieldBuilderV3<
-          ShuffleMessage.UploadPackageRequest.CheckSums, ShuffleMessage.UploadPackageRequest.CheckSums.Builder, ShuffleMessage.UploadPackageRequest.CheckSumsOrBuilder> checkSumsBuilder_;
+          com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.CheckSums, com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.CheckSums.Builder, com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.CheckSumsOrBuilder> checkSumsBuilder_;
       /**
        * <code>.shuffle.UploadPackageRequest.CheckSums checkSums = 12;</code>
        * @return Whether the checkSums field is set.
@@ -5583,9 +5583,9 @@ public final class ShuffleMessage {
        * <code>.shuffle.UploadPackageRequest.CheckSums checkSums = 12;</code>
        * @return The checkSums.
        */
-      public ShuffleMessage.UploadPackageRequest.CheckSums getCheckSums() {
+      public com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.CheckSums getCheckSums() {
         if (checkSumsBuilder_ == null) {
-          return checkSums_ == null ? ShuffleMessage.UploadPackageRequest.CheckSums.getDefaultInstance() : checkSums_;
+          return checkSums_ == null ? com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.CheckSums.getDefaultInstance() : checkSums_;
         } else {
           return checkSumsBuilder_.getMessage();
         }
@@ -5593,7 +5593,7 @@ public final class ShuffleMessage {
       /**
        * <code>.shuffle.UploadPackageRequest.CheckSums checkSums = 12;</code>
        */
-      public Builder setCheckSums(ShuffleMessage.UploadPackageRequest.CheckSums value) {
+      public Builder setCheckSums(com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.CheckSums value) {
         if (checkSumsBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -5610,7 +5610,7 @@ public final class ShuffleMessage {
        * <code>.shuffle.UploadPackageRequest.CheckSums checkSums = 12;</code>
        */
       public Builder setCheckSums(
-          ShuffleMessage.UploadPackageRequest.CheckSums.Builder builderForValue) {
+          com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.CheckSums.Builder builderForValue) {
         if (checkSumsBuilder_ == null) {
           checkSums_ = builderForValue.build();
           onChanged();
@@ -5623,11 +5623,11 @@ public final class ShuffleMessage {
       /**
        * <code>.shuffle.UploadPackageRequest.CheckSums checkSums = 12;</code>
        */
-      public Builder mergeCheckSums(ShuffleMessage.UploadPackageRequest.CheckSums value) {
+      public Builder mergeCheckSums(com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.CheckSums value) {
         if (checkSumsBuilder_ == null) {
           if (checkSums_ != null) {
             checkSums_ =
-              ShuffleMessage.UploadPackageRequest.CheckSums.newBuilder(checkSums_).mergeFrom(value).buildPartial();
+              com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.CheckSums.newBuilder(checkSums_).mergeFrom(value).buildPartial();
           } else {
             checkSums_ = value;
           }
@@ -5655,7 +5655,7 @@ public final class ShuffleMessage {
       /**
        * <code>.shuffle.UploadPackageRequest.CheckSums checkSums = 12;</code>
        */
-      public ShuffleMessage.UploadPackageRequest.CheckSums.Builder getCheckSumsBuilder() {
+      public com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.CheckSums.Builder getCheckSumsBuilder() {
         
         onChanged();
         return getCheckSumsFieldBuilder().getBuilder();
@@ -5663,23 +5663,23 @@ public final class ShuffleMessage {
       /**
        * <code>.shuffle.UploadPackageRequest.CheckSums checkSums = 12;</code>
        */
-      public ShuffleMessage.UploadPackageRequest.CheckSumsOrBuilder getCheckSumsOrBuilder() {
+      public com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.CheckSumsOrBuilder getCheckSumsOrBuilder() {
         if (checkSumsBuilder_ != null) {
           return checkSumsBuilder_.getMessageOrBuilder();
         } else {
           return checkSums_ == null ?
-              ShuffleMessage.UploadPackageRequest.CheckSums.getDefaultInstance() : checkSums_;
+              com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.CheckSums.getDefaultInstance() : checkSums_;
         }
       }
       /**
        * <code>.shuffle.UploadPackageRequest.CheckSums checkSums = 12;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
-          ShuffleMessage.UploadPackageRequest.CheckSums, ShuffleMessage.UploadPackageRequest.CheckSums.Builder, ShuffleMessage.UploadPackageRequest.CheckSumsOrBuilder>
+          com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.CheckSums, com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.CheckSums.Builder, com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.CheckSumsOrBuilder> 
           getCheckSumsFieldBuilder() {
         if (checkSumsBuilder_ == null) {
           checkSumsBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              ShuffleMessage.UploadPackageRequest.CheckSums, ShuffleMessage.UploadPackageRequest.CheckSums.Builder, ShuffleMessage.UploadPackageRequest.CheckSumsOrBuilder>(
+              com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.CheckSums, com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.CheckSums.Builder, com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest.CheckSumsOrBuilder>(
                   getCheckSums(),
                   getParentForChildren(),
                   isClean());
@@ -5873,12 +5873,12 @@ public final class ShuffleMessage {
     }
 
     // @@protoc_insertion_point(class_scope:shuffle.UploadPackageRequest)
-    private static final ShuffleMessage.UploadPackageRequest DEFAULT_INSTANCE;
+    private static final com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new ShuffleMessage.UploadPackageRequest();
+      DEFAULT_INSTANCE = new com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest();
     }
 
-    public static ShuffleMessage.UploadPackageRequest getDefaultInstance() {
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -5903,7 +5903,7 @@ public final class ShuffleMessage {
     }
 
     @java.lang.Override
-    public ShuffleMessage.UploadPackageRequest getDefaultInstanceForType() {
+    public com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageRequest getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -6028,15 +6028,15 @@ public final class ShuffleMessage {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return ShuffleMessage.internal_static_shuffle_UploadPackageResponse_descriptor;
+      return com.oppo.shuttle.rss.messages.ShuffleMessage.internal_static_shuffle_UploadPackageResponse_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return ShuffleMessage.internal_static_shuffle_UploadPackageResponse_fieldAccessorTable
+      return com.oppo.shuttle.rss.messages.ShuffleMessage.internal_static_shuffle_UploadPackageResponse_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              ShuffleMessage.UploadPackageResponse.class, ShuffleMessage.UploadPackageResponse.Builder.class);
+              com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageResponse.class, com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageResponse.Builder.class);
     }
 
     public static final int SERVERID_FIELD_NUMBER = 1;
@@ -6178,10 +6178,10 @@ public final class ShuffleMessage {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof ShuffleMessage.UploadPackageResponse)) {
+      if (!(obj instanceof com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageResponse)) {
         return super.equals(obj);
       }
-      ShuffleMessage.UploadPackageResponse other = (ShuffleMessage.UploadPackageResponse) obj;
+      com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageResponse other = (com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageResponse) obj;
 
       if (!getServerId()
           .equals(other.getServerId())) return false;
@@ -6212,69 +6212,69 @@ public final class ShuffleMessage {
       return hash;
     }
 
-    public static ShuffleMessage.UploadPackageResponse parseFrom(
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageResponse parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static ShuffleMessage.UploadPackageResponse parseFrom(
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageResponse parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static ShuffleMessage.UploadPackageResponse parseFrom(
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageResponse parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static ShuffleMessage.UploadPackageResponse parseFrom(
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageResponse parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static ShuffleMessage.UploadPackageResponse parseFrom(byte[] data)
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageResponse parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static ShuffleMessage.UploadPackageResponse parseFrom(
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageResponse parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static ShuffleMessage.UploadPackageResponse parseFrom(java.io.InputStream input)
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageResponse parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static ShuffleMessage.UploadPackageResponse parseFrom(
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageResponse parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static ShuffleMessage.UploadPackageResponse parseDelimitedFrom(java.io.InputStream input)
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageResponse parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static ShuffleMessage.UploadPackageResponse parseDelimitedFrom(
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageResponse parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static ShuffleMessage.UploadPackageResponse parseFrom(
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageResponse parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static ShuffleMessage.UploadPackageResponse parseFrom(
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageResponse parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -6287,7 +6287,7 @@ public final class ShuffleMessage {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(ShuffleMessage.UploadPackageResponse prototype) {
+    public static Builder newBuilder(com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageResponse prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     @java.lang.Override
@@ -6308,21 +6308,21 @@ public final class ShuffleMessage {
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:shuffle.UploadPackageResponse)
-        ShuffleMessage.UploadPackageResponseOrBuilder {
+        com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageResponseOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return ShuffleMessage.internal_static_shuffle_UploadPackageResponse_descriptor;
+        return com.oppo.shuttle.rss.messages.ShuffleMessage.internal_static_shuffle_UploadPackageResponse_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return ShuffleMessage.internal_static_shuffle_UploadPackageResponse_fieldAccessorTable
+        return com.oppo.shuttle.rss.messages.ShuffleMessage.internal_static_shuffle_UploadPackageResponse_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                ShuffleMessage.UploadPackageResponse.class, ShuffleMessage.UploadPackageResponse.Builder.class);
+                com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageResponse.class, com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageResponse.Builder.class);
       }
 
-      // Construct using com.andes.ors2.messages.ShuffleMessage.UploadPackageResponse.newBuilder()
+      // Construct using com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageResponse.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -6352,17 +6352,17 @@ public final class ShuffleMessage {
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return ShuffleMessage.internal_static_shuffle_UploadPackageResponse_descriptor;
+        return com.oppo.shuttle.rss.messages.ShuffleMessage.internal_static_shuffle_UploadPackageResponse_descriptor;
       }
 
       @java.lang.Override
-      public ShuffleMessage.UploadPackageResponse getDefaultInstanceForType() {
-        return ShuffleMessage.UploadPackageResponse.getDefaultInstance();
+      public com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageResponse getDefaultInstanceForType() {
+        return com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageResponse.getDefaultInstance();
       }
 
       @java.lang.Override
-      public ShuffleMessage.UploadPackageResponse build() {
-        ShuffleMessage.UploadPackageResponse result = buildPartial();
+      public com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageResponse build() {
+        com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageResponse result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
@@ -6370,8 +6370,8 @@ public final class ShuffleMessage {
       }
 
       @java.lang.Override
-      public ShuffleMessage.UploadPackageResponse buildPartial() {
-        ShuffleMessage.UploadPackageResponse result = new ShuffleMessage.UploadPackageResponse(this);
+      public com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageResponse buildPartial() {
+        com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageResponse result = new com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageResponse(this);
         result.serverId_ = serverId_;
         result.responseTime_ = responseTime_;
         result.messageId_ = messageId_;
@@ -6413,16 +6413,16 @@ public final class ShuffleMessage {
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof ShuffleMessage.UploadPackageResponse) {
-          return mergeFrom((ShuffleMessage.UploadPackageResponse)other);
+        if (other instanceof com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageResponse) {
+          return mergeFrom((com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageResponse)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(ShuffleMessage.UploadPackageResponse other) {
-        if (other == ShuffleMessage.UploadPackageResponse.getDefaultInstance()) return this;
+      public Builder mergeFrom(com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageResponse other) {
+        if (other == com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageResponse.getDefaultInstance()) return this;
         if (!other.getServerId().isEmpty()) {
           serverId_ = other.serverId_;
           onChanged();
@@ -6449,11 +6449,11 @@ public final class ShuffleMessage {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        ShuffleMessage.UploadPackageResponse parsedMessage = null;
+        com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageResponse parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (ShuffleMessage.UploadPackageResponse) e.getUnfinishedMessage();
+          parsedMessage = (com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageResponse) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -6662,12 +6662,12 @@ public final class ShuffleMessage {
     }
 
     // @@protoc_insertion_point(class_scope:shuffle.UploadPackageResponse)
-    private static final ShuffleMessage.UploadPackageResponse DEFAULT_INSTANCE;
+    private static final com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageResponse DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new ShuffleMessage.UploadPackageResponse();
+      DEFAULT_INSTANCE = new com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageResponse();
     }
 
-    public static ShuffleMessage.UploadPackageResponse getDefaultInstance() {
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageResponse getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -6692,7 +6692,7 @@ public final class ShuffleMessage {
     }
 
     @java.lang.Override
-    public ShuffleMessage.UploadPackageResponse getDefaultInstanceForType() {
+    public com.oppo.shuttle.rss.messages.ShuffleMessage.UploadPackageResponse getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -6893,15 +6893,15 @@ public final class ShuffleMessage {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return ShuffleMessage.internal_static_shuffle_UploadChecksumRequest_descriptor;
+      return com.oppo.shuttle.rss.messages.ShuffleMessage.internal_static_shuffle_UploadChecksumRequest_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return ShuffleMessage.internal_static_shuffle_UploadChecksumRequest_fieldAccessorTable
+      return com.oppo.shuttle.rss.messages.ShuffleMessage.internal_static_shuffle_UploadChecksumRequest_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              ShuffleMessage.UploadChecksumRequest.class, ShuffleMessage.UploadChecksumRequest.Builder.class);
+              com.oppo.shuttle.rss.messages.ShuffleMessage.UploadChecksumRequest.class, com.oppo.shuttle.rss.messages.ShuffleMessage.UploadChecksumRequest.Builder.class);
     }
 
     public static final int APPID_FIELD_NUMBER = 1;
@@ -7147,10 +7147,10 @@ public final class ShuffleMessage {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof ShuffleMessage.UploadChecksumRequest)) {
+      if (!(obj instanceof com.oppo.shuttle.rss.messages.ShuffleMessage.UploadChecksumRequest)) {
         return super.equals(obj);
       }
-      ShuffleMessage.UploadChecksumRequest other = (ShuffleMessage.UploadChecksumRequest) obj;
+      com.oppo.shuttle.rss.messages.ShuffleMessage.UploadChecksumRequest other = (com.oppo.shuttle.rss.messages.ShuffleMessage.UploadChecksumRequest) obj;
 
       if (!getAppId()
           .equals(other.getAppId())) return false;
@@ -7199,69 +7199,69 @@ public final class ShuffleMessage {
       return hash;
     }
 
-    public static ShuffleMessage.UploadChecksumRequest parseFrom(
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.UploadChecksumRequest parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static ShuffleMessage.UploadChecksumRequest parseFrom(
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.UploadChecksumRequest parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static ShuffleMessage.UploadChecksumRequest parseFrom(
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.UploadChecksumRequest parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static ShuffleMessage.UploadChecksumRequest parseFrom(
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.UploadChecksumRequest parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static ShuffleMessage.UploadChecksumRequest parseFrom(byte[] data)
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.UploadChecksumRequest parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static ShuffleMessage.UploadChecksumRequest parseFrom(
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.UploadChecksumRequest parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static ShuffleMessage.UploadChecksumRequest parseFrom(java.io.InputStream input)
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.UploadChecksumRequest parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static ShuffleMessage.UploadChecksumRequest parseFrom(
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.UploadChecksumRequest parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static ShuffleMessage.UploadChecksumRequest parseDelimitedFrom(java.io.InputStream input)
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.UploadChecksumRequest parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static ShuffleMessage.UploadChecksumRequest parseDelimitedFrom(
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.UploadChecksumRequest parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static ShuffleMessage.UploadChecksumRequest parseFrom(
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.UploadChecksumRequest parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static ShuffleMessage.UploadChecksumRequest parseFrom(
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.UploadChecksumRequest parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -7274,7 +7274,7 @@ public final class ShuffleMessage {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(ShuffleMessage.UploadChecksumRequest prototype) {
+    public static Builder newBuilder(com.oppo.shuttle.rss.messages.ShuffleMessage.UploadChecksumRequest prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     @java.lang.Override
@@ -7295,21 +7295,21 @@ public final class ShuffleMessage {
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:shuffle.UploadChecksumRequest)
-        ShuffleMessage.UploadChecksumRequestOrBuilder {
+        com.oppo.shuttle.rss.messages.ShuffleMessage.UploadChecksumRequestOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return ShuffleMessage.internal_static_shuffle_UploadChecksumRequest_descriptor;
+        return com.oppo.shuttle.rss.messages.ShuffleMessage.internal_static_shuffle_UploadChecksumRequest_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return ShuffleMessage.internal_static_shuffle_UploadChecksumRequest_fieldAccessorTable
+        return com.oppo.shuttle.rss.messages.ShuffleMessage.internal_static_shuffle_UploadChecksumRequest_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                ShuffleMessage.UploadChecksumRequest.class, ShuffleMessage.UploadChecksumRequest.Builder.class);
+                com.oppo.shuttle.rss.messages.ShuffleMessage.UploadChecksumRequest.class, com.oppo.shuttle.rss.messages.ShuffleMessage.UploadChecksumRequest.Builder.class);
       }
 
-      // Construct using com.andes.ors2.messages.ShuffleMessage.UploadChecksumRequest.newBuilder()
+      // Construct using com.oppo.shuttle.rss.messages.ShuffleMessage.UploadChecksumRequest.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -7347,17 +7347,17 @@ public final class ShuffleMessage {
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return ShuffleMessage.internal_static_shuffle_UploadChecksumRequest_descriptor;
+        return com.oppo.shuttle.rss.messages.ShuffleMessage.internal_static_shuffle_UploadChecksumRequest_descriptor;
       }
 
       @java.lang.Override
-      public ShuffleMessage.UploadChecksumRequest getDefaultInstanceForType() {
-        return ShuffleMessage.UploadChecksumRequest.getDefaultInstance();
+      public com.oppo.shuttle.rss.messages.ShuffleMessage.UploadChecksumRequest getDefaultInstanceForType() {
+        return com.oppo.shuttle.rss.messages.ShuffleMessage.UploadChecksumRequest.getDefaultInstance();
       }
 
       @java.lang.Override
-      public ShuffleMessage.UploadChecksumRequest build() {
-        ShuffleMessage.UploadChecksumRequest result = buildPartial();
+      public com.oppo.shuttle.rss.messages.ShuffleMessage.UploadChecksumRequest build() {
+        com.oppo.shuttle.rss.messages.ShuffleMessage.UploadChecksumRequest result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
@@ -7365,8 +7365,8 @@ public final class ShuffleMessage {
       }
 
       @java.lang.Override
-      public ShuffleMessage.UploadChecksumRequest buildPartial() {
-        ShuffleMessage.UploadChecksumRequest result = new ShuffleMessage.UploadChecksumRequest(this);
+      public com.oppo.shuttle.rss.messages.ShuffleMessage.UploadChecksumRequest buildPartial() {
+        com.oppo.shuttle.rss.messages.ShuffleMessage.UploadChecksumRequest result = new com.oppo.shuttle.rss.messages.ShuffleMessage.UploadChecksumRequest(this);
         int from_bitField0_ = bitField0_;
         result.appId_ = appId_;
         result.appAttempt_ = appAttempt_;
@@ -7417,16 +7417,16 @@ public final class ShuffleMessage {
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof ShuffleMessage.UploadChecksumRequest) {
-          return mergeFrom((ShuffleMessage.UploadChecksumRequest)other);
+        if (other instanceof com.oppo.shuttle.rss.messages.ShuffleMessage.UploadChecksumRequest) {
+          return mergeFrom((com.oppo.shuttle.rss.messages.ShuffleMessage.UploadChecksumRequest)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(ShuffleMessage.UploadChecksumRequest other) {
-        if (other == ShuffleMessage.UploadChecksumRequest.getDefaultInstance()) return this;
+      public Builder mergeFrom(com.oppo.shuttle.rss.messages.ShuffleMessage.UploadChecksumRequest other) {
+        if (other == com.oppo.shuttle.rss.messages.ShuffleMessage.UploadChecksumRequest.getDefaultInstance()) return this;
         if (!other.getAppId().isEmpty()) {
           appId_ = other.appId_;
           onChanged();
@@ -7472,11 +7472,11 @@ public final class ShuffleMessage {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        ShuffleMessage.UploadChecksumRequest parsedMessage = null;
+        com.oppo.shuttle.rss.messages.ShuffleMessage.UploadChecksumRequest parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (ShuffleMessage.UploadChecksumRequest) e.getUnfinishedMessage();
+          parsedMessage = (com.oppo.shuttle.rss.messages.ShuffleMessage.UploadChecksumRequest) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -7858,12 +7858,12 @@ public final class ShuffleMessage {
     }
 
     // @@protoc_insertion_point(class_scope:shuffle.UploadChecksumRequest)
-    private static final ShuffleMessage.UploadChecksumRequest DEFAULT_INSTANCE;
+    private static final com.oppo.shuttle.rss.messages.ShuffleMessage.UploadChecksumRequest DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new ShuffleMessage.UploadChecksumRequest();
+      DEFAULT_INSTANCE = new com.oppo.shuttle.rss.messages.ShuffleMessage.UploadChecksumRequest();
     }
 
-    public static ShuffleMessage.UploadChecksumRequest getDefaultInstance() {
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.UploadChecksumRequest getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -7888,7 +7888,7 @@ public final class ShuffleMessage {
     }
 
     @java.lang.Override
-    public ShuffleMessage.UploadChecksumRequest getDefaultInstanceForType() {
+    public com.oppo.shuttle.rss.messages.ShuffleMessage.UploadChecksumRequest getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -7983,15 +7983,15 @@ public final class ShuffleMessage {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return ShuffleMessage.internal_static_shuffle_UploadChecksumResponse_descriptor;
+      return com.oppo.shuttle.rss.messages.ShuffleMessage.internal_static_shuffle_UploadChecksumResponse_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return ShuffleMessage.internal_static_shuffle_UploadChecksumResponse_fieldAccessorTable
+      return com.oppo.shuttle.rss.messages.ShuffleMessage.internal_static_shuffle_UploadChecksumResponse_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              ShuffleMessage.UploadChecksumResponse.class, ShuffleMessage.UploadChecksumResponse.Builder.class);
+              com.oppo.shuttle.rss.messages.ShuffleMessage.UploadChecksumResponse.class, com.oppo.shuttle.rss.messages.ShuffleMessage.UploadChecksumResponse.Builder.class);
     }
 
     public static final int SERVERID_FIELD_NUMBER = 1;
@@ -8071,10 +8071,10 @@ public final class ShuffleMessage {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof ShuffleMessage.UploadChecksumResponse)) {
+      if (!(obj instanceof com.oppo.shuttle.rss.messages.ShuffleMessage.UploadChecksumResponse)) {
         return super.equals(obj);
       }
-      ShuffleMessage.UploadChecksumResponse other = (ShuffleMessage.UploadChecksumResponse) obj;
+      com.oppo.shuttle.rss.messages.ShuffleMessage.UploadChecksumResponse other = (com.oppo.shuttle.rss.messages.ShuffleMessage.UploadChecksumResponse) obj;
 
       if (!getServerId()
           .equals(other.getServerId())) return false;
@@ -8096,69 +8096,69 @@ public final class ShuffleMessage {
       return hash;
     }
 
-    public static ShuffleMessage.UploadChecksumResponse parseFrom(
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.UploadChecksumResponse parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static ShuffleMessage.UploadChecksumResponse parseFrom(
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.UploadChecksumResponse parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static ShuffleMessage.UploadChecksumResponse parseFrom(
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.UploadChecksumResponse parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static ShuffleMessage.UploadChecksumResponse parseFrom(
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.UploadChecksumResponse parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static ShuffleMessage.UploadChecksumResponse parseFrom(byte[] data)
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.UploadChecksumResponse parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static ShuffleMessage.UploadChecksumResponse parseFrom(
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.UploadChecksumResponse parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static ShuffleMessage.UploadChecksumResponse parseFrom(java.io.InputStream input)
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.UploadChecksumResponse parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static ShuffleMessage.UploadChecksumResponse parseFrom(
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.UploadChecksumResponse parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static ShuffleMessage.UploadChecksumResponse parseDelimitedFrom(java.io.InputStream input)
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.UploadChecksumResponse parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static ShuffleMessage.UploadChecksumResponse parseDelimitedFrom(
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.UploadChecksumResponse parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static ShuffleMessage.UploadChecksumResponse parseFrom(
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.UploadChecksumResponse parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static ShuffleMessage.UploadChecksumResponse parseFrom(
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.UploadChecksumResponse parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -8171,7 +8171,7 @@ public final class ShuffleMessage {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(ShuffleMessage.UploadChecksumResponse prototype) {
+    public static Builder newBuilder(com.oppo.shuttle.rss.messages.ShuffleMessage.UploadChecksumResponse prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     @java.lang.Override
@@ -8192,21 +8192,21 @@ public final class ShuffleMessage {
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:shuffle.UploadChecksumResponse)
-        ShuffleMessage.UploadChecksumResponseOrBuilder {
+        com.oppo.shuttle.rss.messages.ShuffleMessage.UploadChecksumResponseOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return ShuffleMessage.internal_static_shuffle_UploadChecksumResponse_descriptor;
+        return com.oppo.shuttle.rss.messages.ShuffleMessage.internal_static_shuffle_UploadChecksumResponse_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return ShuffleMessage.internal_static_shuffle_UploadChecksumResponse_fieldAccessorTable
+        return com.oppo.shuttle.rss.messages.ShuffleMessage.internal_static_shuffle_UploadChecksumResponse_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                ShuffleMessage.UploadChecksumResponse.class, ShuffleMessage.UploadChecksumResponse.Builder.class);
+                com.oppo.shuttle.rss.messages.ShuffleMessage.UploadChecksumResponse.class, com.oppo.shuttle.rss.messages.ShuffleMessage.UploadChecksumResponse.Builder.class);
       }
 
-      // Construct using com.andes.ors2.messages.ShuffleMessage.UploadChecksumResponse.newBuilder()
+      // Construct using com.oppo.shuttle.rss.messages.ShuffleMessage.UploadChecksumResponse.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -8232,17 +8232,17 @@ public final class ShuffleMessage {
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return ShuffleMessage.internal_static_shuffle_UploadChecksumResponse_descriptor;
+        return com.oppo.shuttle.rss.messages.ShuffleMessage.internal_static_shuffle_UploadChecksumResponse_descriptor;
       }
 
       @java.lang.Override
-      public ShuffleMessage.UploadChecksumResponse getDefaultInstanceForType() {
-        return ShuffleMessage.UploadChecksumResponse.getDefaultInstance();
+      public com.oppo.shuttle.rss.messages.ShuffleMessage.UploadChecksumResponse getDefaultInstanceForType() {
+        return com.oppo.shuttle.rss.messages.ShuffleMessage.UploadChecksumResponse.getDefaultInstance();
       }
 
       @java.lang.Override
-      public ShuffleMessage.UploadChecksumResponse build() {
-        ShuffleMessage.UploadChecksumResponse result = buildPartial();
+      public com.oppo.shuttle.rss.messages.ShuffleMessage.UploadChecksumResponse build() {
+        com.oppo.shuttle.rss.messages.ShuffleMessage.UploadChecksumResponse result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
@@ -8250,8 +8250,8 @@ public final class ShuffleMessage {
       }
 
       @java.lang.Override
-      public ShuffleMessage.UploadChecksumResponse buildPartial() {
-        ShuffleMessage.UploadChecksumResponse result = new ShuffleMessage.UploadChecksumResponse(this);
+      public com.oppo.shuttle.rss.messages.ShuffleMessage.UploadChecksumResponse buildPartial() {
+        com.oppo.shuttle.rss.messages.ShuffleMessage.UploadChecksumResponse result = new com.oppo.shuttle.rss.messages.ShuffleMessage.UploadChecksumResponse(this);
         result.serverId_ = serverId_;
         onBuilt();
         return result;
@@ -8291,16 +8291,16 @@ public final class ShuffleMessage {
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof ShuffleMessage.UploadChecksumResponse) {
-          return mergeFrom((ShuffleMessage.UploadChecksumResponse)other);
+        if (other instanceof com.oppo.shuttle.rss.messages.ShuffleMessage.UploadChecksumResponse) {
+          return mergeFrom((com.oppo.shuttle.rss.messages.ShuffleMessage.UploadChecksumResponse)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(ShuffleMessage.UploadChecksumResponse other) {
-        if (other == ShuffleMessage.UploadChecksumResponse.getDefaultInstance()) return this;
+      public Builder mergeFrom(com.oppo.shuttle.rss.messages.ShuffleMessage.UploadChecksumResponse other) {
+        if (other == com.oppo.shuttle.rss.messages.ShuffleMessage.UploadChecksumResponse.getDefaultInstance()) return this;
         if (!other.getServerId().isEmpty()) {
           serverId_ = other.serverId_;
           onChanged();
@@ -8320,11 +8320,11 @@ public final class ShuffleMessage {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        ShuffleMessage.UploadChecksumResponse parsedMessage = null;
+        com.oppo.shuttle.rss.messages.ShuffleMessage.UploadChecksumResponse parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (ShuffleMessage.UploadChecksumResponse) e.getUnfinishedMessage();
+          parsedMessage = (com.oppo.shuttle.rss.messages.ShuffleMessage.UploadChecksumResponse) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -8426,12 +8426,12 @@ public final class ShuffleMessage {
     }
 
     // @@protoc_insertion_point(class_scope:shuffle.UploadChecksumResponse)
-    private static final ShuffleMessage.UploadChecksumResponse DEFAULT_INSTANCE;
+    private static final com.oppo.shuttle.rss.messages.ShuffleMessage.UploadChecksumResponse DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new ShuffleMessage.UploadChecksumResponse();
+      DEFAULT_INSTANCE = new com.oppo.shuttle.rss.messages.ShuffleMessage.UploadChecksumResponse();
     }
 
-    public static ShuffleMessage.UploadChecksumResponse getDefaultInstance() {
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.UploadChecksumResponse getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -8456,7 +8456,7 @@ public final class ShuffleMessage {
     }
 
     @java.lang.Override
-    public ShuffleMessage.UploadChecksumResponse getDefaultInstanceForType() {
+    public com.oppo.shuttle.rss.messages.ShuffleMessage.UploadChecksumResponse getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -8745,15 +8745,15 @@ public final class ShuffleMessage {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return ShuffleMessage.internal_static_shuffle_ShuffleWorkerHealthInfo_descriptor;
+      return com.oppo.shuttle.rss.messages.ShuffleMessage.internal_static_shuffle_ShuffleWorkerHealthInfo_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return ShuffleMessage.internal_static_shuffle_ShuffleWorkerHealthInfo_fieldAccessorTable
+      return com.oppo.shuttle.rss.messages.ShuffleMessage.internal_static_shuffle_ShuffleWorkerHealthInfo_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              ShuffleMessage.ShuffleWorkerHealthInfo.class, ShuffleMessage.ShuffleWorkerHealthInfo.Builder.class);
+              com.oppo.shuttle.rss.messages.ShuffleMessage.ShuffleWorkerHealthInfo.class, com.oppo.shuttle.rss.messages.ShuffleMessage.ShuffleWorkerHealthInfo.Builder.class);
     }
 
     public static final int HOSTIP_FIELD_NUMBER = 1;
@@ -9215,10 +9215,10 @@ public final class ShuffleMessage {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof ShuffleMessage.ShuffleWorkerHealthInfo)) {
+      if (!(obj instanceof com.oppo.shuttle.rss.messages.ShuffleMessage.ShuffleWorkerHealthInfo)) {
         return super.equals(obj);
       }
-      ShuffleMessage.ShuffleWorkerHealthInfo other = (ShuffleMessage.ShuffleWorkerHealthInfo) obj;
+      com.oppo.shuttle.rss.messages.ShuffleMessage.ShuffleWorkerHealthInfo other = (com.oppo.shuttle.rss.messages.ShuffleMessage.ShuffleWorkerHealthInfo) obj;
 
       if (!getHostIp()
           .equals(other.getHostIp())) return false;
@@ -9301,69 +9301,69 @@ public final class ShuffleMessage {
       return hash;
     }
 
-    public static ShuffleMessage.ShuffleWorkerHealthInfo parseFrom(
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.ShuffleWorkerHealthInfo parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static ShuffleMessage.ShuffleWorkerHealthInfo parseFrom(
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.ShuffleWorkerHealthInfo parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static ShuffleMessage.ShuffleWorkerHealthInfo parseFrom(
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.ShuffleWorkerHealthInfo parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static ShuffleMessage.ShuffleWorkerHealthInfo parseFrom(
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.ShuffleWorkerHealthInfo parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static ShuffleMessage.ShuffleWorkerHealthInfo parseFrom(byte[] data)
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.ShuffleWorkerHealthInfo parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static ShuffleMessage.ShuffleWorkerHealthInfo parseFrom(
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.ShuffleWorkerHealthInfo parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static ShuffleMessage.ShuffleWorkerHealthInfo parseFrom(java.io.InputStream input)
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.ShuffleWorkerHealthInfo parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static ShuffleMessage.ShuffleWorkerHealthInfo parseFrom(
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.ShuffleWorkerHealthInfo parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static ShuffleMessage.ShuffleWorkerHealthInfo parseDelimitedFrom(java.io.InputStream input)
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.ShuffleWorkerHealthInfo parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static ShuffleMessage.ShuffleWorkerHealthInfo parseDelimitedFrom(
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.ShuffleWorkerHealthInfo parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static ShuffleMessage.ShuffleWorkerHealthInfo parseFrom(
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.ShuffleWorkerHealthInfo parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static ShuffleMessage.ShuffleWorkerHealthInfo parseFrom(
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.ShuffleWorkerHealthInfo parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -9376,7 +9376,7 @@ public final class ShuffleMessage {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(ShuffleMessage.ShuffleWorkerHealthInfo prototype) {
+    public static Builder newBuilder(com.oppo.shuttle.rss.messages.ShuffleMessage.ShuffleWorkerHealthInfo prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     @java.lang.Override
@@ -9397,21 +9397,21 @@ public final class ShuffleMessage {
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:shuffle.ShuffleWorkerHealthInfo)
-        ShuffleMessage.ShuffleWorkerHealthInfoOrBuilder {
+        com.oppo.shuttle.rss.messages.ShuffleMessage.ShuffleWorkerHealthInfoOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return ShuffleMessage.internal_static_shuffle_ShuffleWorkerHealthInfo_descriptor;
+        return com.oppo.shuttle.rss.messages.ShuffleMessage.internal_static_shuffle_ShuffleWorkerHealthInfo_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return ShuffleMessage.internal_static_shuffle_ShuffleWorkerHealthInfo_fieldAccessorTable
+        return com.oppo.shuttle.rss.messages.ShuffleMessage.internal_static_shuffle_ShuffleWorkerHealthInfo_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                ShuffleMessage.ShuffleWorkerHealthInfo.class, ShuffleMessage.ShuffleWorkerHealthInfo.Builder.class);
+                com.oppo.shuttle.rss.messages.ShuffleMessage.ShuffleWorkerHealthInfo.class, com.oppo.shuttle.rss.messages.ShuffleMessage.ShuffleWorkerHealthInfo.Builder.class);
       }
 
-      // Construct using com.andes.ors2.messages.ShuffleMessage.ShuffleWorkerHealthInfo.newBuilder()
+      // Construct using com.oppo.shuttle.rss.messages.ShuffleMessage.ShuffleWorkerHealthInfo.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -9465,17 +9465,17 @@ public final class ShuffleMessage {
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return ShuffleMessage.internal_static_shuffle_ShuffleWorkerHealthInfo_descriptor;
+        return com.oppo.shuttle.rss.messages.ShuffleMessage.internal_static_shuffle_ShuffleWorkerHealthInfo_descriptor;
       }
 
       @java.lang.Override
-      public ShuffleMessage.ShuffleWorkerHealthInfo getDefaultInstanceForType() {
-        return ShuffleMessage.ShuffleWorkerHealthInfo.getDefaultInstance();
+      public com.oppo.shuttle.rss.messages.ShuffleMessage.ShuffleWorkerHealthInfo getDefaultInstanceForType() {
+        return com.oppo.shuttle.rss.messages.ShuffleMessage.ShuffleWorkerHealthInfo.getDefaultInstance();
       }
 
       @java.lang.Override
-      public ShuffleMessage.ShuffleWorkerHealthInfo build() {
-        ShuffleMessage.ShuffleWorkerHealthInfo result = buildPartial();
+      public com.oppo.shuttle.rss.messages.ShuffleMessage.ShuffleWorkerHealthInfo build() {
+        com.oppo.shuttle.rss.messages.ShuffleMessage.ShuffleWorkerHealthInfo result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
@@ -9483,8 +9483,8 @@ public final class ShuffleMessage {
       }
 
       @java.lang.Override
-      public ShuffleMessage.ShuffleWorkerHealthInfo buildPartial() {
-        ShuffleMessage.ShuffleWorkerHealthInfo result = new ShuffleMessage.ShuffleWorkerHealthInfo(this);
+      public com.oppo.shuttle.rss.messages.ShuffleMessage.ShuffleWorkerHealthInfo buildPartial() {
+        com.oppo.shuttle.rss.messages.ShuffleMessage.ShuffleWorkerHealthInfo result = new com.oppo.shuttle.rss.messages.ShuffleMessage.ShuffleWorkerHealthInfo(this);
         result.hostIp_ = hostIp_;
         result.selfCheckOK_ = selfCheckOK_;
         result.lastRestartTime_ = lastRestartTime_;
@@ -9538,16 +9538,16 @@ public final class ShuffleMessage {
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof ShuffleMessage.ShuffleWorkerHealthInfo) {
-          return mergeFrom((ShuffleMessage.ShuffleWorkerHealthInfo)other);
+        if (other instanceof com.oppo.shuttle.rss.messages.ShuffleMessage.ShuffleWorkerHealthInfo) {
+          return mergeFrom((com.oppo.shuttle.rss.messages.ShuffleMessage.ShuffleWorkerHealthInfo)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(ShuffleMessage.ShuffleWorkerHealthInfo other) {
-        if (other == ShuffleMessage.ShuffleWorkerHealthInfo.getDefaultInstance()) return this;
+      public Builder mergeFrom(com.oppo.shuttle.rss.messages.ShuffleMessage.ShuffleWorkerHealthInfo other) {
+        if (other == com.oppo.shuttle.rss.messages.ShuffleMessage.ShuffleWorkerHealthInfo.getDefaultInstance()) return this;
         if (!other.getHostIp().isEmpty()) {
           hostIp_ = other.hostIp_;
           onChanged();
@@ -9614,11 +9614,11 @@ public final class ShuffleMessage {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        ShuffleMessage.ShuffleWorkerHealthInfo parsedMessage = null;
+        com.oppo.shuttle.rss.messages.ShuffleMessage.ShuffleWorkerHealthInfo parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (ShuffleMessage.ShuffleWorkerHealthInfo) e.getUnfinishedMessage();
+          parsedMessage = (com.oppo.shuttle.rss.messages.ShuffleMessage.ShuffleWorkerHealthInfo) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -10379,12 +10379,12 @@ public final class ShuffleMessage {
     }
 
     // @@protoc_insertion_point(class_scope:shuffle.ShuffleWorkerHealthInfo)
-    private static final ShuffleMessage.ShuffleWorkerHealthInfo DEFAULT_INSTANCE;
+    private static final com.oppo.shuttle.rss.messages.ShuffleMessage.ShuffleWorkerHealthInfo DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new ShuffleMessage.ShuffleWorkerHealthInfo();
+      DEFAULT_INSTANCE = new com.oppo.shuttle.rss.messages.ShuffleMessage.ShuffleWorkerHealthInfo();
     }
 
-    public static ShuffleMessage.ShuffleWorkerHealthInfo getDefaultInstance() {
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.ShuffleWorkerHealthInfo getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -10409,7 +10409,7 @@ public final class ShuffleMessage {
     }
 
     @java.lang.Override
-    public ShuffleMessage.ShuffleWorkerHealthInfo getDefaultInstanceForType() {
+    public com.oppo.shuttle.rss.messages.ShuffleMessage.ShuffleWorkerHealthInfo getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -10504,15 +10504,15 @@ public final class ShuffleMessage {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return ShuffleMessage.internal_static_shuffle_ShuffleWorkerUnregisterRequest_descriptor;
+      return com.oppo.shuttle.rss.messages.ShuffleMessage.internal_static_shuffle_ShuffleWorkerUnregisterRequest_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return ShuffleMessage.internal_static_shuffle_ShuffleWorkerUnregisterRequest_fieldAccessorTable
+      return com.oppo.shuttle.rss.messages.ShuffleMessage.internal_static_shuffle_ShuffleWorkerUnregisterRequest_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              ShuffleMessage.ShuffleWorkerUnregisterRequest.class, ShuffleMessage.ShuffleWorkerUnregisterRequest.Builder.class);
+              com.oppo.shuttle.rss.messages.ShuffleMessage.ShuffleWorkerUnregisterRequest.class, com.oppo.shuttle.rss.messages.ShuffleMessage.ShuffleWorkerUnregisterRequest.Builder.class);
     }
 
     public static final int SERVERID_FIELD_NUMBER = 1;
@@ -10592,10 +10592,10 @@ public final class ShuffleMessage {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof ShuffleMessage.ShuffleWorkerUnregisterRequest)) {
+      if (!(obj instanceof com.oppo.shuttle.rss.messages.ShuffleMessage.ShuffleWorkerUnregisterRequest)) {
         return super.equals(obj);
       }
-      ShuffleMessage.ShuffleWorkerUnregisterRequest other = (ShuffleMessage.ShuffleWorkerUnregisterRequest) obj;
+      com.oppo.shuttle.rss.messages.ShuffleMessage.ShuffleWorkerUnregisterRequest other = (com.oppo.shuttle.rss.messages.ShuffleMessage.ShuffleWorkerUnregisterRequest) obj;
 
       if (!getServerId()
           .equals(other.getServerId())) return false;
@@ -10617,69 +10617,69 @@ public final class ShuffleMessage {
       return hash;
     }
 
-    public static ShuffleMessage.ShuffleWorkerUnregisterRequest parseFrom(
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.ShuffleWorkerUnregisterRequest parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static ShuffleMessage.ShuffleWorkerUnregisterRequest parseFrom(
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.ShuffleWorkerUnregisterRequest parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static ShuffleMessage.ShuffleWorkerUnregisterRequest parseFrom(
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.ShuffleWorkerUnregisterRequest parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static ShuffleMessage.ShuffleWorkerUnregisterRequest parseFrom(
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.ShuffleWorkerUnregisterRequest parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static ShuffleMessage.ShuffleWorkerUnregisterRequest parseFrom(byte[] data)
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.ShuffleWorkerUnregisterRequest parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static ShuffleMessage.ShuffleWorkerUnregisterRequest parseFrom(
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.ShuffleWorkerUnregisterRequest parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static ShuffleMessage.ShuffleWorkerUnregisterRequest parseFrom(java.io.InputStream input)
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.ShuffleWorkerUnregisterRequest parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static ShuffleMessage.ShuffleWorkerUnregisterRequest parseFrom(
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.ShuffleWorkerUnregisterRequest parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static ShuffleMessage.ShuffleWorkerUnregisterRequest parseDelimitedFrom(java.io.InputStream input)
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.ShuffleWorkerUnregisterRequest parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static ShuffleMessage.ShuffleWorkerUnregisterRequest parseDelimitedFrom(
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.ShuffleWorkerUnregisterRequest parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static ShuffleMessage.ShuffleWorkerUnregisterRequest parseFrom(
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.ShuffleWorkerUnregisterRequest parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static ShuffleMessage.ShuffleWorkerUnregisterRequest parseFrom(
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.ShuffleWorkerUnregisterRequest parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -10692,7 +10692,7 @@ public final class ShuffleMessage {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(ShuffleMessage.ShuffleWorkerUnregisterRequest prototype) {
+    public static Builder newBuilder(com.oppo.shuttle.rss.messages.ShuffleMessage.ShuffleWorkerUnregisterRequest prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     @java.lang.Override
@@ -10713,21 +10713,21 @@ public final class ShuffleMessage {
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:shuffle.ShuffleWorkerUnregisterRequest)
-        ShuffleMessage.ShuffleWorkerUnregisterRequestOrBuilder {
+        com.oppo.shuttle.rss.messages.ShuffleMessage.ShuffleWorkerUnregisterRequestOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return ShuffleMessage.internal_static_shuffle_ShuffleWorkerUnregisterRequest_descriptor;
+        return com.oppo.shuttle.rss.messages.ShuffleMessage.internal_static_shuffle_ShuffleWorkerUnregisterRequest_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return ShuffleMessage.internal_static_shuffle_ShuffleWorkerUnregisterRequest_fieldAccessorTable
+        return com.oppo.shuttle.rss.messages.ShuffleMessage.internal_static_shuffle_ShuffleWorkerUnregisterRequest_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                ShuffleMessage.ShuffleWorkerUnregisterRequest.class, ShuffleMessage.ShuffleWorkerUnregisterRequest.Builder.class);
+                com.oppo.shuttle.rss.messages.ShuffleMessage.ShuffleWorkerUnregisterRequest.class, com.oppo.shuttle.rss.messages.ShuffleMessage.ShuffleWorkerUnregisterRequest.Builder.class);
       }
 
-      // Construct using com.andes.ors2.messages.ShuffleMessage.ShuffleWorkerUnregisterRequest.newBuilder()
+      // Construct using com.oppo.shuttle.rss.messages.ShuffleMessage.ShuffleWorkerUnregisterRequest.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -10753,17 +10753,17 @@ public final class ShuffleMessage {
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return ShuffleMessage.internal_static_shuffle_ShuffleWorkerUnregisterRequest_descriptor;
+        return com.oppo.shuttle.rss.messages.ShuffleMessage.internal_static_shuffle_ShuffleWorkerUnregisterRequest_descriptor;
       }
 
       @java.lang.Override
-      public ShuffleMessage.ShuffleWorkerUnregisterRequest getDefaultInstanceForType() {
-        return ShuffleMessage.ShuffleWorkerUnregisterRequest.getDefaultInstance();
+      public com.oppo.shuttle.rss.messages.ShuffleMessage.ShuffleWorkerUnregisterRequest getDefaultInstanceForType() {
+        return com.oppo.shuttle.rss.messages.ShuffleMessage.ShuffleWorkerUnregisterRequest.getDefaultInstance();
       }
 
       @java.lang.Override
-      public ShuffleMessage.ShuffleWorkerUnregisterRequest build() {
-        ShuffleMessage.ShuffleWorkerUnregisterRequest result = buildPartial();
+      public com.oppo.shuttle.rss.messages.ShuffleMessage.ShuffleWorkerUnregisterRequest build() {
+        com.oppo.shuttle.rss.messages.ShuffleMessage.ShuffleWorkerUnregisterRequest result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
@@ -10771,8 +10771,8 @@ public final class ShuffleMessage {
       }
 
       @java.lang.Override
-      public ShuffleMessage.ShuffleWorkerUnregisterRequest buildPartial() {
-        ShuffleMessage.ShuffleWorkerUnregisterRequest result = new ShuffleMessage.ShuffleWorkerUnregisterRequest(this);
+      public com.oppo.shuttle.rss.messages.ShuffleMessage.ShuffleWorkerUnregisterRequest buildPartial() {
+        com.oppo.shuttle.rss.messages.ShuffleMessage.ShuffleWorkerUnregisterRequest result = new com.oppo.shuttle.rss.messages.ShuffleMessage.ShuffleWorkerUnregisterRequest(this);
         result.serverId_ = serverId_;
         onBuilt();
         return result;
@@ -10812,16 +10812,16 @@ public final class ShuffleMessage {
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof ShuffleMessage.ShuffleWorkerUnregisterRequest) {
-          return mergeFrom((ShuffleMessage.ShuffleWorkerUnregisterRequest)other);
+        if (other instanceof com.oppo.shuttle.rss.messages.ShuffleMessage.ShuffleWorkerUnregisterRequest) {
+          return mergeFrom((com.oppo.shuttle.rss.messages.ShuffleMessage.ShuffleWorkerUnregisterRequest)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(ShuffleMessage.ShuffleWorkerUnregisterRequest other) {
-        if (other == ShuffleMessage.ShuffleWorkerUnregisterRequest.getDefaultInstance()) return this;
+      public Builder mergeFrom(com.oppo.shuttle.rss.messages.ShuffleMessage.ShuffleWorkerUnregisterRequest other) {
+        if (other == com.oppo.shuttle.rss.messages.ShuffleMessage.ShuffleWorkerUnregisterRequest.getDefaultInstance()) return this;
         if (!other.getServerId().isEmpty()) {
           serverId_ = other.serverId_;
           onChanged();
@@ -10841,11 +10841,11 @@ public final class ShuffleMessage {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        ShuffleMessage.ShuffleWorkerUnregisterRequest parsedMessage = null;
+        com.oppo.shuttle.rss.messages.ShuffleMessage.ShuffleWorkerUnregisterRequest parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (ShuffleMessage.ShuffleWorkerUnregisterRequest) e.getUnfinishedMessage();
+          parsedMessage = (com.oppo.shuttle.rss.messages.ShuffleMessage.ShuffleWorkerUnregisterRequest) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -10947,12 +10947,12 @@ public final class ShuffleMessage {
     }
 
     // @@protoc_insertion_point(class_scope:shuffle.ShuffleWorkerUnregisterRequest)
-    private static final ShuffleMessage.ShuffleWorkerUnregisterRequest DEFAULT_INSTANCE;
+    private static final com.oppo.shuttle.rss.messages.ShuffleMessage.ShuffleWorkerUnregisterRequest DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new ShuffleMessage.ShuffleWorkerUnregisterRequest();
+      DEFAULT_INSTANCE = new com.oppo.shuttle.rss.messages.ShuffleMessage.ShuffleWorkerUnregisterRequest();
     }
 
-    public static ShuffleMessage.ShuffleWorkerUnregisterRequest getDefaultInstance() {
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.ShuffleWorkerUnregisterRequest getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -10977,7 +10977,7 @@ public final class ShuffleMessage {
     }
 
     @java.lang.Override
-    public ShuffleMessage.ShuffleWorkerUnregisterRequest getDefaultInstanceForType() {
+    public com.oppo.shuttle.rss.messages.ShuffleMessage.ShuffleWorkerUnregisterRequest getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -11018,10 +11018,10 @@ public final class ShuffleMessage {
         getClusterBytes();
 
     /**
-     * <code>int32 jobPriority = 4;</code>
-     * @return The jobPriority.
+     * <code>int32 numPartitions = 4;</code>
+     * @return The numPartitions.
      */
-    int getJobPriority();
+    int getNumPartitions();
 
     /**
      * <code>string appId = 5;</code>
@@ -11141,7 +11141,7 @@ public final class ShuffleMessage {
             }
             case 32: {
 
-              jobPriority_ = input.readInt32();
+              numPartitions_ = input.readInt32();
               break;
             }
             case 42: {
@@ -11189,15 +11189,15 @@ public final class ShuffleMessage {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return ShuffleMessage.internal_static_shuffle_GetWorkersRequest_descriptor;
+      return com.oppo.shuttle.rss.messages.ShuffleMessage.internal_static_shuffle_GetWorkersRequest_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return ShuffleMessage.internal_static_shuffle_GetWorkersRequest_fieldAccessorTable
+      return com.oppo.shuttle.rss.messages.ShuffleMessage.internal_static_shuffle_GetWorkersRequest_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              ShuffleMessage.GetWorkersRequest.class, ShuffleMessage.GetWorkersRequest.Builder.class);
+              com.oppo.shuttle.rss.messages.ShuffleMessage.GetWorkersRequest.class, com.oppo.shuttle.rss.messages.ShuffleMessage.GetWorkersRequest.Builder.class);
     }
 
     public static final int REQUESTWORKERCOUNT_FIELD_NUMBER = 1;
@@ -11287,15 +11287,15 @@ public final class ShuffleMessage {
       }
     }
 
-    public static final int JOBPRIORITY_FIELD_NUMBER = 4;
-    private int jobPriority_;
+    public static final int NUMPARTITIONS_FIELD_NUMBER = 4;
+    private int numPartitions_;
     /**
-     * <code>int32 jobPriority = 4;</code>
-     * @return The jobPriority.
+     * <code>int32 numPartitions = 4;</code>
+     * @return The numPartitions.
      */
     @java.lang.Override
-    public int getJobPriority() {
-      return jobPriority_;
+    public int getNumPartitions() {
+      return numPartitions_;
     }
 
     public static final int APPID_FIELD_NUMBER = 5;
@@ -11473,8 +11473,8 @@ public final class ShuffleMessage {
       if (!getClusterBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 3, cluster_);
       }
-      if (jobPriority_ != 0) {
-        output.writeInt32(4, jobPriority_);
+      if (numPartitions_ != 0) {
+        output.writeInt32(4, numPartitions_);
       }
       if (!getAppIdBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 5, appId_);
@@ -11507,9 +11507,9 @@ public final class ShuffleMessage {
       if (!getClusterBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, cluster_);
       }
-      if (jobPriority_ != 0) {
+      if (numPartitions_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(4, jobPriority_);
+          .computeInt32Size(4, numPartitions_);
       }
       if (!getAppIdBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, appId_);
@@ -11533,10 +11533,10 @@ public final class ShuffleMessage {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof ShuffleMessage.GetWorkersRequest)) {
+      if (!(obj instanceof com.oppo.shuttle.rss.messages.ShuffleMessage.GetWorkersRequest)) {
         return super.equals(obj);
       }
-      ShuffleMessage.GetWorkersRequest other = (ShuffleMessage.GetWorkersRequest) obj;
+      com.oppo.shuttle.rss.messages.ShuffleMessage.GetWorkersRequest other = (com.oppo.shuttle.rss.messages.ShuffleMessage.GetWorkersRequest) obj;
 
       if (getRequestWorkerCount()
           != other.getRequestWorkerCount()) return false;
@@ -11544,8 +11544,8 @@ public final class ShuffleMessage {
           .equals(other.getDataCenter())) return false;
       if (!getCluster()
           .equals(other.getCluster())) return false;
-      if (getJobPriority()
-          != other.getJobPriority()) return false;
+      if (getNumPartitions()
+          != other.getNumPartitions()) return false;
       if (!getAppId()
           .equals(other.getAppId())) return false;
       if (!getDagId()
@@ -11571,8 +11571,8 @@ public final class ShuffleMessage {
       hash = (53 * hash) + getDataCenter().hashCode();
       hash = (37 * hash) + CLUSTER_FIELD_NUMBER;
       hash = (53 * hash) + getCluster().hashCode();
-      hash = (37 * hash) + JOBPRIORITY_FIELD_NUMBER;
-      hash = (53 * hash) + getJobPriority();
+      hash = (37 * hash) + NUMPARTITIONS_FIELD_NUMBER;
+      hash = (53 * hash) + getNumPartitions();
       hash = (37 * hash) + APPID_FIELD_NUMBER;
       hash = (53 * hash) + getAppId().hashCode();
       hash = (37 * hash) + DAGID_FIELD_NUMBER;
@@ -11586,69 +11586,69 @@ public final class ShuffleMessage {
       return hash;
     }
 
-    public static ShuffleMessage.GetWorkersRequest parseFrom(
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.GetWorkersRequest parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static ShuffleMessage.GetWorkersRequest parseFrom(
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.GetWorkersRequest parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static ShuffleMessage.GetWorkersRequest parseFrom(
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.GetWorkersRequest parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static ShuffleMessage.GetWorkersRequest parseFrom(
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.GetWorkersRequest parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static ShuffleMessage.GetWorkersRequest parseFrom(byte[] data)
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.GetWorkersRequest parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static ShuffleMessage.GetWorkersRequest parseFrom(
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.GetWorkersRequest parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static ShuffleMessage.GetWorkersRequest parseFrom(java.io.InputStream input)
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.GetWorkersRequest parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static ShuffleMessage.GetWorkersRequest parseFrom(
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.GetWorkersRequest parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static ShuffleMessage.GetWorkersRequest parseDelimitedFrom(java.io.InputStream input)
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.GetWorkersRequest parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static ShuffleMessage.GetWorkersRequest parseDelimitedFrom(
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.GetWorkersRequest parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static ShuffleMessage.GetWorkersRequest parseFrom(
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.GetWorkersRequest parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static ShuffleMessage.GetWorkersRequest parseFrom(
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.GetWorkersRequest parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -11661,7 +11661,7 @@ public final class ShuffleMessage {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(ShuffleMessage.GetWorkersRequest prototype) {
+    public static Builder newBuilder(com.oppo.shuttle.rss.messages.ShuffleMessage.GetWorkersRequest prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     @java.lang.Override
@@ -11682,21 +11682,21 @@ public final class ShuffleMessage {
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:shuffle.GetWorkersRequest)
-        ShuffleMessage.GetWorkersRequestOrBuilder {
+        com.oppo.shuttle.rss.messages.ShuffleMessage.GetWorkersRequestOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return ShuffleMessage.internal_static_shuffle_GetWorkersRequest_descriptor;
+        return com.oppo.shuttle.rss.messages.ShuffleMessage.internal_static_shuffle_GetWorkersRequest_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return ShuffleMessage.internal_static_shuffle_GetWorkersRequest_fieldAccessorTable
+        return com.oppo.shuttle.rss.messages.ShuffleMessage.internal_static_shuffle_GetWorkersRequest_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                ShuffleMessage.GetWorkersRequest.class, ShuffleMessage.GetWorkersRequest.Builder.class);
+                com.oppo.shuttle.rss.messages.ShuffleMessage.GetWorkersRequest.class, com.oppo.shuttle.rss.messages.ShuffleMessage.GetWorkersRequest.Builder.class);
       }
 
-      // Construct using com.andes.ors2.messages.ShuffleMessage.GetWorkersRequest.newBuilder()
+      // Construct using com.oppo.shuttle.rss.messages.ShuffleMessage.GetWorkersRequest.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -11720,7 +11720,7 @@ public final class ShuffleMessage {
 
         cluster_ = "";
 
-        jobPriority_ = 0;
+        numPartitions_ = 0;
 
         appId_ = "";
 
@@ -11736,17 +11736,17 @@ public final class ShuffleMessage {
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return ShuffleMessage.internal_static_shuffle_GetWorkersRequest_descriptor;
+        return com.oppo.shuttle.rss.messages.ShuffleMessage.internal_static_shuffle_GetWorkersRequest_descriptor;
       }
 
       @java.lang.Override
-      public ShuffleMessage.GetWorkersRequest getDefaultInstanceForType() {
-        return ShuffleMessage.GetWorkersRequest.getDefaultInstance();
+      public com.oppo.shuttle.rss.messages.ShuffleMessage.GetWorkersRequest getDefaultInstanceForType() {
+        return com.oppo.shuttle.rss.messages.ShuffleMessage.GetWorkersRequest.getDefaultInstance();
       }
 
       @java.lang.Override
-      public ShuffleMessage.GetWorkersRequest build() {
-        ShuffleMessage.GetWorkersRequest result = buildPartial();
+      public com.oppo.shuttle.rss.messages.ShuffleMessage.GetWorkersRequest build() {
+        com.oppo.shuttle.rss.messages.ShuffleMessage.GetWorkersRequest result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
@@ -11754,12 +11754,12 @@ public final class ShuffleMessage {
       }
 
       @java.lang.Override
-      public ShuffleMessage.GetWorkersRequest buildPartial() {
-        ShuffleMessage.GetWorkersRequest result = new ShuffleMessage.GetWorkersRequest(this);
+      public com.oppo.shuttle.rss.messages.ShuffleMessage.GetWorkersRequest buildPartial() {
+        com.oppo.shuttle.rss.messages.ShuffleMessage.GetWorkersRequest result = new com.oppo.shuttle.rss.messages.ShuffleMessage.GetWorkersRequest(this);
         result.requestWorkerCount_ = requestWorkerCount_;
         result.dataCenter_ = dataCenter_;
         result.cluster_ = cluster_;
-        result.jobPriority_ = jobPriority_;
+        result.numPartitions_ = numPartitions_;
         result.appId_ = appId_;
         result.dagId_ = dagId_;
         result.taskId_ = taskId_;
@@ -11802,16 +11802,16 @@ public final class ShuffleMessage {
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof ShuffleMessage.GetWorkersRequest) {
-          return mergeFrom((ShuffleMessage.GetWorkersRequest)other);
+        if (other instanceof com.oppo.shuttle.rss.messages.ShuffleMessage.GetWorkersRequest) {
+          return mergeFrom((com.oppo.shuttle.rss.messages.ShuffleMessage.GetWorkersRequest)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(ShuffleMessage.GetWorkersRequest other) {
-        if (other == ShuffleMessage.GetWorkersRequest.getDefaultInstance()) return this;
+      public Builder mergeFrom(com.oppo.shuttle.rss.messages.ShuffleMessage.GetWorkersRequest other) {
+        if (other == com.oppo.shuttle.rss.messages.ShuffleMessage.GetWorkersRequest.getDefaultInstance()) return this;
         if (other.getRequestWorkerCount() != 0) {
           setRequestWorkerCount(other.getRequestWorkerCount());
         }
@@ -11823,8 +11823,8 @@ public final class ShuffleMessage {
           cluster_ = other.cluster_;
           onChanged();
         }
-        if (other.getJobPriority() != 0) {
-          setJobPriority(other.getJobPriority());
+        if (other.getNumPartitions() != 0) {
+          setNumPartitions(other.getNumPartitions());
         }
         if (!other.getAppId().isEmpty()) {
           appId_ = other.appId_;
@@ -11857,11 +11857,11 @@ public final class ShuffleMessage {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        ShuffleMessage.GetWorkersRequest parsedMessage = null;
+        com.oppo.shuttle.rss.messages.ShuffleMessage.GetWorkersRequest parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (ShuffleMessage.GetWorkersRequest) e.getUnfinishedMessage();
+          parsedMessage = (com.oppo.shuttle.rss.messages.ShuffleMessage.GetWorkersRequest) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -12054,33 +12054,33 @@ public final class ShuffleMessage {
         return this;
       }
 
-      private int jobPriority_ ;
+      private int numPartitions_ ;
       /**
-       * <code>int32 jobPriority = 4;</code>
-       * @return The jobPriority.
+       * <code>int32 numPartitions = 4;</code>
+       * @return The numPartitions.
        */
       @java.lang.Override
-      public int getJobPriority() {
-        return jobPriority_;
+      public int getNumPartitions() {
+        return numPartitions_;
       }
       /**
-       * <code>int32 jobPriority = 4;</code>
-       * @param value The jobPriority to set.
+       * <code>int32 numPartitions = 4;</code>
+       * @param value The numPartitions to set.
        * @return This builder for chaining.
        */
-      public Builder setJobPriority(int value) {
+      public Builder setNumPartitions(int value) {
         
-        jobPriority_ = value;
+        numPartitions_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>int32 jobPriority = 4;</code>
+       * <code>int32 numPartitions = 4;</code>
        * @return This builder for chaining.
        */
-      public Builder clearJobPriority() {
+      public Builder clearNumPartitions() {
         
-        jobPriority_ = 0;
+        numPartitions_ = 0;
         onChanged();
         return this;
       }
@@ -12405,12 +12405,12 @@ public final class ShuffleMessage {
     }
 
     // @@protoc_insertion_point(class_scope:shuffle.GetWorkersRequest)
-    private static final ShuffleMessage.GetWorkersRequest DEFAULT_INSTANCE;
+    private static final com.oppo.shuttle.rss.messages.ShuffleMessage.GetWorkersRequest DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new ShuffleMessage.GetWorkersRequest();
+      DEFAULT_INSTANCE = new com.oppo.shuttle.rss.messages.ShuffleMessage.GetWorkersRequest();
     }
 
-    public static ShuffleMessage.GetWorkersRequest getDefaultInstance() {
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.GetWorkersRequest getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -12435,7 +12435,7 @@ public final class ShuffleMessage {
     }
 
     @java.lang.Override
-    public ShuffleMessage.GetWorkersRequest getDefaultInstanceForType() {
+    public com.oppo.shuttle.rss.messages.ShuffleMessage.GetWorkersRequest getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -12552,15 +12552,15 @@ public final class ShuffleMessage {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return ShuffleMessage.internal_static_shuffle_ServerDetail_descriptor;
+      return com.oppo.shuttle.rss.messages.ShuffleMessage.internal_static_shuffle_ServerDetail_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return ShuffleMessage.internal_static_shuffle_ServerDetail_fieldAccessorTable
+      return com.oppo.shuttle.rss.messages.ShuffleMessage.internal_static_shuffle_ServerDetail_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              ShuffleMessage.ServerDetail.class, ShuffleMessage.ServerDetail.Builder.class);
+              com.oppo.shuttle.rss.messages.ShuffleMessage.ServerDetail.class, com.oppo.shuttle.rss.messages.ShuffleMessage.ServerDetail.Builder.class);
     }
 
     public static final int HOST_FIELD_NUMBER = 1;
@@ -12676,10 +12676,10 @@ public final class ShuffleMessage {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof ShuffleMessage.ServerDetail)) {
+      if (!(obj instanceof com.oppo.shuttle.rss.messages.ShuffleMessage.ServerDetail)) {
         return super.equals(obj);
       }
-      ShuffleMessage.ServerDetail other = (ShuffleMessage.ServerDetail) obj;
+      com.oppo.shuttle.rss.messages.ShuffleMessage.ServerDetail other = (com.oppo.shuttle.rss.messages.ShuffleMessage.ServerDetail) obj;
 
       if (!getHost()
           .equals(other.getHost())) return false;
@@ -12709,69 +12709,69 @@ public final class ShuffleMessage {
       return hash;
     }
 
-    public static ShuffleMessage.ServerDetail parseFrom(
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.ServerDetail parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static ShuffleMessage.ServerDetail parseFrom(
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.ServerDetail parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static ShuffleMessage.ServerDetail parseFrom(
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.ServerDetail parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static ShuffleMessage.ServerDetail parseFrom(
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.ServerDetail parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static ShuffleMessage.ServerDetail parseFrom(byte[] data)
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.ServerDetail parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static ShuffleMessage.ServerDetail parseFrom(
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.ServerDetail parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static ShuffleMessage.ServerDetail parseFrom(java.io.InputStream input)
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.ServerDetail parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static ShuffleMessage.ServerDetail parseFrom(
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.ServerDetail parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static ShuffleMessage.ServerDetail parseDelimitedFrom(java.io.InputStream input)
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.ServerDetail parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static ShuffleMessage.ServerDetail parseDelimitedFrom(
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.ServerDetail parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static ShuffleMessage.ServerDetail parseFrom(
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.ServerDetail parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static ShuffleMessage.ServerDetail parseFrom(
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.ServerDetail parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -12784,7 +12784,7 @@ public final class ShuffleMessage {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(ShuffleMessage.ServerDetail prototype) {
+    public static Builder newBuilder(com.oppo.shuttle.rss.messages.ShuffleMessage.ServerDetail prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     @java.lang.Override
@@ -12805,21 +12805,21 @@ public final class ShuffleMessage {
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:shuffle.ServerDetail)
-        ShuffleMessage.ServerDetailOrBuilder {
+        com.oppo.shuttle.rss.messages.ShuffleMessage.ServerDetailOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return ShuffleMessage.internal_static_shuffle_ServerDetail_descriptor;
+        return com.oppo.shuttle.rss.messages.ShuffleMessage.internal_static_shuffle_ServerDetail_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return ShuffleMessage.internal_static_shuffle_ServerDetail_fieldAccessorTable
+        return com.oppo.shuttle.rss.messages.ShuffleMessage.internal_static_shuffle_ServerDetail_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                ShuffleMessage.ServerDetail.class, ShuffleMessage.ServerDetail.Builder.class);
+                com.oppo.shuttle.rss.messages.ShuffleMessage.ServerDetail.class, com.oppo.shuttle.rss.messages.ShuffleMessage.ServerDetail.Builder.class);
       }
 
-      // Construct using com.andes.ors2.messages.ShuffleMessage.ServerDetail.newBuilder()
+      // Construct using com.oppo.shuttle.rss.messages.ShuffleMessage.ServerDetail.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -12849,17 +12849,17 @@ public final class ShuffleMessage {
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return ShuffleMessage.internal_static_shuffle_ServerDetail_descriptor;
+        return com.oppo.shuttle.rss.messages.ShuffleMessage.internal_static_shuffle_ServerDetail_descriptor;
       }
 
       @java.lang.Override
-      public ShuffleMessage.ServerDetail getDefaultInstanceForType() {
-        return ShuffleMessage.ServerDetail.getDefaultInstance();
+      public com.oppo.shuttle.rss.messages.ShuffleMessage.ServerDetail getDefaultInstanceForType() {
+        return com.oppo.shuttle.rss.messages.ShuffleMessage.ServerDetail.getDefaultInstance();
       }
 
       @java.lang.Override
-      public ShuffleMessage.ServerDetail build() {
-        ShuffleMessage.ServerDetail result = buildPartial();
+      public com.oppo.shuttle.rss.messages.ShuffleMessage.ServerDetail build() {
+        com.oppo.shuttle.rss.messages.ShuffleMessage.ServerDetail result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
@@ -12867,8 +12867,8 @@ public final class ShuffleMessage {
       }
 
       @java.lang.Override
-      public ShuffleMessage.ServerDetail buildPartial() {
-        ShuffleMessage.ServerDetail result = new ShuffleMessage.ServerDetail(this);
+      public com.oppo.shuttle.rss.messages.ShuffleMessage.ServerDetail buildPartial() {
+        com.oppo.shuttle.rss.messages.ShuffleMessage.ServerDetail result = new com.oppo.shuttle.rss.messages.ShuffleMessage.ServerDetail(this);
         result.host_ = host_;
         result.dataPort_ = dataPort_;
         result.buildConnPort_ = buildConnPort_;
@@ -12910,16 +12910,16 @@ public final class ShuffleMessage {
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof ShuffleMessage.ServerDetail) {
-          return mergeFrom((ShuffleMessage.ServerDetail)other);
+        if (other instanceof com.oppo.shuttle.rss.messages.ShuffleMessage.ServerDetail) {
+          return mergeFrom((com.oppo.shuttle.rss.messages.ShuffleMessage.ServerDetail)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(ShuffleMessage.ServerDetail other) {
-        if (other == ShuffleMessage.ServerDetail.getDefaultInstance()) return this;
+      public Builder mergeFrom(com.oppo.shuttle.rss.messages.ShuffleMessage.ServerDetail other) {
+        if (other == com.oppo.shuttle.rss.messages.ShuffleMessage.ServerDetail.getDefaultInstance()) return this;
         if (!other.getHost().isEmpty()) {
           host_ = other.host_;
           onChanged();
@@ -12945,11 +12945,11 @@ public final class ShuffleMessage {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        ShuffleMessage.ServerDetail parsedMessage = null;
+        com.oppo.shuttle.rss.messages.ShuffleMessage.ServerDetail parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (ShuffleMessage.ServerDetail) e.getUnfinishedMessage();
+          parsedMessage = (com.oppo.shuttle.rss.messages.ShuffleMessage.ServerDetail) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -13113,12 +13113,12 @@ public final class ShuffleMessage {
     }
 
     // @@protoc_insertion_point(class_scope:shuffle.ServerDetail)
-    private static final ShuffleMessage.ServerDetail DEFAULT_INSTANCE;
+    private static final com.oppo.shuttle.rss.messages.ShuffleMessage.ServerDetail DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new ShuffleMessage.ServerDetail();
+      DEFAULT_INSTANCE = new com.oppo.shuttle.rss.messages.ShuffleMessage.ServerDetail();
     }
 
-    public static ShuffleMessage.ServerDetail getDefaultInstance() {
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.ServerDetail getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -13143,7 +13143,7 @@ public final class ShuffleMessage {
     }
 
     @java.lang.Override
-    public ShuffleMessage.ServerDetail getDefaultInstanceForType() {
+    public com.oppo.shuttle.rss.messages.ShuffleMessage.ServerDetail getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -13156,12 +13156,12 @@ public final class ShuffleMessage {
     /**
      * <code>repeated .shuffle.ServerDetail severDetail = 1;</code>
      */
-    java.util.List<ShuffleMessage.ServerDetail>
+    java.util.List<com.oppo.shuttle.rss.messages.ShuffleMessage.ServerDetail> 
         getSeverDetailList();
     /**
      * <code>repeated .shuffle.ServerDetail severDetail = 1;</code>
      */
-    ShuffleMessage.ServerDetail getSeverDetail(int index);
+    com.oppo.shuttle.rss.messages.ShuffleMessage.ServerDetail getSeverDetail(int index);
     /**
      * <code>repeated .shuffle.ServerDetail severDetail = 1;</code>
      */
@@ -13169,12 +13169,12 @@ public final class ShuffleMessage {
     /**
      * <code>repeated .shuffle.ServerDetail severDetail = 1;</code>
      */
-    java.util.List<? extends ShuffleMessage.ServerDetailOrBuilder>
+    java.util.List<? extends com.oppo.shuttle.rss.messages.ShuffleMessage.ServerDetailOrBuilder> 
         getSeverDetailOrBuilderList();
     /**
      * <code>repeated .shuffle.ServerDetail severDetail = 1;</code>
      */
-    ShuffleMessage.ServerDetailOrBuilder getSeverDetailOrBuilder(
+    com.oppo.shuttle.rss.messages.ShuffleMessage.ServerDetailOrBuilder getSeverDetailOrBuilder(
         int index);
 
     /**
@@ -13230,6 +13230,18 @@ public final class ShuffleMessage {
      * @return The isSuccess.
      */
     boolean getIsSuccess();
+
+    /**
+     * <code>string errorMsg = 7;</code>
+     * @return The errorMsg.
+     */
+    java.lang.String getErrorMsg();
+    /**
+     * <code>string errorMsg = 7;</code>
+     * @return The bytes for errorMsg.
+     */
+    com.google.protobuf.ByteString
+        getErrorMsgBytes();
   }
   /**
    * Protobuf type {@code shuffle.GetWorkersResponse}
@@ -13249,6 +13261,7 @@ public final class ShuffleMessage {
       rootDir_ = "";
       dataCenter_ = "";
       cluster_ = "";
+      errorMsg_ = "";
     }
 
     @java.lang.Override
@@ -13284,11 +13297,11 @@ public final class ShuffleMessage {
               break;
             case 10: {
               if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                severDetail_ = new java.util.ArrayList<ShuffleMessage.ServerDetail>();
+                severDetail_ = new java.util.ArrayList<com.oppo.shuttle.rss.messages.ShuffleMessage.ServerDetail>();
                 mutable_bitField0_ |= 0x00000001;
               }
               severDetail_.add(
-                  input.readMessage(ShuffleMessage.ServerDetail.parser(), extensionRegistry));
+                  input.readMessage(com.oppo.shuttle.rss.messages.ShuffleMessage.ServerDetail.parser(), extensionRegistry));
               break;
             }
             case 18: {
@@ -13320,6 +13333,12 @@ public final class ShuffleMessage {
               isSuccess_ = input.readBool();
               break;
             }
+            case 58: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              errorMsg_ = s;
+              break;
+            }
             default: {
               if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
@@ -13344,31 +13363,31 @@ public final class ShuffleMessage {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return ShuffleMessage.internal_static_shuffle_GetWorkersResponse_descriptor;
+      return com.oppo.shuttle.rss.messages.ShuffleMessage.internal_static_shuffle_GetWorkersResponse_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return ShuffleMessage.internal_static_shuffle_GetWorkersResponse_fieldAccessorTable
+      return com.oppo.shuttle.rss.messages.ShuffleMessage.internal_static_shuffle_GetWorkersResponse_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              ShuffleMessage.GetWorkersResponse.class, ShuffleMessage.GetWorkersResponse.Builder.class);
+              com.oppo.shuttle.rss.messages.ShuffleMessage.GetWorkersResponse.class, com.oppo.shuttle.rss.messages.ShuffleMessage.GetWorkersResponse.Builder.class);
     }
 
     public static final int SEVERDETAIL_FIELD_NUMBER = 1;
-    private java.util.List<ShuffleMessage.ServerDetail> severDetail_;
+    private java.util.List<com.oppo.shuttle.rss.messages.ShuffleMessage.ServerDetail> severDetail_;
     /**
      * <code>repeated .shuffle.ServerDetail severDetail = 1;</code>
      */
     @java.lang.Override
-    public java.util.List<ShuffleMessage.ServerDetail> getSeverDetailList() {
+    public java.util.List<com.oppo.shuttle.rss.messages.ShuffleMessage.ServerDetail> getSeverDetailList() {
       return severDetail_;
     }
     /**
      * <code>repeated .shuffle.ServerDetail severDetail = 1;</code>
      */
     @java.lang.Override
-    public java.util.List<? extends ShuffleMessage.ServerDetailOrBuilder>
+    public java.util.List<? extends com.oppo.shuttle.rss.messages.ShuffleMessage.ServerDetailOrBuilder> 
         getSeverDetailOrBuilderList() {
       return severDetail_;
     }
@@ -13383,14 +13402,14 @@ public final class ShuffleMessage {
      * <code>repeated .shuffle.ServerDetail severDetail = 1;</code>
      */
     @java.lang.Override
-    public ShuffleMessage.ServerDetail getSeverDetail(int index) {
+    public com.oppo.shuttle.rss.messages.ShuffleMessage.ServerDetail getSeverDetail(int index) {
       return severDetail_.get(index);
     }
     /**
      * <code>repeated .shuffle.ServerDetail severDetail = 1;</code>
      */
     @java.lang.Override
-    public ShuffleMessage.ServerDetailOrBuilder getSeverDetailOrBuilder(
+    public com.oppo.shuttle.rss.messages.ShuffleMessage.ServerDetailOrBuilder getSeverDetailOrBuilder(
         int index) {
       return severDetail_.get(index);
     }
@@ -13558,6 +13577,44 @@ public final class ShuffleMessage {
       return isSuccess_;
     }
 
+    public static final int ERRORMSG_FIELD_NUMBER = 7;
+    private volatile java.lang.Object errorMsg_;
+    /**
+     * <code>string errorMsg = 7;</code>
+     * @return The errorMsg.
+     */
+    @java.lang.Override
+    public java.lang.String getErrorMsg() {
+      java.lang.Object ref = errorMsg_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        errorMsg_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string errorMsg = 7;</code>
+     * @return The bytes for errorMsg.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getErrorMsgBytes() {
+      java.lang.Object ref = errorMsg_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        errorMsg_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -13590,6 +13647,9 @@ public final class ShuffleMessage {
       if (isSuccess_ != false) {
         output.writeBool(6, isSuccess_);
       }
+      if (!getErrorMsgBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 7, errorMsg_);
+      }
       unknownFields.writeTo(output);
     }
 
@@ -13619,6 +13679,9 @@ public final class ShuffleMessage {
         size += com.google.protobuf.CodedOutputStream
           .computeBoolSize(6, isSuccess_);
       }
+      if (!getErrorMsgBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(7, errorMsg_);
+      }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
@@ -13629,10 +13692,10 @@ public final class ShuffleMessage {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof ShuffleMessage.GetWorkersResponse)) {
+      if (!(obj instanceof com.oppo.shuttle.rss.messages.ShuffleMessage.GetWorkersResponse)) {
         return super.equals(obj);
       }
-      ShuffleMessage.GetWorkersResponse other = (ShuffleMessage.GetWorkersResponse) obj;
+      com.oppo.shuttle.rss.messages.ShuffleMessage.GetWorkersResponse other = (com.oppo.shuttle.rss.messages.ShuffleMessage.GetWorkersResponse) obj;
 
       if (!getSeverDetailList()
           .equals(other.getSeverDetailList())) return false;
@@ -13646,6 +13709,8 @@ public final class ShuffleMessage {
           .equals(other.getCluster())) return false;
       if (getIsSuccess()
           != other.getIsSuccess()) return false;
+      if (!getErrorMsg()
+          .equals(other.getErrorMsg())) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
@@ -13672,74 +13737,76 @@ public final class ShuffleMessage {
       hash = (37 * hash) + ISSUCCESS_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
           getIsSuccess());
+      hash = (37 * hash) + ERRORMSG_FIELD_NUMBER;
+      hash = (53 * hash) + getErrorMsg().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
     }
 
-    public static ShuffleMessage.GetWorkersResponse parseFrom(
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.GetWorkersResponse parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static ShuffleMessage.GetWorkersResponse parseFrom(
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.GetWorkersResponse parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static ShuffleMessage.GetWorkersResponse parseFrom(
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.GetWorkersResponse parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static ShuffleMessage.GetWorkersResponse parseFrom(
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.GetWorkersResponse parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static ShuffleMessage.GetWorkersResponse parseFrom(byte[] data)
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.GetWorkersResponse parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static ShuffleMessage.GetWorkersResponse parseFrom(
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.GetWorkersResponse parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static ShuffleMessage.GetWorkersResponse parseFrom(java.io.InputStream input)
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.GetWorkersResponse parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static ShuffleMessage.GetWorkersResponse parseFrom(
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.GetWorkersResponse parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static ShuffleMessage.GetWorkersResponse parseDelimitedFrom(java.io.InputStream input)
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.GetWorkersResponse parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static ShuffleMessage.GetWorkersResponse parseDelimitedFrom(
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.GetWorkersResponse parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static ShuffleMessage.GetWorkersResponse parseFrom(
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.GetWorkersResponse parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static ShuffleMessage.GetWorkersResponse parseFrom(
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.GetWorkersResponse parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -13752,7 +13819,7 @@ public final class ShuffleMessage {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(ShuffleMessage.GetWorkersResponse prototype) {
+    public static Builder newBuilder(com.oppo.shuttle.rss.messages.ShuffleMessage.GetWorkersResponse prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     @java.lang.Override
@@ -13773,21 +13840,21 @@ public final class ShuffleMessage {
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:shuffle.GetWorkersResponse)
-        ShuffleMessage.GetWorkersResponseOrBuilder {
+        com.oppo.shuttle.rss.messages.ShuffleMessage.GetWorkersResponseOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return ShuffleMessage.internal_static_shuffle_GetWorkersResponse_descriptor;
+        return com.oppo.shuttle.rss.messages.ShuffleMessage.internal_static_shuffle_GetWorkersResponse_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return ShuffleMessage.internal_static_shuffle_GetWorkersResponse_fieldAccessorTable
+        return com.oppo.shuttle.rss.messages.ShuffleMessage.internal_static_shuffle_GetWorkersResponse_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                ShuffleMessage.GetWorkersResponse.class, ShuffleMessage.GetWorkersResponse.Builder.class);
+                com.oppo.shuttle.rss.messages.ShuffleMessage.GetWorkersResponse.class, com.oppo.shuttle.rss.messages.ShuffleMessage.GetWorkersResponse.Builder.class);
       }
 
-      // Construct using com.andes.ors2.messages.ShuffleMessage.GetWorkersResponse.newBuilder()
+      // Construct using com.oppo.shuttle.rss.messages.ShuffleMessage.GetWorkersResponse.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -13822,23 +13889,25 @@ public final class ShuffleMessage {
 
         isSuccess_ = false;
 
+        errorMsg_ = "";
+
         return this;
       }
 
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return ShuffleMessage.internal_static_shuffle_GetWorkersResponse_descriptor;
+        return com.oppo.shuttle.rss.messages.ShuffleMessage.internal_static_shuffle_GetWorkersResponse_descriptor;
       }
 
       @java.lang.Override
-      public ShuffleMessage.GetWorkersResponse getDefaultInstanceForType() {
-        return ShuffleMessage.GetWorkersResponse.getDefaultInstance();
+      public com.oppo.shuttle.rss.messages.ShuffleMessage.GetWorkersResponse getDefaultInstanceForType() {
+        return com.oppo.shuttle.rss.messages.ShuffleMessage.GetWorkersResponse.getDefaultInstance();
       }
 
       @java.lang.Override
-      public ShuffleMessage.GetWorkersResponse build() {
-        ShuffleMessage.GetWorkersResponse result = buildPartial();
+      public com.oppo.shuttle.rss.messages.ShuffleMessage.GetWorkersResponse build() {
+        com.oppo.shuttle.rss.messages.ShuffleMessage.GetWorkersResponse result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
@@ -13846,8 +13915,8 @@ public final class ShuffleMessage {
       }
 
       @java.lang.Override
-      public ShuffleMessage.GetWorkersResponse buildPartial() {
-        ShuffleMessage.GetWorkersResponse result = new ShuffleMessage.GetWorkersResponse(this);
+      public com.oppo.shuttle.rss.messages.ShuffleMessage.GetWorkersResponse buildPartial() {
+        com.oppo.shuttle.rss.messages.ShuffleMessage.GetWorkersResponse result = new com.oppo.shuttle.rss.messages.ShuffleMessage.GetWorkersResponse(this);
         int from_bitField0_ = bitField0_;
         if (severDetailBuilder_ == null) {
           if (((bitField0_ & 0x00000001) != 0)) {
@@ -13863,6 +13932,7 @@ public final class ShuffleMessage {
         result.dataCenter_ = dataCenter_;
         result.cluster_ = cluster_;
         result.isSuccess_ = isSuccess_;
+        result.errorMsg_ = errorMsg_;
         onBuilt();
         return result;
       }
@@ -13901,16 +13971,16 @@ public final class ShuffleMessage {
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof ShuffleMessage.GetWorkersResponse) {
-          return mergeFrom((ShuffleMessage.GetWorkersResponse)other);
+        if (other instanceof com.oppo.shuttle.rss.messages.ShuffleMessage.GetWorkersResponse) {
+          return mergeFrom((com.oppo.shuttle.rss.messages.ShuffleMessage.GetWorkersResponse)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(ShuffleMessage.GetWorkersResponse other) {
-        if (other == ShuffleMessage.GetWorkersResponse.getDefaultInstance()) return this;
+      public Builder mergeFrom(com.oppo.shuttle.rss.messages.ShuffleMessage.GetWorkersResponse other) {
+        if (other == com.oppo.shuttle.rss.messages.ShuffleMessage.GetWorkersResponse.getDefaultInstance()) return this;
         if (severDetailBuilder_ == null) {
           if (!other.severDetail_.isEmpty()) {
             if (severDetail_.isEmpty()) {
@@ -13956,6 +14026,10 @@ public final class ShuffleMessage {
         if (other.getIsSuccess() != false) {
           setIsSuccess(other.getIsSuccess());
         }
+        if (!other.getErrorMsg().isEmpty()) {
+          errorMsg_ = other.errorMsg_;
+          onChanged();
+        }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
         return this;
@@ -13971,11 +14045,11 @@ public final class ShuffleMessage {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        ShuffleMessage.GetWorkersResponse parsedMessage = null;
+        com.oppo.shuttle.rss.messages.ShuffleMessage.GetWorkersResponse parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (ShuffleMessage.GetWorkersResponse) e.getUnfinishedMessage();
+          parsedMessage = (com.oppo.shuttle.rss.messages.ShuffleMessage.GetWorkersResponse) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -13986,22 +14060,22 @@ public final class ShuffleMessage {
       }
       private int bitField0_;
 
-      private java.util.List<ShuffleMessage.ServerDetail> severDetail_ =
+      private java.util.List<com.oppo.shuttle.rss.messages.ShuffleMessage.ServerDetail> severDetail_ =
         java.util.Collections.emptyList();
       private void ensureSeverDetailIsMutable() {
         if (!((bitField0_ & 0x00000001) != 0)) {
-          severDetail_ = new java.util.ArrayList<ShuffleMessage.ServerDetail>(severDetail_);
+          severDetail_ = new java.util.ArrayList<com.oppo.shuttle.rss.messages.ShuffleMessage.ServerDetail>(severDetail_);
           bitField0_ |= 0x00000001;
          }
       }
 
       private com.google.protobuf.RepeatedFieldBuilderV3<
-          ShuffleMessage.ServerDetail, ShuffleMessage.ServerDetail.Builder, ShuffleMessage.ServerDetailOrBuilder> severDetailBuilder_;
+          com.oppo.shuttle.rss.messages.ShuffleMessage.ServerDetail, com.oppo.shuttle.rss.messages.ShuffleMessage.ServerDetail.Builder, com.oppo.shuttle.rss.messages.ShuffleMessage.ServerDetailOrBuilder> severDetailBuilder_;
 
       /**
        * <code>repeated .shuffle.ServerDetail severDetail = 1;</code>
        */
-      public java.util.List<ShuffleMessage.ServerDetail> getSeverDetailList() {
+      public java.util.List<com.oppo.shuttle.rss.messages.ShuffleMessage.ServerDetail> getSeverDetailList() {
         if (severDetailBuilder_ == null) {
           return java.util.Collections.unmodifiableList(severDetail_);
         } else {
@@ -14021,7 +14095,7 @@ public final class ShuffleMessage {
       /**
        * <code>repeated .shuffle.ServerDetail severDetail = 1;</code>
        */
-      public ShuffleMessage.ServerDetail getSeverDetail(int index) {
+      public com.oppo.shuttle.rss.messages.ShuffleMessage.ServerDetail getSeverDetail(int index) {
         if (severDetailBuilder_ == null) {
           return severDetail_.get(index);
         } else {
@@ -14032,7 +14106,7 @@ public final class ShuffleMessage {
        * <code>repeated .shuffle.ServerDetail severDetail = 1;</code>
        */
       public Builder setSeverDetail(
-          int index, ShuffleMessage.ServerDetail value) {
+          int index, com.oppo.shuttle.rss.messages.ShuffleMessage.ServerDetail value) {
         if (severDetailBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -14049,7 +14123,7 @@ public final class ShuffleMessage {
        * <code>repeated .shuffle.ServerDetail severDetail = 1;</code>
        */
       public Builder setSeverDetail(
-          int index, ShuffleMessage.ServerDetail.Builder builderForValue) {
+          int index, com.oppo.shuttle.rss.messages.ShuffleMessage.ServerDetail.Builder builderForValue) {
         if (severDetailBuilder_ == null) {
           ensureSeverDetailIsMutable();
           severDetail_.set(index, builderForValue.build());
@@ -14062,7 +14136,7 @@ public final class ShuffleMessage {
       /**
        * <code>repeated .shuffle.ServerDetail severDetail = 1;</code>
        */
-      public Builder addSeverDetail(ShuffleMessage.ServerDetail value) {
+      public Builder addSeverDetail(com.oppo.shuttle.rss.messages.ShuffleMessage.ServerDetail value) {
         if (severDetailBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -14079,7 +14153,7 @@ public final class ShuffleMessage {
        * <code>repeated .shuffle.ServerDetail severDetail = 1;</code>
        */
       public Builder addSeverDetail(
-          int index, ShuffleMessage.ServerDetail value) {
+          int index, com.oppo.shuttle.rss.messages.ShuffleMessage.ServerDetail value) {
         if (severDetailBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -14096,7 +14170,7 @@ public final class ShuffleMessage {
        * <code>repeated .shuffle.ServerDetail severDetail = 1;</code>
        */
       public Builder addSeverDetail(
-          ShuffleMessage.ServerDetail.Builder builderForValue) {
+          com.oppo.shuttle.rss.messages.ShuffleMessage.ServerDetail.Builder builderForValue) {
         if (severDetailBuilder_ == null) {
           ensureSeverDetailIsMutable();
           severDetail_.add(builderForValue.build());
@@ -14110,7 +14184,7 @@ public final class ShuffleMessage {
        * <code>repeated .shuffle.ServerDetail severDetail = 1;</code>
        */
       public Builder addSeverDetail(
-          int index, ShuffleMessage.ServerDetail.Builder builderForValue) {
+          int index, com.oppo.shuttle.rss.messages.ShuffleMessage.ServerDetail.Builder builderForValue) {
         if (severDetailBuilder_ == null) {
           ensureSeverDetailIsMutable();
           severDetail_.add(index, builderForValue.build());
@@ -14124,7 +14198,7 @@ public final class ShuffleMessage {
        * <code>repeated .shuffle.ServerDetail severDetail = 1;</code>
        */
       public Builder addAllSeverDetail(
-          java.lang.Iterable<? extends ShuffleMessage.ServerDetail> values) {
+          java.lang.Iterable<? extends com.oppo.shuttle.rss.messages.ShuffleMessage.ServerDetail> values) {
         if (severDetailBuilder_ == null) {
           ensureSeverDetailIsMutable();
           com.google.protobuf.AbstractMessageLite.Builder.addAll(
@@ -14164,14 +14238,14 @@ public final class ShuffleMessage {
       /**
        * <code>repeated .shuffle.ServerDetail severDetail = 1;</code>
        */
-      public ShuffleMessage.ServerDetail.Builder getSeverDetailBuilder(
+      public com.oppo.shuttle.rss.messages.ShuffleMessage.ServerDetail.Builder getSeverDetailBuilder(
           int index) {
         return getSeverDetailFieldBuilder().getBuilder(index);
       }
       /**
        * <code>repeated .shuffle.ServerDetail severDetail = 1;</code>
        */
-      public ShuffleMessage.ServerDetailOrBuilder getSeverDetailOrBuilder(
+      public com.oppo.shuttle.rss.messages.ShuffleMessage.ServerDetailOrBuilder getSeverDetailOrBuilder(
           int index) {
         if (severDetailBuilder_ == null) {
           return severDetail_.get(index);  } else {
@@ -14181,7 +14255,7 @@ public final class ShuffleMessage {
       /**
        * <code>repeated .shuffle.ServerDetail severDetail = 1;</code>
        */
-      public java.util.List<? extends ShuffleMessage.ServerDetailOrBuilder>
+      public java.util.List<? extends com.oppo.shuttle.rss.messages.ShuffleMessage.ServerDetailOrBuilder> 
            getSeverDetailOrBuilderList() {
         if (severDetailBuilder_ != null) {
           return severDetailBuilder_.getMessageOrBuilderList();
@@ -14192,31 +14266,31 @@ public final class ShuffleMessage {
       /**
        * <code>repeated .shuffle.ServerDetail severDetail = 1;</code>
        */
-      public ShuffleMessage.ServerDetail.Builder addSeverDetailBuilder() {
+      public com.oppo.shuttle.rss.messages.ShuffleMessage.ServerDetail.Builder addSeverDetailBuilder() {
         return getSeverDetailFieldBuilder().addBuilder(
-            ShuffleMessage.ServerDetail.getDefaultInstance());
+            com.oppo.shuttle.rss.messages.ShuffleMessage.ServerDetail.getDefaultInstance());
       }
       /**
        * <code>repeated .shuffle.ServerDetail severDetail = 1;</code>
        */
-      public ShuffleMessage.ServerDetail.Builder addSeverDetailBuilder(
+      public com.oppo.shuttle.rss.messages.ShuffleMessage.ServerDetail.Builder addSeverDetailBuilder(
           int index) {
         return getSeverDetailFieldBuilder().addBuilder(
-            index, ShuffleMessage.ServerDetail.getDefaultInstance());
+            index, com.oppo.shuttle.rss.messages.ShuffleMessage.ServerDetail.getDefaultInstance());
       }
       /**
        * <code>repeated .shuffle.ServerDetail severDetail = 1;</code>
        */
-      public java.util.List<ShuffleMessage.ServerDetail.Builder>
+      public java.util.List<com.oppo.shuttle.rss.messages.ShuffleMessage.ServerDetail.Builder> 
            getSeverDetailBuilderList() {
         return getSeverDetailFieldBuilder().getBuilderList();
       }
       private com.google.protobuf.RepeatedFieldBuilderV3<
-          ShuffleMessage.ServerDetail, ShuffleMessage.ServerDetail.Builder, ShuffleMessage.ServerDetailOrBuilder>
+          com.oppo.shuttle.rss.messages.ShuffleMessage.ServerDetail, com.oppo.shuttle.rss.messages.ShuffleMessage.ServerDetail.Builder, com.oppo.shuttle.rss.messages.ShuffleMessage.ServerDetailOrBuilder> 
           getSeverDetailFieldBuilder() {
         if (severDetailBuilder_ == null) {
           severDetailBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              ShuffleMessage.ServerDetail, ShuffleMessage.ServerDetail.Builder, ShuffleMessage.ServerDetailOrBuilder>(
+              com.oppo.shuttle.rss.messages.ShuffleMessage.ServerDetail, com.oppo.shuttle.rss.messages.ShuffleMessage.ServerDetail.Builder, com.oppo.shuttle.rss.messages.ShuffleMessage.ServerDetailOrBuilder>(
                   severDetail_,
                   ((bitField0_ & 0x00000001) != 0),
                   getParentForChildren(),
@@ -14560,6 +14634,82 @@ public final class ShuffleMessage {
         onChanged();
         return this;
       }
+
+      private java.lang.Object errorMsg_ = "";
+      /**
+       * <code>string errorMsg = 7;</code>
+       * @return The errorMsg.
+       */
+      public java.lang.String getErrorMsg() {
+        java.lang.Object ref = errorMsg_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          errorMsg_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string errorMsg = 7;</code>
+       * @return The bytes for errorMsg.
+       */
+      public com.google.protobuf.ByteString
+          getErrorMsgBytes() {
+        java.lang.Object ref = errorMsg_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          errorMsg_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string errorMsg = 7;</code>
+       * @param value The errorMsg to set.
+       * @return This builder for chaining.
+       */
+      public Builder setErrorMsg(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        errorMsg_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string errorMsg = 7;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearErrorMsg() {
+        
+        errorMsg_ = getDefaultInstance().getErrorMsg();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string errorMsg = 7;</code>
+       * @param value The bytes for errorMsg to set.
+       * @return This builder for chaining.
+       */
+      public Builder setErrorMsgBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        errorMsg_ = value;
+        onChanged();
+        return this;
+      }
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -14577,12 +14727,12 @@ public final class ShuffleMessage {
     }
 
     // @@protoc_insertion_point(class_scope:shuffle.GetWorkersResponse)
-    private static final ShuffleMessage.GetWorkersResponse DEFAULT_INSTANCE;
+    private static final com.oppo.shuttle.rss.messages.ShuffleMessage.GetWorkersResponse DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new ShuffleMessage.GetWorkersResponse();
+      DEFAULT_INSTANCE = new com.oppo.shuttle.rss.messages.ShuffleMessage.GetWorkersResponse();
     }
 
-    public static ShuffleMessage.GetWorkersResponse getDefaultInstance() {
+    public static com.oppo.shuttle.rss.messages.ShuffleMessage.GetWorkersResponse getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -14607,7 +14757,7 @@ public final class ShuffleMessage {
     }
 
     @java.lang.Override
-    public ShuffleMessage.GetWorkersResponse getDefaultInstanceForType() {
+    public com.oppo.shuttle.rss.messages.ShuffleMessage.GetWorkersResponse getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -14726,24 +14876,25 @@ public final class ShuffleMessage {
       "ime\030\013 \001(\003\022\024\n\014startVersion\030\014 \001(\t\022\025\n\rrootD" +
       "irectory\030\r \001(\t\022\030\n\020workerLoadWeight\030\016 \001(\005" +
       "\022\016\n\006fsConf\030\017 \001(\t\"2\n\036ShuffleWorkerUnregis" +
-      "terRequest\022\020\n\010serverId\030\001 \001(\t\"\250\001\n\021GetWork" +
+      "terRequest\022\020\n\010serverId\030\001 \001(\t\"\252\001\n\021GetWork" +
       "ersRequest\022\032\n\022requestWorkerCount\030\001 \001(\005\022\022" +
-      "\n\ndataCenter\030\002 \001(\t\022\017\n\007cluster\030\003 \001(\t\022\023\n\013j" +
-      "obPriority\030\004 \001(\005\022\r\n\005appId\030\005 \001(\t\022\r\n\005dagId" +
-      "\030\006 \001(\t\022\016\n\006taskId\030\007 \001(\t\022\017\n\007appName\030\010 \001(\t\"" +
-      "E\n\014ServerDetail\022\014\n\004host\030\001 \001(\t\022\020\n\010dataPor" +
-      "t\030\002 \001(\005\022\025\n\rbuildConnPort\030\003 \001(\005\"\241\001\n\022GetWo" +
-      "rkersResponse\022*\n\013severDetail\030\001 \003(\0132\025.shu" +
-      "ffle.ServerDetail\022\026\n\016fileSystemConf\030\002 \001(" +
-      "\t\022\017\n\007rootDir\030\003 \001(\t\022\022\n\ndataCenter\030\004 \001(\t\022\017" +
-      "\n\007cluster\030\005 \001(\t\022\021\n\tisSuccess\030\006 \001(\010*b\n\017Fl" +
-      "owControlType\022\013\n\007UNKNOWN\020\000\022\016\n\nNO_CONTROL" +
-      "\020e\022\017\n\013MEM_CONTROL\020f\022\020\n\014BUSY_CONTROL\020g\022\017\n" +
-      "\013BYPASS_PASS\020h*q\n\030ShuffleWorkerStorageTy" +
-      "pe\022\016\n\nNO_STORAGE\020\000\022\014\n\010HDD_HDFS\020\001\022\013\n\007HDD_" +
-      "CFS\020\002\022\014\n\010SSD_HDFS\020\003\022\013\n\007SSD_CFS\020\004\022\017\n\013MEM_" +
-      "ALLUXIO\020\005B)\n\027com.andes.ors2.messagesB\016Sh" +
-      "uffleMessageb\006proto3"
+      "\n\ndataCenter\030\002 \001(\t\022\017\n\007cluster\030\003 \001(\t\022\025\n\rn" +
+      "umPartitions\030\004 \001(\005\022\r\n\005appId\030\005 \001(\t\022\r\n\005dag" +
+      "Id\030\006 \001(\t\022\016\n\006taskId\030\007 \001(\t\022\017\n\007appName\030\010 \001(" +
+      "\t\"E\n\014ServerDetail\022\014\n\004host\030\001 \001(\t\022\020\n\010dataP" +
+      "ort\030\002 \001(\005\022\025\n\rbuildConnPort\030\003 \001(\005\"\263\001\n\022Get" +
+      "WorkersResponse\022*\n\013severDetail\030\001 \003(\0132\025.s" +
+      "huffle.ServerDetail\022\026\n\016fileSystemConf\030\002 " +
+      "\001(\t\022\017\n\007rootDir\030\003 \001(\t\022\022\n\ndataCenter\030\004 \001(\t" +
+      "\022\017\n\007cluster\030\005 \001(\t\022\021\n\tisSuccess\030\006 \001(\010\022\020\n\010" +
+      "errorMsg\030\007 \001(\t*b\n\017FlowControlType\022\013\n\007UNK" +
+      "NOWN\020\000\022\016\n\nNO_CONTROL\020e\022\017\n\013MEM_CONTROL\020f\022" +
+      "\020\n\014BUSY_CONTROL\020g\022\017\n\013BYPASS_PASS\020h*q\n\030Sh" +
+      "uffleWorkerStorageType\022\016\n\nNO_STORAGE\020\000\022\014" +
+      "\n\010HDD_HDFS\020\001\022\013\n\007HDD_CFS\020\002\022\014\n\010SSD_HDFS\020\003\022" +
+      "\013\n\007SSD_CFS\020\004\022\017\n\013MEM_ALLUXIO\020\005B/\n\035com.opp" +
+      "o.shuttle.rss.messagesB\016ShuffleMessageb\006" +
+      "proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -14814,7 +14965,7 @@ public final class ShuffleMessage {
     internal_static_shuffle_GetWorkersRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_shuffle_GetWorkersRequest_descriptor,
-        new java.lang.String[] { "RequestWorkerCount", "DataCenter", "Cluster", "JobPriority", "AppId", "DagId", "TaskId", "AppName", });
+        new java.lang.String[] { "RequestWorkerCount", "DataCenter", "Cluster", "NumPartitions", "AppId", "DagId", "TaskId", "AppName", });
     internal_static_shuffle_ServerDetail_descriptor =
       getDescriptor().getMessageTypes().get(9);
     internal_static_shuffle_ServerDetail_fieldAccessorTable = new
@@ -14826,7 +14977,7 @@ public final class ShuffleMessage {
     internal_static_shuffle_GetWorkersResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_shuffle_GetWorkersResponse_descriptor,
-        new java.lang.String[] { "SeverDetail", "FileSystemConf", "RootDir", "DataCenter", "Cluster", "IsSuccess", });
+        new java.lang.String[] { "SeverDetail", "FileSystemConf", "RootDir", "DataCenter", "Cluster", "IsSuccess", "ErrorMsg", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)
