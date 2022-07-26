@@ -111,6 +111,7 @@ public class ShuffleMasterHandler extends SimpleChannelInboundHandler<ByteBuf> {
             );
             logger.warn(msg);
 
+            Ors2MetricsConstants.rejectWorkerRequest.inc();
             HandlerUtil.writeResponseMsg(ctx,
                     MessageConstants.RESPONSE_STATUS_OK,
                     GetWorkersResponse.newBuilder().setIsSuccess(false).setErrorMsg(msg).build(),
@@ -125,6 +126,8 @@ public class ShuffleMasterHandler extends SimpleChannelInboundHandler<ByteBuf> {
                     getWorkersRequest.getAppId()
             );
             logger.warn(msg);
+
+            Ors2MetricsConstants.rejectWorkerRequest.inc();
             HandlerUtil.writeResponseMsg(ctx,
                     MessageConstants.RESPONSE_STATUS_OK,
                     GetWorkersResponse.newBuilder().setIsSuccess(false).setErrorMsg(msg).build(),
@@ -171,6 +174,10 @@ public class ShuffleMasterHandler extends SimpleChannelInboundHandler<ByteBuf> {
     }
 
     public static void logDriverRequest(GetWorkersRequest request, GetWorkersResponse response) {
+        if (response.getSeverDetailList().size() == 0) {
+            Ors2MetricsConstants.rejectWorkerRequest.inc();
+        }
+
         logger.info(
                 "GetWorkersRequest: dagId={}, taskId={}, appId={}, numPartitions={}, appName={}, requestWorkerCount={}; " +
                         "response: dataCenter={}, cluster={}, rootDir={}, serverSize={}",

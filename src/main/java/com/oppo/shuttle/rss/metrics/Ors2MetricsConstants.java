@@ -92,6 +92,16 @@ public class Ors2MetricsConstants {
             .help("Java direct memory usage")
             .register();
 
+    public static final Counter masterHaSwitch = Counter.build()
+            .name("master_ha_switch")
+            .help("master switch statistics")
+            .register();
+
+    public static final Counter rejectWorkerRequest = Counter.build()
+            .name("reject_worker_request")
+            .help("Number of worker allocation requests rejected")
+            .register();
+
     public static void register() {
     }
 }

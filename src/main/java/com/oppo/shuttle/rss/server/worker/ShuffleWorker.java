@@ -119,7 +119,7 @@ public class ShuffleWorker extends ShuffleServer {
         //send heartbeat and health info to master
         double rejectNumber = Ors2MetricsConstants.busyControlTimes.get() + Ors2MetricsConstants.memoryControlTimes.get();
         ScheduledThreadPoolUtils.scheduleAtFixedRate(() -> {
-            logger.info("Send heartbeat to master");
+            logger.info("Send heartbeat to master {}", ors2RegistryClient.masterAddress());
             long holdDataSize = new Double(Ors2MetricsConstants.writeTotalBytes.get()).longValue();
             ors2RegistryClient.sendHeartbeat(ShuffleMessage.ShuffleWorkerHealthInfo.newBuilder()
                     .setHostIp(hostIp)
