@@ -48,7 +48,7 @@ public abstract class ShuffleMasterDispatcher {
                                                         String dataCenter,
                                                         String cluster,
                                                         String dagId,
-                                                        int jobPriority);
+                                                        int numPartitions);
 
     protected MasterDispatchServers getAvailableServers(
             String dataCenter,

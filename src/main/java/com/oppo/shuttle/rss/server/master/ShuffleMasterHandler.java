@@ -39,13 +39,16 @@ public class ShuffleMasterHandler extends SimpleChannelInboundHandler<ByteBuf> {
     private final ShuffleMasterDispatcher shuffleMasterDispatcher;
     private final ShuffleWorkerStatusManager shuffleWorkerStatusManager;
     private final ApplicationRequestController applicationRequestController;
+    private final int maxNumPartitions;
 
     public ShuffleMasterHandler(ShuffleMasterDispatcher shuffleMasterDispatcher,
                                 ShuffleWorkerStatusManager shuffleWorkerStatusManager,
-                                ApplicationRequestController applicationRequestController) {
+                                ApplicationRequestController applicationRequestController,
+                                int maxNumPartitions) {
         this.shuffleMasterDispatcher = shuffleMasterDispatcher;
         this.shuffleWorkerStatusManager = shuffleWorkerStatusManager;
         this.applicationRequestController = applicationRequestController;
+        this.maxNumPartitions = maxNumPartitions;
     }
 
     @Override
@@ -98,10 +101,33 @@ public class ShuffleMasterHandler extends SimpleChannelInboundHandler<ByteBuf> {
     private void handleDriverRequest(GetWorkersRequest getWorkersRequest, ChannelHandlerContext ctx) {
         String appName = "".equals(getWorkersRequest.getTaskId()) ?
                 getWorkersRequest.getAppName() : getWorkersRequest.getTaskId();
-        if (!applicationRequestController.requestCome(appName, getWorkersRequest.getAppId())){
+
+        if (getWorkersRequest.getNumPartitions() > maxNumPartitions) {
+            String msg = String.format(
+                    "req_check appId %s, numPartitions(%s) exceeds maximum limit %s",
+                    getWorkersRequest.getAppId(),
+                    getWorkersRequest.getNumPartitions(),
+                    maxNumPartitions
+            );
+            logger.warn(msg);
+
             HandlerUtil.writeResponseMsg(ctx,
                     MessageConstants.RESPONSE_STATUS_OK,
-                    GetWorkersResponse.newBuilder().setIsSuccess(false).build(),
+                    GetWorkersResponse.newBuilder().setIsSuccess(false).setErrorMsg(msg).build(),
+                    true,
+                    MessageConstants.MESSAGE_SHUFFLE_RESPONSE_INFO);
+        }
+
+        if (!applicationRequestController.requestCome(appName, getWorkersRequest.getAppId())){
+            String msg = String.format(
+                    "req_check appKey %s, appId %s, submitting tasks in unit time exceeds the limit",
+                    appName,
+                    getWorkersRequest.getAppId()
+            );
+            logger.warn(msg);
+            HandlerUtil.writeResponseMsg(ctx,
+                    MessageConstants.RESPONSE_STATUS_OK,
+                    GetWorkersResponse.newBuilder().setIsSuccess(false).setErrorMsg(msg).build(),
                     true,
                     MessageConstants.MESSAGE_SHUFFLE_RESPONSE_INFO);
             return;
@@ -112,7 +138,7 @@ public class ShuffleMasterHandler extends SimpleChannelInboundHandler<ByteBuf> {
                 getWorkersRequest.getDataCenter(),
                 getWorkersRequest.getCluster(),
                 getWorkersRequest.getDagId(),
-                getWorkersRequest.getJobPriority());
+                getWorkersRequest.getNumPartitions());
         List<Ors2WorkerDetail> serverList = masterDispatchServers.getServerDetailList();
 
         // count each worker distributed times
@@ -146,12 +172,13 @@ public class ShuffleMasterHandler extends SimpleChannelInboundHandler<ByteBuf> {
 
     public static void logDriverRequest(GetWorkersRequest request, GetWorkersResponse response) {
         logger.info(
-                "GetWorkersRequest: dagId={}, taskId={}, appName={}, appId={}, requestWorkerCount={}; " +
+                "GetWorkersRequest: dagId={}, taskId={}, appId={}, numPartitions={}, appName={}, requestWorkerCount={}; " +
                         "response: dataCenter={}, cluster={}, rootDir={}, serverSize={}",
                 request.getDagId(),
                 request.getTaskId(),
-                request.getAppName(),
                 request.getAppId(),
+                request.getNumPartitions(),
+                request.getAppName(),
                 request.getRequestWorkerCount(),
                 response.getDataCenter(),
                 response.getCluster(),

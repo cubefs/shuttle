@@ -147,7 +147,12 @@ public class ShuffleMaster extends ShuffleServer {
 
                 Supplier<ChannelHandler[]> masterSupplierHandlers = () -> new ChannelHandler[] {
                         new LengthFieldBasedFrameDecoder(134217728, 4, 4),
-                        new ShuffleMasterHandler(shuffleMasterDispatcher, shuffleWorkerStatusManager, applicationRequestController)
+                        new ShuffleMasterHandler(
+                                shuffleMasterDispatcher,
+                                shuffleWorkerStatusManager,
+                                applicationRequestController,
+                                masterConfig.getMaxNumPartitions()
+                        )
                 };
 
                 ServerBootstrap masterBootstrap = initServerBootstrap(

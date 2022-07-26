@@ -99,6 +99,7 @@ public class ShuffleServerConfig {
 
   public static final int DEFAULT_MAX_OPEN_FILES = 60000;
   private int maxOpenFiles = DEFAULT_MAX_OPEN_FILES;
+  private int maxNumPartitions = 8000;
 
   private long idleTimeoutMillis = Math.max(Constants.CLI_CONN_IDLE_TIMEOUT_MS + TimeUnit.MINUTES.toMillis(1),
           Constants.SERVER_CONNECTION_IDLE_TIMEOUT_MILLIS_DEFAULT);
@@ -334,6 +335,7 @@ public class ShuffleServerConfig {
     options.addOption("flowControlBuildIdTimeout", true, "build connection id timeout, default 60000ms");
     options.addOption("appNamePreLen", true, "App control pre length");
     options.addOption("maxOpenFiles", true, "Maximum number of open files");
+    options.addOption("maxNumPartitions", true, "Maximum number of partitions");
 
     CommandLineParser parser = new BasicParser();
     HelpFormatter formatter = new HelpFormatter();
@@ -403,6 +405,7 @@ public class ShuffleServerConfig {
     serverConfig.flowControlBuildIdTimeout = Long.parseLong(cmd.getOptionValue("flowControlBuildIdTimeout", "60000"));
     serverConfig.appNamePreLen = Integer.parseInt(cmd.getOptionValue("appNamePreLen", "25"));
     serverConfig.maxOpenFiles  = Integer.parseInt(cmd.getOptionValue("maxOpenFiles", String.valueOf(serverConfig.maxOpenFiles)));
+    serverConfig.maxNumPartitions  = Integer.parseInt(cmd.getOptionValue("maxNumPartitions", String.valueOf(serverConfig.maxNumPartitions)));
 
     serverConfig.storage = new ShuffleFileStorage(serverConfig.rootDir);
     return serverConfig;
@@ -569,6 +572,10 @@ public class ShuffleServerConfig {
     this.maxOpenFiles = maxOpenFiles;
   }
 
+  public int getMaxNumPartitions() {
+    return maxNumPartitions;
+  }
+
   public String getShuffleMasterConfig() {
     StringBuilder sb = new StringBuilder("ShuffleMasterConfig{useEpoll=").append(useEpoll)
             .append(", masterPort=").append(masterPort)
@@ -583,6 +590,7 @@ public class ShuffleServerConfig {
             .append(", networkTimeout=").append(networkTimeout)
             .append(", networkRetries=").append(networkRetries)
             .append(", dispatchStrategy=").append(dispatchStrategy)
+            .append(", maxNumPartitions=").append(maxNumPartitions)
             .append("}");
     return sb.toString();
   }

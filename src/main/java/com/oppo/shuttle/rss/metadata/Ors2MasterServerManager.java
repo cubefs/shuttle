@@ -78,7 +78,7 @@ public class Ors2MasterServerManager implements ServiceManager {
             String dataCenter,
             String cluster,
             int maxCount,
-            int jobPriority,
+            int numPartitions,
             String appId,
             String dagId,
             String taskId,
@@ -86,7 +86,7 @@ public class Ors2MasterServerManager implements ServiceManager {
         ShuffleMessage.GetWorkersRequest getWorkersRequest = ShuffleMessage.GetWorkersRequest.newBuilder()
                 .setDagId(dagId)
                 .setAppId(appId)
-                .setJobPriority(jobPriority)
+                .setNumPartitions(numPartitions)
                 .setRequestWorkerCount(maxCount)
                 .setCluster(cluster)
                 .setDataCenter(dataCenter)

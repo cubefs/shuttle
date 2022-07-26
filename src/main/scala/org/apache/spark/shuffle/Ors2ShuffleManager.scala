@@ -393,7 +393,7 @@ class Ors2ShuffleManager(conf: SparkConf) extends ShuffleManager with Logging {
       cluster,
       conf.getAppId,
       dagId,
-      jobPriority,
+      numPartitions,
       taskId,
       appName)
 

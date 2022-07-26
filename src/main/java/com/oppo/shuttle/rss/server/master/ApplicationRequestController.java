@@ -96,9 +96,9 @@ public class ApplicationRequestController {
         } else {
             Semaphore resource = resourceHolder.semaphore;
             try {
-                logger.info("Current resource holders are: {}", resourceHolder.getHolderList());
                 if (resource.tryAcquire(WAIT_RESOURCE_TIMEOUT, TimeUnit.SECONDS)) {
                     resourceHolder.holderList.add(appId);
+                    logger.info("Current resource holders are: {}", resourceHolder.getHolderList());
                     return true;
                 }
                 logger.info("{} request can't get resource in {} seconds, return fail.", appId, WAIT_RESOURCE_TIMEOUT);
