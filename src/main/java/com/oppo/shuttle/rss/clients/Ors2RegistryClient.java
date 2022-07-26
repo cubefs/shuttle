@@ -53,6 +53,13 @@ public class Ors2RegistryClient implements AutoCloseable {
 
     }
 
+    public String masterAddress() {
+        if (ors2MasterClient.getChannel() == null) {
+            return null;
+        } else {
+            return "" + ors2MasterClient.getChannel().remoteAddress();
+        }
+    }
     @Override
     public void close() {
         ors2MasterClient.close();

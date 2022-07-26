@@ -74,6 +74,7 @@ public class ApplicationRequestController {
             for (Map.Entry<String, ResourceHolder> appResource : appMap.entrySet()) {
                 if (appResource.getValue().isResourceExpired(currentTimeMillis, appControlInterval)) {
                     appMap.remove(appResource.getKey());
+                    logger.info("req_check task id {} already clear", appResource.getKey());
                 }
             }
         }
@@ -98,10 +99,16 @@ public class ApplicationRequestController {
             try {
                 if (resource.tryAcquire(WAIT_RESOURCE_TIMEOUT, TimeUnit.SECONDS)) {
                     resourceHolder.holderList.add(appId);
-                    logger.info("Current resource holders are: {}", resourceHolder.getHolderList());
+                    logger.info("appKey {} Current resource holders are: {}", appName, resourceHolder.getHolderList());
                     return true;
                 }
-                logger.info("{} request can't get resource in {} seconds, return fail.", appId, WAIT_RESOURCE_TIMEOUT);
+
+                logger.warn("req_check task id {} number of running apps {} (max {} in {} seconds), request rejected",
+                        appName,
+                        resourceHolder.getHolderList().size(),
+                        resourceNum,
+                        appControlInterval);
+
                 return false;
             } catch (InterruptedException e) {
                 logger.warn("Request can't get resource in {} seconds", WAIT_RESOURCE_TIMEOUT, e);

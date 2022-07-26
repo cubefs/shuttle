@@ -21,6 +21,7 @@ import com.oppo.shuttle.rss.ShuffleServerConfig;
 import com.oppo.shuttle.rss.common.Constants;
 import com.oppo.shuttle.rss.exceptions.Ors2Exception;
 import com.oppo.shuttle.rss.metadata.ZkShuffleServiceManager;
+import com.oppo.shuttle.rss.metrics.Ors2MetricsConstants;
 import com.oppo.shuttle.rss.metrics.Ors2MetricsExport;
 import com.oppo.shuttle.rss.server.ShuffleServer;
 import com.oppo.shuttle.rss.util.NetworkUtils;
@@ -222,11 +223,12 @@ public class ShuffleMaster extends ShuffleServer {
             @Override
             public void isLeader() {
                 // set current server data to zk node
-                logger.info("Current host is leader");
+                logger.info("Current server {} is leader", serverId);
                 for (int i = 0; i < 3; i++) {
                     try {
                         zkManager.setData(masterWatchPath, serverId.getBytes());
                         isLeader.getAndSet(true);
+                        Ors2MetricsConstants.masterHaSwitch.inc();
                         return;
                     } catch (Exception e) {
                         logger.warn(e.getMessage());
