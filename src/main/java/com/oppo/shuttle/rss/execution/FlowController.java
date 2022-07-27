@@ -51,17 +51,18 @@ public class FlowController {
   private int barrierConnPerPriorityLevel;
   private AtomicLong usedMemorySize = new AtomicLong();
   private AtomicLong usedMemoryLastUpdateTimeStamp = new AtomicLong();
-  private final long CONFIGURED_MAX_JVM_MEMORY = CommonUtils.getJvmConfigMaxMemory();
   private final int MEMORY_UPDATE_INTERVAL_MIL = 15 * 1000;   // 5s
   private final int MAX_RETRY_INDEX = 10;
 
   // value
-  private Map<Integer, ConnectionValue> allConnections = new HashMap<>();
+  private final Map<Integer, ConnectionValue> allConnections = new HashMap<>();
   private final BitSet allocateConnection;
   private volatile int usedConnections = 0;
 
   // a background executor service doing clean up timeout connections
   private final ScheduledExecutorService clearTimeoutExecutorService = new DefaultEventLoop();
+
+  private double lastBusyControlNumber = 0;
 
   public FlowController(ShuffleServerConfig serverConfig) {
     this.serverConfig = serverConfig;
@@ -87,18 +88,21 @@ public class FlowController {
       } catch (Exception e) {
         logger.warn("Exception occur in clearTimeOutConnections", e);
       }
-    }, 60, 60, TimeUnit.SECONDS);
+    }, 30, 30, TimeUnit.SECONDS);
 
     clearTimeoutExecutorService.scheduleAtFixedRate(() -> {
       try {
         double usedMemory = Ors2MetricsConstants.bufferedDataSize.get();
+        double nowBusyControl = Ors2MetricsConstants.busyControlTimes.get();
+        double diff = nowBusyControl - lastBusyControlNumber;
+        lastBusyControlNumber = nowBusyControl;
 
         if (usedMemory > 1024 || usedConnections > 0) {
-          logger.info("flow-monitor, used memory {}MB, remaining memory {} mb; used connection {}, remaining connection {}.",
+          logger.info("flow-monitor, used memory {}MB, used connection {}, busyControl {}(interval {}s).",
                   Ors2MetricsExport.toMb(usedMemory),
-                  Ors2MetricsExport.toMb(memoryContolSizeThreshold - usedMemory),
                   usedConnections,
-                  totalConnections - usedConnections);
+                  diff,
+                  MEMORY_UPDATE_INTERVAL_MIL / 1000);
         }
       } catch (Exception e) {
         logger.warn("Exception occur in clearTimeOutConnections", e);
@@ -112,31 +116,13 @@ public class FlowController {
 
     if (memoryContolSizeThreshold < usedMemory
             || memoryControlRatioThreshold <= usedMemory / memoryContolSizeThreshold) {
-      logger.info("Memory flow control by metrics, usedMemory:{}, memoryContolSizeThreshold: {}, memoryControlRatioThreshold:{}",
+      logger.debug("Memory flow control by metrics, usedMemory:{}, memoryContolSizeThreshold: {}, memoryControlRatioThreshold:{}",
               usedMemory, memoryContolSizeThreshold, memoryControlRatioThreshold);
       return true;
     }
     return false;
   }
 
-
-  public boolean memoryFlowControl() {
-    long nowMillSec = System.currentTimeMillis();
-    if (nowMillSec - usedMemoryLastUpdateTimeStamp.get() >= MEMORY_UPDATE_INTERVAL_MIL) {
-      long usedMemorySize = CommonUtils.getUsedMemory();
-      this.usedMemorySize.set(usedMemorySize);
-      this.usedMemoryLastUpdateTimeStamp.set(nowMillSec);
-    }
-
-    long usedMemory = this.usedMemorySize.get();
-    if (CONFIGURED_MAX_JVM_MEMORY < usedMemory
-            || memoryControlRatioThreshold <= (double)usedMemory/CONFIGURED_MAX_JVM_MEMORY) {
-      logger.info("Memory flow control, usedMemory:{}, CONFIGURED_MAX_JVM_MEMORY: {}, memoryControlRatioThreshold:{}",
-              usedMemory, CONFIGURED_MAX_JVM_MEMORY, memoryControlRatioThreshold);
-      return true;
-    }
-    return false;
-  }
 
   public boolean busyFlowControl(int usedConnections, int jobPriority, int retryIdx) {
     retryIdx = Math.min(retryIdx, MAX_RETRY_INDEX);
@@ -159,17 +145,15 @@ public class FlowController {
    */
   public int buildConnection(Pair<Integer, Long> connIdValue, int jobPriority, int retryIdx) {
     if (memoryFlowControlByMetrics()) {
-      logger.info("MemoryFlowControl jobPriority:{}, retryIdx:{}, runGcImmediately!", jobPriority, retryIdx);
-      //SystemUtils.runGcImmediately();
+      logger.debug("MemoryFlowControl jobPriority:{}, retryIdx:{}, runGcImmediately!", jobPriority, retryIdx);
       Ors2MetricsConstants.memoryControlTimes.inc();
       return MessageConstants.FLOW_CONTROL_MEMORY;
     }
 
     try {
       synchronized (allocateConnection) {
-
         if (busyFlowControl(usedConnections, jobPriority, retryIdx)) {
-          logger.info("BusyFlowControl jobPriority:{}, retryIdx:{}, usedConnections:{}, baseConnections: {}, freeConnections: {}" +
+          logger.debug("BusyFlowControl jobPriority:{}, retryIdx:{}, usedConnections:{}, baseConnections: {}, freeConnections: {}" +
                           " barrierConnPerPriorityLevel:{}",
                   jobPriority, retryIdx, allocateConnection.cardinality(), baseConnections, totalConnections - usedConnections, barrierConnPerPriorityLevel);
           Ors2MetricsConstants.busyControlTimes.inc();

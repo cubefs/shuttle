@@ -167,7 +167,7 @@ public class ShuffleServerConfig {
   private int baseConnections = 5000;
   private long connectionTimeoutInterval = 5 * 60 * 1000L;
   private long connectRetryInterval = 10 * 1000L;
-  private long flowControlBuildIdTimeout = 60 * 1000L;
+  private long flowControlBuildIdTimeout = 30 * 1000L;
 
   public long getConnectionTimeoutInterval() {
     return connectionTimeoutInterval;
