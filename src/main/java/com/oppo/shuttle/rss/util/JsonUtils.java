@@ -56,4 +56,12 @@ public class JsonUtils {
             throw new Ors2Exception(String.format("Failed to deserialize from json %s", content), e);
         }
     }
+
+    public static <T> T jsonToObj(String content, Class<T> clazz) {
+        try {
+            return objectMapper.readValue(content, clazz);
+        } catch (IOException e) {
+            throw new Ors2Exception(String.format("Failed to deserialize from json %s", content), e);
+        }
+    }
 }
