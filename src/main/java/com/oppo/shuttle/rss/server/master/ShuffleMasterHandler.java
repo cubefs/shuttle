@@ -40,15 +40,19 @@ public class ShuffleMasterHandler extends SimpleChannelInboundHandler<ByteBuf> {
     private final ShuffleWorkerStatusManager shuffleWorkerStatusManager;
     private final ApplicationRequestController applicationRequestController;
     private final int maxNumPartitions;
+    private final ApplicationWhitelistController whitelistController;
 
     public ShuffleMasterHandler(ShuffleMasterDispatcher shuffleMasterDispatcher,
                                 ShuffleWorkerStatusManager shuffleWorkerStatusManager,
                                 ApplicationRequestController applicationRequestController,
-                                int maxNumPartitions) {
+                                int maxNumPartitions,
+                                ApplicationWhitelistController whitelistController
+                                ) {
         this.shuffleMasterDispatcher = shuffleMasterDispatcher;
         this.shuffleWorkerStatusManager = shuffleWorkerStatusManager;
         this.applicationRequestController = applicationRequestController;
         this.maxNumPartitions = maxNumPartitions;
+        this.whitelistController = whitelistController;
     }
 
     @Override
@@ -102,37 +106,36 @@ public class ShuffleMasterHandler extends SimpleChannelInboundHandler<ByteBuf> {
         String appName = "".equals(getWorkersRequest.getTaskId()) ?
                 getWorkersRequest.getAppName() : getWorkersRequest.getTaskId();
 
+        if (!whitelistController.checkIsWriteList(getWorkersRequest)) {
+            String msg = String.format(
+                    "whitelist check fail, dagId=%s, taskId=%s, appName=%s, appId=%s not on the whitelist",
+                    getWorkersRequest.getDagId(),
+                    getWorkersRequest.getTaskId(),
+                    getWorkersRequest.getAppName(),
+                    getWorkersRequest.getAppId()
+            );
+            responseError(ctx, msg);
+            return;
+        }
+
         if (getWorkersRequest.getNumPartitions() > maxNumPartitions) {
             String msg = String.format(
-                    "req_check appId %s, numPartitions(%s) exceeds maximum limit %s",
+                    "numPartitions check appId %s, numPartitions(%s) exceeds maximum limit %s",
                     getWorkersRequest.getAppId(),
                     getWorkersRequest.getNumPartitions(),
                     maxNumPartitions
             );
-            logger.warn(msg);
-
-            Ors2MetricsConstants.rejectWorkerRequest.inc();
-            HandlerUtil.writeResponseMsg(ctx,
-                    MessageConstants.RESPONSE_STATUS_OK,
-                    GetWorkersResponse.newBuilder().setIsSuccess(false).setErrorMsg(msg).build(),
-                    true,
-                    MessageConstants.MESSAGE_SHUFFLE_RESPONSE_INFO);
+            responseError(ctx, msg);
+            return;
         }
 
         if (!applicationRequestController.requestCome(appName, getWorkersRequest.getAppId())){
             String msg = String.format(
-                    "req_check appKey %s, appId %s, submitting tasks in unit time exceeds the limit",
+                    "request check %s, appId %s, submitting tasks in unit time exceeds the limit",
                     appName,
                     getWorkersRequest.getAppId()
             );
-            logger.warn(msg);
-
-            Ors2MetricsConstants.rejectWorkerRequest.inc();
-            HandlerUtil.writeResponseMsg(ctx,
-                    MessageConstants.RESPONSE_STATUS_OK,
-                    GetWorkersResponse.newBuilder().setIsSuccess(false).setErrorMsg(msg).build(),
-                    true,
-                    MessageConstants.MESSAGE_SHUFFLE_RESPONSE_INFO);
+            responseError(ctx, msg);
             return;
         }
 
@@ -192,5 +195,17 @@ public class ShuffleMasterHandler extends SimpleChannelInboundHandler<ByteBuf> {
                 response.getRootDir(),
                 response.getSeverDetailList().size()
         );
+    }
+
+    public void responseError(ChannelHandlerContext ctx, String msg) {
+        logger.warn(msg);
+
+        Ors2MetricsConstants.rejectWorkerRequest.inc();
+
+        HandlerUtil.writeResponseMsg(ctx,
+                MessageConstants.RESPONSE_STATUS_OK,
+                GetWorkersResponse.newBuilder().setIsSuccess(false).setErrorMsg(msg).build(),
+                true,
+                MessageConstants.MESSAGE_SHUFFLE_RESPONSE_INFO);
     }
 }

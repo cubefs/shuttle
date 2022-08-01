@@ -147,13 +147,19 @@ public class ShuffleMaster extends ShuffleServer {
                                 masterConfig.getAppNamePreLen(),
                                 masterConfig.getFilterExcludes());
 
+                ApplicationWhitelistController applicationWhitelistController =
+                        new ApplicationWhitelistController(
+                        masterConfig.isEnableWhiteListCheck()
+                );
+
                 Supplier<ChannelHandler[]> masterSupplierHandlers = () -> new ChannelHandler[] {
                         new LengthFieldBasedFrameDecoder(134217728, 4, 4),
                         new ShuffleMasterHandler(
                                 shuffleMasterDispatcher,
                                 shuffleWorkerStatusManager,
                                 applicationRequestController,
-                                masterConfig.getMaxNumPartitions()
+                                masterConfig.getMaxNumPartitions(),
+                                applicationWhitelistController
                         )
                 };
 

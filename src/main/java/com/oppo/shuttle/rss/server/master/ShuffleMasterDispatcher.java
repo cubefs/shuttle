@@ -66,7 +66,6 @@ public abstract class ShuffleMasterDispatcher {
         Map<String, Map<String, ServerListDir>> workerList = ShuffleWorkerStatusManager.getWorkerList();
         if (!workerList.containsKey(dataCenter)){
             dataCenter = masterConfig.getDataCenter();
-            logger.info("DataCenter is not registered, use default dataCenter {}", dataCenter);
         }
         Map<String, ServerListDir> serverListDirMap = workerList.get(dataCenter);
         if (serverListDirMap != null && !serverListDirMap.containsKey(cluster)){

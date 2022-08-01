@@ -30,6 +30,7 @@ class Ors2ShuffleMaster(val zkServer: String, val dispatchStrategy: String, val 
     config.setDispatchStrategy(dispatchStrategy)
     config.setMasterPort(masterPort)
     config.setHttpPort(httpPort)
+    // config.setEnableWhiteListCheck(true)
 
     config
   }
