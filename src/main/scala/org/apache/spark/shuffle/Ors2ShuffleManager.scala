@@ -94,7 +94,7 @@ class Ors2ShuffleManager(conf: SparkConf) extends ShuffleManager with Logging {
     val appId = conf.getAppId
     val appAttempt = sparkContext.applicationAttemptId.getOrElse("0")
 
-    val (clusterConf, shuffleWorkers) = getShuffleWorkers(numPartitions)
+    val (clusterConf, shuffleWorkers) = getShuffleWorkers(numPartitions, appId)
     val (partitionMapToShuffleWorkers, ors2Servers) = distributeShuffleWorkersToPartition(shuffleId, numPartitions, shuffleWorkers)
 
     logInfo(s"partitionMapToShuffleWorkers to shuffle id $shuffleId size: ${partitionMapToShuffleWorkers.size}: $partitionMapToShuffleWorkers")
@@ -280,7 +280,7 @@ class Ors2ShuffleManager(conf: SparkConf) extends ShuffleManager with Logging {
     }
   }
 
-  private def getOrCreateServiceManager: ServiceManager = {
+   def getOrCreateServiceManager: ServiceManager = {
     if (serviceManager != null) {
       return serviceManager
     }
@@ -369,7 +369,7 @@ class Ors2ShuffleManager(conf: SparkConf) extends ShuffleManager with Logging {
    * @param numPartitions
    * @return
    */
-  private def getShuffleWorkers(numPartitions: Int): (Ors2ClusterConf, Array[Ors2WorkerDetail]) = {
+  def getShuffleWorkers(numPartitions: Int, appId: String): (Ors2ClusterConf, Array[Ors2WorkerDetail]) = {
     logInfo(s"getShuffleWorkers numPartitions: $numPartitions")
     val maxServerCount = conf.get(Ors2Config.maxRequestShuffleWorkerCount)
     val minServerCount = conf.get(Ors2Config.minRequestShuffleWorkerCount)
@@ -391,7 +391,7 @@ class Ors2ShuffleManager(conf: SparkConf) extends ShuffleManager with Logging {
       networkTimeoutMillis,
       dataCenter,
       cluster,
-      conf.getAppId,
+      appId,
       dagId,
       numPartitions,
       taskId,

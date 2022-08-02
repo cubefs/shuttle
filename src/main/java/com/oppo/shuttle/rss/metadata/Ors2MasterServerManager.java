@@ -31,8 +31,9 @@ import java.util.List;
 public class Ors2MasterServerManager implements ServiceManager {
     private static final Logger logger = LoggerFactory.getLogger(Ors2MasterServerManager.class);
 
-    private Ors2GetWorkersClient ors2GetWorkersClient;
+    private final Ors2GetWorkersClient ors2GetWorkersClient;
     private final String servers;
+    private final ZkShuffleServiceManager zkManager;
 
     public Ors2MasterServerManager(
             ZkShuffleServiceManager zkManager,
@@ -40,6 +41,7 @@ public class Ors2MasterServerManager implements ServiceManager {
             long retryInterval,
             String masterName,
             boolean useEpoll) {
+        this.zkManager = zkManager;
         this.servers = zkManager.getZkServerConnStr();
         ors2GetWorkersClient = new Ors2GetWorkersClient(zkManager, timeoutMillis, retryInterval, masterName, useEpoll);
     }
@@ -94,5 +96,16 @@ public class Ors2MasterServerManager implements ServiceManager {
                 .setAppName(appName)
                 .build();
         return ors2GetWorkersClient.getServers(getWorkersRequest);
+    }
+
+    @Override
+    public boolean checkShuttleIsEnable() {
+        try {
+            byte[] data = zkManager.getZkNodeData("/shuffle_rss_path/shuffle_control/rss_enable");
+            return !"0".equals( new String(data));
+        } catch(Exception e) {
+            logger.warn("checkShuttleIsEnable fail: {}, Disable by default", e.getMessage());
+            return false;
+        }
     }
 }
