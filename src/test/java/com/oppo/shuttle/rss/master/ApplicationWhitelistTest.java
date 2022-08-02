@@ -30,6 +30,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -109,5 +110,20 @@ public class ApplicationWhitelistTest {
         long count = spark.range(0, 10000).count();
         System.out.println("count=" + count);
         env.stopCluster();
+    }
+
+    @Test
+    public void test2() throws Exception {
+        ApplicationWhitelistController test = new ApplicationWhitelistController( true);
+
+        ShuffleMessage.GetWorkersRequest.Builder builder = ShuffleMessage
+                .GetWorkersRequest.newBuilder()
+                .setTaskId("task-test");
+        assert test.checkIsWriteList(builder.build());
+
+        assert !test.checkIsWriteList(builder.setTaskId("t2").build());
+        Thread.sleep(TimeUnit.MINUTES.toMillis(1) + 1);
+        // chang file, add t2
+        assert test.checkIsWriteList(builder.setTaskId("t2").build());
     }
 }
