@@ -106,7 +106,8 @@ public class ShuffleMasterHandler extends SimpleChannelInboundHandler<ByteBuf> {
         String appName = "".equals(getWorkersRequest.getTaskId()) ?
                 getWorkersRequest.getAppName() : getWorkersRequest.getTaskId();
 
-        if (!whitelistController.checkIsWriteList(getWorkersRequest)) {
+        boolean isPreCheck = getWorkersRequest.getNumPartitions() == -1;
+        if (isPreCheck && !whitelistController.checkIsWriteList(getWorkersRequest)) {
             String msg = String.format(
                     "whitelist check fail, dagId=%s, taskId=%s, appName=%s, appId=%s not on the whitelist",
                     getWorkersRequest.getDagId(),
@@ -118,22 +119,23 @@ public class ShuffleMasterHandler extends SimpleChannelInboundHandler<ByteBuf> {
             return;
         }
 
+        if (isPreCheck && !applicationRequestController.requestCome(appName, getWorkersRequest.getAppId())){
+            String msg = String.format(
+                    "request check %s, appId %s, submitting tasks in unit time exceeds the limit",
+                    appName,
+                    getWorkersRequest.getAppId()
+            );
+            responseError(ctx, msg);
+            return;
+        }
+
+        // Partitions require on-the-fly checks
         if (getWorkersRequest.getNumPartitions() > maxNumPartitions) {
             String msg = String.format(
                     "numPartitions check appId %s, numPartitions(%s) exceeds maximum limit %s",
                     getWorkersRequest.getAppId(),
                     getWorkersRequest.getNumPartitions(),
                     maxNumPartitions
-            );
-            responseError(ctx, msg);
-            return;
-        }
-
-        if (!applicationRequestController.requestCome(appName, getWorkersRequest.getAppId())){
-            String msg = String.format(
-                    "request check %s, appId %s, submitting tasks in unit time exceeds the limit",
-                    appName,
-                    getWorkersRequest.getAppId()
             );
             responseError(ctx, msg);
             return;

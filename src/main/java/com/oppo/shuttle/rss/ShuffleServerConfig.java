@@ -119,7 +119,7 @@ public class ShuffleServerConfig {
   private long updateDelay = 30 * 1000L;
   private long appControlInterval = 3600 * 1000L;
   private int numAppResourcePerInterval = 20;
-  private int appNamePreLen = 25;
+  private int appNamePreLen = 100;
   private long blackListRefreshInterval = 300 * 1000L;
   private long clearShuffleDirInterval = 300 * 1000L;
 
@@ -368,8 +368,8 @@ public class ShuffleServerConfig {
     serverConfig.heartBeatThreads = Integer.parseInt(cmd.getOptionValue("heartBeatThreads", "5"));
     serverConfig.masterPort = Integer.parseInt(cmd.getOptionValue("masterPort", "19189"));
     serverConfig.workerPunishMills = Integer.parseInt(cmd.getOptionValue("workerPunishMills", "300000"));
-    serverConfig.workerCheckInterval = Integer.parseInt(cmd.getOptionValue("workerCheckInterval", "15000"));
-    serverConfig.maxThroughputPerMin = Long.parseLong(cmd.getOptionValue("maxThroughputPerMin", "4294967296"));
+    serverConfig.workerCheckInterval = Integer.parseInt(cmd.getOptionValue("workerCheckInterval", "60000"));
+    serverConfig.maxThroughputPerMin = Long.parseLong(cmd.getOptionValue("maxThroughputPerMin", "8589934592"));
     serverConfig.maxHoldDataSize = Long.parseLong(cmd.getOptionValue("maxHoldDataSize", "21474836480"));
     serverConfig.maxFlowControlTimes = Integer.parseInt(cmd.getOptionValue("maxFlowControlTimes", "10"));
     serverConfig.shuffleProcessThreads = Integer.parseInt(cmd.getOptionValue("nettyWorkerThreads", "32"));
@@ -405,11 +405,11 @@ public class ShuffleServerConfig {
     serverConfig.blackListRefreshInterval = Long.parseLong(cmd.getOptionValue("blackListRefreshInterval", "300000"));
     serverConfig.filterExcludes = cmd.getOptionValue("filterExcludes", "ors2,livy-session");
     serverConfig.flowControlBuildIdTimeout = Long.parseLong(cmd.getOptionValue("flowControlBuildIdTimeout", "60000"));
-    serverConfig.appNamePreLen = Integer.parseInt(cmd.getOptionValue("appNamePreLen", "25"));
+    serverConfig.appNamePreLen = Integer.parseInt(cmd.getOptionValue("appNamePreLen", "100"));
     serverConfig.maxOpenFiles  = Integer.parseInt(cmd.getOptionValue("maxOpenFiles", String.valueOf(serverConfig.maxOpenFiles)));
     serverConfig.maxNumPartitions  = Integer.parseInt(cmd.getOptionValue("maxNumPartitions",
             String.valueOf(serverConfig.maxNumPartitions)));
-    serverConfig.enableWhiteListCheck  = Boolean.parseBoolean(cmd.getOptionValue("Whether to enable app whitelist check",
+    serverConfig.enableWhiteListCheck  = Boolean.parseBoolean(cmd.getOptionValue("enableWhiteListCheck",
             String.valueOf(serverConfig.enableWhiteListCheck)));
 
     serverConfig.storage = new ShuffleFileStorage(serverConfig.rootDir);
