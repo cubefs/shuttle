@@ -38,7 +38,6 @@ class Ors2ShuffleManager(conf: SparkConf) extends ShuffleManager with Logging {
     s" git commit revision: ${BuildVersion.gitCommitVersion}")
 
   private val SparkYarnQueueConfigKey = "spark.yarn.queue"
-  private val SparkAppNameKey = "spark.app.name"
 
   private val networkTimeoutMillis = conf.get(Ors2Config.networkTimeout).toInt
   private val networkRetries = conf.get(Ors2Config.getClientMaxRetries)
@@ -54,7 +53,7 @@ class Ors2ShuffleManager(conf: SparkConf) extends ShuffleManager with Logging {
   private val dagId = conf.get(Ors2Config.dagId)
   private val jobPriority = conf.get(Ors2Config.jobPriority)
   private val taskId = conf.get(Ors2Config.taskId)
-  private val appName = conf.get(SparkAppNameKey, "")
+  private val appName = ShuttleOnYarn.getAppName(conf)
   val dfsDirPrefix: String = conf.get(Ors2Config.dfsDirPrefix)
 
   private var serviceManager: ServiceManager = _
