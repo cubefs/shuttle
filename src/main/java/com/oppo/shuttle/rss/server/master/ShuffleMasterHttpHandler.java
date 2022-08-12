@@ -25,6 +25,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import static io.netty.buffer.Unpooled.copiedBuffer;
@@ -34,13 +35,20 @@ public class ShuffleMasterHttpHandler extends ChannelInboundHandlerAdapter {
 
     private final AtomicBoolean isLeader;
 
-    private String leaderHostAndPort;
+    private final String leaderHostAndPort;
+
+    private final ApplicationWhitelistController whitelistController;
 
     private static final String WORKERS = "/workers";
+    private static final String WHITELIST = "/whitelist";
 
-    public ShuffleMasterHttpHandler(AtomicBoolean isLeader, String leaderHostAndPort) {
+    public ShuffleMasterHttpHandler(
+            AtomicBoolean isLeader,
+            String leaderHostAndPort,
+            ApplicationWhitelistController whitelistController) {
         this.isLeader = isLeader;
         this.leaderHostAndPort = leaderHostAndPort;
+        this.whitelistController = whitelistController;
     }
 
     @Override
@@ -52,6 +60,9 @@ public class ShuffleMasterHttpHandler extends ChannelInboundHandlerAdapter {
             String responseMessage;
             if (WORKERS.equals(request.uri())) {
                 responseMessage = JsonUtils.objToJson(ShuffleWorkerStatusManager.reportMetrics());
+                status = HttpResponseStatus.OK;
+            } else if (WHITELIST.equals(request.uri())) {
+                responseMessage = handlerWhitelist(request);
                 status = HttpResponseStatus.OK;
             } else {
                 responseMessage = String.format("%s not found", request.uri());
@@ -66,7 +77,7 @@ public class ShuffleMasterHttpHandler extends ChannelInboundHandlerAdapter {
             FullHttpResponse response = new DefaultFullHttpResponse(HttpVersion.HTTP_1_1, status,
                     copiedBuffer(responseMessage.getBytes()));
 
-            response.headers().set(HttpHeaderNames.CONTENT_TYPE, "text/plain");
+            response.headers().set(HttpHeaderNames.CONTENT_TYPE, "application/json");
             response.headers().set(HttpHeaderNames.CONTENT_LENGTH, responseMessage.length());
             response.headers().set(HttpHeaderNames.LOCATION, redirectUrl);
 
@@ -96,5 +107,30 @@ public class ShuffleMasterHttpHandler extends ChannelInboundHandlerAdapter {
                 HttpVersion.HTTP_1_1, HttpResponseStatus.INTERNAL_SERVER_ERROR,
                 copiedBuffer(cause.getMessage().getBytes(StandardCharsets.UTF_8))
         )).addListener(ChannelFutureListener.CLOSE);
+    }
+
+    public String handlerWhitelist(FullHttpRequest request) {
+        HttpMethod method = request.method();
+        Object res = null;
+        int code = 0;
+        try {
+            if (method == HttpMethod.GET) {
+                res = whitelistController.getWhiteList();
+            } else if (method == HttpMethod.POST) {
+                res = "success";
+                whitelistController.add(request.content().toString(StandardCharsets.UTF_8));
+            } else if (method == HttpMethod.DELETE) {
+                res = "success";
+                whitelistController.remove(request.content().toString(StandardCharsets.UTF_8));
+            }
+        } catch (Exception e) {
+            code = 100;
+            res = e.getMessage();
+            logger.warn("handlerWhitelist, ", e);
+        }
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("code", code);
+        map.put("res", res);
+        return JsonUtils.objToJson(map);
     }
 }

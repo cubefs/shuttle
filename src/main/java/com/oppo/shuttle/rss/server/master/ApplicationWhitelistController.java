@@ -17,93 +17,86 @@
 package com.oppo.shuttle.rss.server.master;
 
 import com.oppo.shuttle.rss.messages.ShuffleMessage;
-import com.oppo.shuttle.rss.util.ConfUtil;
+import com.oppo.shuttle.rss.metadata.ZkShuffleServiceManager;
 import com.oppo.shuttle.rss.util.JsonUtils;
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.curator.framework.recipes.cache.NodeCache;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.File;
-import java.nio.charset.StandardCharsets;
-import java.util.HashSet;
-import java.util.concurrent.TimeUnit;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 public class ApplicationWhitelistController {
     private static final Logger logger = LoggerFactory.getLogger(ApplicationWhitelistController.class);
 
-    public final String confPath;
-
     private boolean enable;
 
-    private long lastReadTime = 0;
+    private final ZkShuffleServiceManager zk;
 
-    private long lastModifyTime = 0;
+    private WhitelistBean whiteList;
 
-    private final static long READ_INTERVAL = TimeUnit.MINUTES.toMillis(1);
+    private NodeCache nodeCache;
 
-    private WhiteList whiteList;
+    public static class WhitelistBean {
+        private LinkedHashSet<String> dagIdList = new LinkedHashSet<>();
+        private LinkedHashSet<String> taskIdList = new LinkedHashSet<>();
+        private LinkedHashSet<String> appNameList = new LinkedHashSet<>();
 
-    public static class WhiteList{
-        private HashSet<String> dagIdList;
-        private HashSet<String> taskIdList;
-        private HashSet<String> appNameList;
-
-        public HashSet<String> getTaskIdList() {
-            return taskIdList;
+        public void setDagIdList(LinkedHashSet<String> dagIdList) {
+            this.dagIdList = dagIdList;
         }
 
-        public void setTaskIdList(HashSet<String> taskIdList) {
+        public void setTaskIdList(LinkedHashSet<String> taskIdList) {
             this.taskIdList = taskIdList;
         }
 
-        public HashSet<String> getAppNameList() {
-            return appNameList;
-        }
-
-        public void setAppNameList(HashSet<String> appNameList) {
+        public void setAppNameList(LinkedHashSet<String> appNameList) {
             this.appNameList = appNameList;
         }
 
-        public HashSet<String> getDagIdList() {
+        public LinkedHashSet<String> getDagIdList() {
             return dagIdList;
         }
 
-        public void setDagIdList(HashSet<String> dagIdList) {
-            this.dagIdList = dagIdList;
+        public LinkedHashSet<String> getTaskIdList() {
+            return taskIdList;
+        }
+
+        public LinkedHashSet<String> getAppNameList() {
+            return appNameList;
         }
     }
 
-    public ApplicationWhitelistController(boolean enable) {
-        this.confPath = ConfUtil.getRSSConfDir() + "/application-whitelist.json";
+    public ApplicationWhitelistController(ZkShuffleServiceManager zk, boolean enable) {
         this.enable = enable;
-        readConf();
+        this.zk = zk;
+        init();
     }
 
-    private synchronized void readConf() {
-        long now = System.currentTimeMillis();
-        if (now - lastReadTime > READ_INTERVAL) {
-            long modified = new File(confPath).lastModified();
-            if (modified > lastModifyTime) {
-                try {
-                    String json = FileUtils.readFileToString(new File(confPath), StandardCharsets.UTF_8);
-                    whiteList = JsonUtils.jsonToObj(json, WhiteList.class);
-                    logger.info("Whitelist loaded successfully, dagSize: {}, taskSize: {}, appSize: {}",
-                            whiteList.dagIdList.size(), whiteList.taskIdList.size(), whiteList.appNameList.size());
-                } catch (Throwable e) {
-                    logger.warn("Failed to load whitelist, validation will be disabled.", e);
-                    enable = false;
-                } finally {
-                    lastReadTime = now;
-                    lastModifyTime = modified;
-                }
-            }
+    private void init() {
+        try {
+            nodeCache = zk.createNodeCache(zk.getWhitelistRoot());
+            nodeCache.start();
+            nodeCache.getListenable().addListener(this::reloadConf);
+        } catch (Exception e) {
+            enable = false;
+            logger.error("zk monitoring failed, the whitelist check is turned off", e);
+        }
+    }
+
+    private synchronized void reloadConf() {
+        try {
+            whiteList = getZkWhiteList();
+            logger.info("Whitelist loaded successfully, dagSize: {}, taskSize: {}, appSize: {}",
+                    whiteList.dagIdList.size(), whiteList.taskIdList.size(), whiteList.appNameList.size());
+        } catch (Exception e) {
+            logger.warn("Failed to load whitelist, validation will be disabled.", e);
+            enable = false;
         }
     }
 
     public synchronized boolean checkIsWriteList(ShuffleMessage.GetWorkersRequest request) {
-        readConf();
-
         String dagId = request.getDagId();
         String taskId = request.getTaskId();
         String appName = request.getAppName();
@@ -124,7 +117,7 @@ public class ApplicationWhitelistController {
         // If taskId exists, check taskId, otherwise check appName。
         boolean checkSuccess = false;
         if (StringUtils.isNotEmpty(taskId)) {
-            checkSuccess = whiteList.taskIdList.contains(taskId);
+            checkSuccess = whiteList.taskIdList.contains(dagId + "." + taskId);
             if (checkSuccess) {
                 logger.info("Whitelist check success(taskId) for {}", baseMsg);
             }
@@ -139,5 +132,68 @@ public class ApplicationWhitelistController {
         }
 
         return checkSuccess;
+    }
+
+    private WhitelistBean getZkWhiteList() {
+        byte[] data = nodeCache.getCurrentData().getData();
+        whiteList = JsonUtils.jsonToObj(new String(data), WhitelistBean.class);
+        return whiteList;
+    }
+
+    private void add(Set<String> requestSet, Set<String> zkSet, String mark) {
+        requestSet.forEach(value -> {
+            if (zkSet.add(value)) {
+                logger.info("whitelist-op-add: {}({}) added whitelist successfully", mark, value);
+            } else {
+                logger.info("whitelist-op-add: {}({}) already on the whitelist", mark, value);
+            }
+        });
+    }
+
+    /**
+     * {
+     *     "dag": "task.id",
+     *     "tasks": "t1,t2"
+     * }
+     */
+    public synchronized void add(String json) {
+        logger.info("whitelist-op-add: request {}", json);
+
+        WhitelistBean requestObj = JsonUtils.jsonToObj(json, WhitelistBean.class);
+        WhitelistBean zkObj = getZkWhiteList();
+        add(requestObj.dagIdList, zkObj.dagIdList, "dag");
+        add(requestObj.taskIdList, zkObj.taskIdList, "task");
+        add(requestObj.appNameList, zkObj.appNameList, "name");
+
+        String res = JsonUtils.objToJson(zkObj);
+        zk.setData(zk.getWhitelistRoot(), res.getBytes());
+    }
+
+    private void remove(Set<String> requestSet, Set<String> zkSet, String mark) {
+        requestSet.forEach(value -> {
+            if (zkSet.remove(value)) {
+                logger.info("whitelist-op-remove: {}({}) remove whitelist successfully", mark, value);
+            } else {
+                logger.info("whitelist-op-remove: {}({}) not on the whitelist", mark, value);
+            }
+        });
+    }
+
+    public synchronized void remove(String json) {
+        logger.info("whitelist-op-remove: request {}", json);
+
+        WhitelistBean requestObj = JsonUtils.jsonToObj(json, WhitelistBean.class);
+        WhitelistBean zkObj = getZkWhiteList();
+
+        remove(requestObj.dagIdList, zkObj.dagIdList, "dag");
+        remove(requestObj.taskIdList, zkObj.taskIdList, "task");
+        remove(requestObj.appNameList, zkObj.appNameList, "name");
+
+        String res = JsonUtils.objToJson(zkObj);
+        zk.setData(zk.getWhitelistRoot(), res.getBytes());
+    }
+
+    public synchronized WhitelistBean getWhiteList() {
+        return whiteList;
     }
 }

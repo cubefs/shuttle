@@ -119,13 +119,19 @@ public class ShuffleMaster extends ShuffleServer {
 
     @Override
     protected void initChannel(String serverId, ChannelType type) throws InterruptedException {
+        ApplicationWhitelistController applicationWhitelistController =
+                new ApplicationWhitelistController(
+                        zkManager,
+                        masterConfig.isEnableWhiteListCheck()
+                );
+
         switch (type) {
             case MASTER_HTTP_CHANNEL:
                 String leaderAddr = createLeaderLatch();
                 Supplier<ChannelHandler[]> httpSupplierHandlers = () -> new ChannelHandler[] {
                         new HttpServerCodec(),
                         new HttpObjectAggregator(512 * 1024),
-                        new ShuffleMasterHttpHandler(isLeader, leaderAddr)
+                        new ShuffleMasterHttpHandler(isLeader, leaderAddr, applicationWhitelistController)
                 };
                 ServerBootstrap httpBootstrap = initServerBootstrap(
                         httpEventLoopGroup,
@@ -146,11 +152,6 @@ public class ShuffleMaster extends ShuffleServer {
                                 masterConfig.getUpdateDelay(),
                                 masterConfig.getAppNamePreLen(),
                                 masterConfig.getFilterExcludes());
-
-                ApplicationWhitelistController applicationWhitelistController =
-                        new ApplicationWhitelistController(
-                        masterConfig.isEnableWhiteListCheck()
-                );
 
                 Supplier<ChannelHandler[]> masterSupplierHandlers = () -> new ChannelHandler[] {
                         new LengthFieldBasedFrameDecoder(134217728, 4, 4),
