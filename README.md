@@ -219,7 +219,7 @@ The adaptation is perfect and will not connect to the port of yarn external shuf
 |memoryControlSizeThreshold	| The maximum size of memory used by shuffle data, the default is half of the jvm memory |
 |baseConnections	| Number of tokens for flow control basis |
 |totalConnections	| Flow control maximum number of tokens |
-|appStorageRetentionMillis	| The maximum survival time of shuffle data, the default is 24h. If it exceeds this time, it will be automatically deleted. |
+|appStorageRetentionMillis	| By default, the data will be deleted immediately after the task ends, but in some cases, the worker cannot receive the task end notification, and the master will force delete the data directory according to this time. Default 8h. |
 |appObjRetentionMillis	| The maximum survival time of the app, stage and other data saved in the shuffle worker memory, the default is 6h |
 
 ### Spark client
