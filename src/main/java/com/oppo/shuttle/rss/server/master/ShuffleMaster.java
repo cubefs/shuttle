@@ -21,6 +21,7 @@ import com.oppo.shuttle.rss.ShuffleServerConfig;
 import com.oppo.shuttle.rss.common.Constants;
 import com.oppo.shuttle.rss.exceptions.Ors2Exception;
 import com.oppo.shuttle.rss.metadata.ZkShuffleServiceManager;
+import com.oppo.shuttle.rss.metrics.Ors2MetricsConstants;
 import com.oppo.shuttle.rss.metrics.Ors2MetricsExport;
 import com.oppo.shuttle.rss.server.ShuffleServer;
 import com.oppo.shuttle.rss.util.NetworkUtils;
@@ -118,13 +119,19 @@ public class ShuffleMaster extends ShuffleServer {
 
     @Override
     protected void initChannel(String serverId, ChannelType type) throws InterruptedException {
+        ApplicationWhitelistController applicationWhitelistController =
+                new ApplicationWhitelistController(
+                        zkManager,
+                        masterConfig.isEnableWhiteListCheck()
+                );
+
         switch (type) {
             case MASTER_HTTP_CHANNEL:
                 String leaderAddr = createLeaderLatch();
                 Supplier<ChannelHandler[]> httpSupplierHandlers = () -> new ChannelHandler[] {
                         new HttpServerCodec(),
                         new HttpObjectAggregator(512 * 1024),
-                        new ShuffleMasterHttpHandler(isLeader, leaderAddr)
+                        new ShuffleMasterHttpHandler(isLeader, leaderAddr, applicationWhitelistController)
                 };
                 ServerBootstrap httpBootstrap = initServerBootstrap(
                         httpEventLoopGroup,
@@ -148,7 +155,13 @@ public class ShuffleMaster extends ShuffleServer {
 
                 Supplier<ChannelHandler[]> masterSupplierHandlers = () -> new ChannelHandler[] {
                         new LengthFieldBasedFrameDecoder(134217728, 4, 4),
-                        new ShuffleMasterHandler(shuffleMasterDispatcher, shuffleWorkerStatusManager, applicationRequestController)
+                        new ShuffleMasterHandler(
+                                shuffleMasterDispatcher,
+                                shuffleWorkerStatusManager,
+                                applicationRequestController,
+                                masterConfig.getMaxNumPartitions(),
+                                applicationWhitelistController
+                        )
                 };
 
                 ServerBootstrap masterBootstrap = initServerBootstrap(
@@ -218,11 +231,12 @@ public class ShuffleMaster extends ShuffleServer {
             @Override
             public void isLeader() {
                 // set current server data to zk node
-                logger.info("Current host is leader");
+                logger.info("Current server {} is leader", serverId);
                 for (int i = 0; i < 3; i++) {
                     try {
                         zkManager.setData(masterWatchPath, serverId.getBytes());
                         isLeader.getAndSet(true);
+                        Ors2MetricsConstants.masterHaSwitch.inc();
                         return;
                     } catch (Exception e) {
                         logger.warn(e.getMessage());

@@ -599,7 +599,7 @@
                                 <phase>generate-sources</phase>
                                 <configuration>
                                     <target>
-                                        <property name="protobuf.src.dir"  location="${basedir}/src/protobuf"/>
+                                        <property name="protobuf.src.dir"  location="${basedir}/src/proto"/>
                                         <property name="protobuf.build.dir"  location="${basedir}/src/main/java"/>
                                         <echo>Building Shuffle Message  Protobuf</echo>
                                         <mkdir dir="${protobuf.build.dir}"/>

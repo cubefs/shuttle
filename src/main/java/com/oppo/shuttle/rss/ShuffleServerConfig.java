@@ -99,6 +99,8 @@ public class ShuffleServerConfig {
 
   public static final int DEFAULT_MAX_OPEN_FILES = 60000;
   private int maxOpenFiles = DEFAULT_MAX_OPEN_FILES;
+  private int maxNumPartitions = 8000;
+  private boolean enableWhiteListCheck = false;
 
   private long idleTimeoutMillis = Math.max(Constants.CLI_CONN_IDLE_TIMEOUT_MS + TimeUnit.MINUTES.toMillis(1),
           Constants.SERVER_CONNECTION_IDLE_TIMEOUT_MILLIS_DEFAULT);
@@ -117,7 +119,7 @@ public class ShuffleServerConfig {
   private long updateDelay = 30 * 1000L;
   private long appControlInterval = 3600 * 1000L;
   private int numAppResourcePerInterval = 20;
-  private int appNamePreLen = 25;
+  private int appNamePreLen = 100;
   private long blackListRefreshInterval = 300 * 1000L;
   private long clearShuffleDirInterval = 300 * 1000L;
 
@@ -166,7 +168,7 @@ public class ShuffleServerConfig {
   private int baseConnections = 5000;
   private long connectionTimeoutInterval = 5 * 60 * 1000L;
   private long connectRetryInterval = 10 * 1000L;
-  private long flowControlBuildIdTimeout = 60 * 1000L;
+  private long flowControlBuildIdTimeout = 30 * 1000L;
 
   public long getConnectionTimeoutInterval() {
     return connectionTimeoutInterval;
@@ -334,6 +336,8 @@ public class ShuffleServerConfig {
     options.addOption("flowControlBuildIdTimeout", true, "build connection id timeout, default 60000ms");
     options.addOption("appNamePreLen", true, "App control pre length");
     options.addOption("maxOpenFiles", true, "Maximum number of open files");
+    options.addOption("maxNumPartitions", true, "Maximum number of partitions");
+    options.addOption("enableWhiteListCheck", true, "Whether to enable app whitelist check");
 
     CommandLineParser parser = new BasicParser();
     HelpFormatter formatter = new HelpFormatter();
@@ -364,8 +368,8 @@ public class ShuffleServerConfig {
     serverConfig.heartBeatThreads = Integer.parseInt(cmd.getOptionValue("heartBeatThreads", "5"));
     serverConfig.masterPort = Integer.parseInt(cmd.getOptionValue("masterPort", "19189"));
     serverConfig.workerPunishMills = Integer.parseInt(cmd.getOptionValue("workerPunishMills", "300000"));
-    serverConfig.workerCheckInterval = Integer.parseInt(cmd.getOptionValue("workerCheckInterval", "15000"));
-    serverConfig.maxThroughputPerMin = Long.parseLong(cmd.getOptionValue("maxThroughputPerMin", "4294967296"));
+    serverConfig.workerCheckInterval = Integer.parseInt(cmd.getOptionValue("workerCheckInterval", "60000"));
+    serverConfig.maxThroughputPerMin = Long.parseLong(cmd.getOptionValue("maxThroughputPerMin", "8589934592"));
     serverConfig.maxHoldDataSize = Long.parseLong(cmd.getOptionValue("maxHoldDataSize", "21474836480"));
     serverConfig.maxFlowControlTimes = Integer.parseInt(cmd.getOptionValue("maxFlowControlTimes", "10"));
     serverConfig.shuffleProcessThreads = Integer.parseInt(cmd.getOptionValue("nettyWorkerThreads", "32"));
@@ -401,8 +405,12 @@ public class ShuffleServerConfig {
     serverConfig.blackListRefreshInterval = Long.parseLong(cmd.getOptionValue("blackListRefreshInterval", "300000"));
     serverConfig.filterExcludes = cmd.getOptionValue("filterExcludes", "ors2,livy-session");
     serverConfig.flowControlBuildIdTimeout = Long.parseLong(cmd.getOptionValue("flowControlBuildIdTimeout", "60000"));
-    serverConfig.appNamePreLen = Integer.parseInt(cmd.getOptionValue("appNamePreLen", "25"));
+    serverConfig.appNamePreLen = Integer.parseInt(cmd.getOptionValue("appNamePreLen", "100"));
     serverConfig.maxOpenFiles  = Integer.parseInt(cmd.getOptionValue("maxOpenFiles", String.valueOf(serverConfig.maxOpenFiles)));
+    serverConfig.maxNumPartitions  = Integer.parseInt(cmd.getOptionValue("maxNumPartitions",
+            String.valueOf(serverConfig.maxNumPartitions)));
+    serverConfig.enableWhiteListCheck  = Boolean.parseBoolean(cmd.getOptionValue("enableWhiteListCheck",
+            String.valueOf(serverConfig.enableWhiteListCheck)));
 
     serverConfig.storage = new ShuffleFileStorage(serverConfig.rootDir);
     return serverConfig;
@@ -569,6 +577,18 @@ public class ShuffleServerConfig {
     this.maxOpenFiles = maxOpenFiles;
   }
 
+  public int getMaxNumPartitions() {
+    return maxNumPartitions;
+  }
+
+  public boolean isEnableWhiteListCheck() {
+    return enableWhiteListCheck;
+  }
+
+  public void setEnableWhiteListCheck(boolean enableWhiteListCheck) {
+    this.enableWhiteListCheck = enableWhiteListCheck;
+  }
+
   public String getShuffleMasterConfig() {
     StringBuilder sb = new StringBuilder("ShuffleMasterConfig{useEpoll=").append(useEpoll)
             .append(", masterPort=").append(masterPort)
@@ -583,6 +603,8 @@ public class ShuffleServerConfig {
             .append(", networkTimeout=").append(networkTimeout)
             .append(", networkRetries=").append(networkRetries)
             .append(", dispatchStrategy=").append(dispatchStrategy)
+            .append(", maxNumPartitions=").append(maxNumPartitions)
+            .append(", enableWhiteListCheck=").append(enableWhiteListCheck)
             .append("}");
     return sb.toString();
   }

@@ -43,7 +43,6 @@ public class ApplicationRequestController {
     private final String[] excludePrefixes;
 
     private final long updateDelay;
-    private static final long WAIT_RESOURCE_TIMEOUT = 10L;
     private static final String FILTER_SEPARATOR = ",";
 
     public ApplicationRequestController(
@@ -74,6 +73,7 @@ public class ApplicationRequestController {
             for (Map.Entry<String, ResourceHolder> appResource : appMap.entrySet()) {
                 if (appResource.getValue().isResourceExpired(currentTimeMillis, appControlInterval)) {
                     appMap.remove(appResource.getKey());
+                    logger.info("token check for {} already clear", appResource.getKey());
                 }
             }
         }
@@ -95,16 +95,19 @@ public class ApplicationRequestController {
             return true;
         } else {
             Semaphore resource = resourceHolder.semaphore;
-            try {
-                logger.info("Current resource holders are: {}", resourceHolder.getHolderList());
-                if (resource.tryAcquire(WAIT_RESOURCE_TIMEOUT, TimeUnit.SECONDS)) {
-                    resourceHolder.holderList.add(appId);
-                    return true;
-                }
-                logger.info("{} request can't get resource in {} seconds, return fail.", appId, WAIT_RESOURCE_TIMEOUT);
-                return false;
-            } catch (InterruptedException e) {
-                logger.warn("Request can't get resource in {} seconds", WAIT_RESOURCE_TIMEOUT, e);
+            if (resource.tryAcquire()) {
+                resourceHolder.holderList.add(appId);
+                logger.info("token check for {}, size: {}, current apps: {}",
+                        appName,
+                        resourceHolder.getHolderList().size(),
+                        resourceHolder.getHolderList());
+                return true;
+            } else {
+                logger.warn("token check for {} number of running apps {} (max {} in {} ms), request rejected",
+                        appName,
+                        resourceHolder.getHolderList().size(),
+                        resourceNum,
+                        appControlInterval);
                 return false;
             }
         }

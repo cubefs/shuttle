@@ -62,6 +62,7 @@ public class ZkShuffleServiceManager implements ServiceManager {
     private static final String ZK_MASTER_WATCH_PATH = "shuffle_master_watch";
     public static final String ZK_STORAGE_DAG_PATH = "shuffle_storage_type";
     public static final String ZK_DAG_ID_PATH = "dag_id";
+    public static final String ZK_WHITELIST_PATH = "shuffle_whitelist";
 
     private final String zkServerConnStr;
     private final int timeoutMs;
@@ -97,7 +98,7 @@ public class ZkShuffleServiceManager implements ServiceManager {
         try {
             zkCurator.setData().forPath(path, data);
         } catch (Exception e) {
-            throw new Ors2Exception("set data Exception: " + e.getCause());
+            throw new Ors2Exception("set data Exception", e);
         }
     }
 
@@ -306,6 +307,9 @@ public class ZkShuffleServiceManager implements ServiceManager {
         return new TreeCache(zkCurator, path);
     }
 
+    public NodeCache createNodeCache(String path) {
+        return new NodeCache(zkCurator, path);
+    }
     /**
      * Get shuffle worker id string "hostName:dataPort:connPort"
      *
@@ -451,4 +455,7 @@ public class ZkShuffleServiceManager implements ServiceManager {
         return String.format("/%s/%s", ZK_RSS_BASE_PATH, ZK_STORAGE_DAG_PATH);
     }
 
+    public String getWhitelistRoot() {
+        return String.format("/%s/%s", ZK_RSS_BASE_PATH, ZK_WHITELIST_PATH);
+    }
 }

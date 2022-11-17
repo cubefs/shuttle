@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package shuffle;
 
-option java_package = "com.andes.ors2.messages";
+option java_package = "com.oppo.shuttle.rss.messages";
 option java_outer_classname = "ShuffleMessage";
 
 /***********************  ShuffleWriter & ShuffleWorker msg *********************/
@@ -120,7 +120,7 @@ message GetWorkersRequest{
   int32 requestWorkerCount = 1;
   string dataCenter = 2;
   string cluster = 3;
-  int32 jobPriority = 4;
+  int32 numPartitions = 4;
   string appId = 5;
   string dagId = 6;
   string taskId = 7;
@@ -140,4 +140,5 @@ message GetWorkersResponse{
   string dataCenter = 4;
   string cluster = 5;
   bool isSuccess = 6;
+  string errorMsg = 7;
 }

@@ -39,13 +39,20 @@ public class ShuffleMasterHandler extends SimpleChannelInboundHandler<ByteBuf> {
     private final ShuffleMasterDispatcher shuffleMasterDispatcher;
     private final ShuffleWorkerStatusManager shuffleWorkerStatusManager;
     private final ApplicationRequestController applicationRequestController;
+    private final int maxNumPartitions;
+    private final ApplicationWhitelistController whitelistController;
 
     public ShuffleMasterHandler(ShuffleMasterDispatcher shuffleMasterDispatcher,
                                 ShuffleWorkerStatusManager shuffleWorkerStatusManager,
-                                ApplicationRequestController applicationRequestController) {
+                                ApplicationRequestController applicationRequestController,
+                                int maxNumPartitions,
+                                ApplicationWhitelistController whitelistController
+                                ) {
         this.shuffleMasterDispatcher = shuffleMasterDispatcher;
         this.shuffleWorkerStatusManager = shuffleWorkerStatusManager;
         this.applicationRequestController = applicationRequestController;
+        this.maxNumPartitions = maxNumPartitions;
+        this.whitelistController = whitelistController;
     }
 
     @Override
@@ -98,12 +105,39 @@ public class ShuffleMasterHandler extends SimpleChannelInboundHandler<ByteBuf> {
     private void handleDriverRequest(GetWorkersRequest getWorkersRequest, ChannelHandlerContext ctx) {
         String appName = "".equals(getWorkersRequest.getTaskId()) ?
                 getWorkersRequest.getAppName() : getWorkersRequest.getTaskId();
-        if (!applicationRequestController.requestCome(appName, getWorkersRequest.getAppId())){
-            HandlerUtil.writeResponseMsg(ctx,
-                    MessageConstants.RESPONSE_STATUS_OK,
-                    GetWorkersResponse.newBuilder().setIsSuccess(false).build(),
-                    true,
-                    MessageConstants.MESSAGE_SHUFFLE_RESPONSE_INFO);
+
+        boolean isPreCheck = getWorkersRequest.getNumPartitions() == -1;
+        if (isPreCheck && !whitelistController.checkIsWriteList(getWorkersRequest)) {
+            String msg = String.format(
+                    "whitelist check fail, dagId=%s, taskId=%s, appName=%s, appId=%s not on the whitelist",
+                    getWorkersRequest.getDagId(),
+                    getWorkersRequest.getTaskId(),
+                    getWorkersRequest.getAppName(),
+                    getWorkersRequest.getAppId()
+            );
+            responseError(ctx, msg);
+            return;
+        }
+
+        if (isPreCheck && !applicationRequestController.requestCome(appName, getWorkersRequest.getAppId())){
+            String msg = String.format(
+                    "request check %s, appId %s, submitting tasks in unit time exceeds the limit",
+                    appName,
+                    getWorkersRequest.getAppId()
+            );
+            responseError(ctx, msg);
+            return;
+        }
+
+        // Partitions require on-the-fly checks
+        if (getWorkersRequest.getNumPartitions() > maxNumPartitions) {
+            String msg = String.format(
+                    "numPartitions check appId %s, numPartitions(%s) exceeds maximum limit %s",
+                    getWorkersRequest.getAppId(),
+                    getWorkersRequest.getNumPartitions(),
+                    maxNumPartitions
+            );
+            responseError(ctx, msg);
             return;
         }
 
@@ -112,7 +146,7 @@ public class ShuffleMasterHandler extends SimpleChannelInboundHandler<ByteBuf> {
                 getWorkersRequest.getDataCenter(),
                 getWorkersRequest.getCluster(),
                 getWorkersRequest.getDagId(),
-                getWorkersRequest.getJobPriority());
+                getWorkersRequest.getNumPartitions());
         List<Ors2WorkerDetail> serverList = masterDispatchServers.getServerDetailList();
 
         // count each worker distributed times
@@ -145,18 +179,35 @@ public class ShuffleMasterHandler extends SimpleChannelInboundHandler<ByteBuf> {
     }
 
     public static void logDriverRequest(GetWorkersRequest request, GetWorkersResponse response) {
+        if (response.getSeverDetailList().size() == 0) {
+            Ors2MetricsConstants.rejectWorkerRequest.inc();
+        }
+
         logger.info(
-                "GetWorkersRequest: dagId={}, taskId={}, appName={}, appId={}, requestWorkerCount={}; " +
+                "GetWorkersRequest: dagId={}, taskId={}, appId={}, numPartitions={}, appName={}, requestWorkerCount={}; " +
                         "response: dataCenter={}, cluster={}, rootDir={}, serverSize={}",
                 request.getDagId(),
                 request.getTaskId(),
-                request.getAppName(),
                 request.getAppId(),
+                request.getNumPartitions(),
+                request.getAppName(),
                 request.getRequestWorkerCount(),
                 response.getDataCenter(),
                 response.getCluster(),
                 response.getRootDir(),
                 response.getSeverDetailList().size()
         );
+    }
+
+    public void responseError(ChannelHandlerContext ctx, String msg) {
+        logger.warn(msg);
+
+        Ors2MetricsConstants.rejectWorkerRequest.inc();
+
+        HandlerUtil.writeResponseMsg(ctx,
+                MessageConstants.RESPONSE_STATUS_OK,
+                GetWorkersResponse.newBuilder().setIsSuccess(false).setErrorMsg(msg).build(),
+                true,
+                MessageConstants.MESSAGE_SHUFFLE_RESPONSE_INFO);
     }
 }

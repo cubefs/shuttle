@@ -98,4 +98,8 @@ public interface ServiceManager extends AutoCloseable {
             String dagId,
             String taskId,
             String appName);
+
+    default boolean checkShuttleIsEnable() {
+        return true;
+    }
 }
